@@ -1,1 +1,0 @@
-# ImageManager.gd placeholder

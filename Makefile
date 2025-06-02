@@ -32,3 +32,7 @@ clean:
 	rm -rf __pycache__ .pytest_cache */__pycache__ */*/__pycache__ *.pyc *.pyo
 
 # Les commandes venv/install/serve sont supprimées car la gestion Python se fait dans Docker
+
+api_call:
+	@echo "🧠  Lancement d’un appel API Godot en mode headless..."
+	@~/Téléchargements/Godot_v4.4.1-stable_linux.x86_64 --headless --path godot/ --script scripts/ApiCallHeadless.gd
