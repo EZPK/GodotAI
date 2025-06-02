@@ -1,0 +1,13 @@
+# Dockerfile pour une image Ollama qui télécharge et sert un modèle automatiquement
+
+FROM ollama/ollama:latest
+
+RUN apt-get update && apt-get install -y curl
+
+# On ne définit pas le modèle ici, il sera passé via la variable d'environnement OLLAMA_TEXT_MODEL dans docker-compose.yml
+
+# Copie le script d'entrée qui gère le téléchargement auto
+COPY entrypoint_ollama.sh /entrypoint_ollama.sh
+RUN chmod +x /entrypoint_ollama.sh
+
+ENTRYPOINT ["/entrypoint_ollama.sh"]
