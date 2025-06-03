@@ -1,17 +1,17 @@
-# Installation rapide
+# 🚀 Installation rapide
 
-1. **Cloner le dépôt**
+1. 📥 **Cloner le dépôt**
 ```bash
 git clone <repo_url>
 cd godot_ai
 ```
 
-2. **Lancer les services**
+2. ⚙️ **Lancer les services**
 ```bash
 make up
 ```
 
-3. **Arrêter les services**
+3. 🛑 **Arrêter les services**
 ```bash
 make down
 ```
