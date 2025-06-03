@@ -2,6 +2,9 @@
 
 Ce projet combine un backend FastAPI orchestré avec Docker, un service Ollama pour la génération de texte (LLM), et un client Godot pour l'interface utilisateur. L'ensemble permet de créer des expériences interactives avec des modèles de langage avancés, le tout automatisé et prêt à l'emploi.
 
+Retrouvez la documentation complète sur [GitHub Pages](https://example.github.io/GodotAI/).
+
+
 ## Fonctionnalités principales
 - **Backend FastAPI** : Fournit des endpoints pour la génération de texte et d'images, communique avec Ollama via HTTP.
 - **Support du Model Context Protocol (MCP)** : Endpoint `/mcp` compatible JSON-RPC pour initialiser un client et lister prompts, ressources et outils disponibles.

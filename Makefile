@@ -36,3 +36,11 @@ clean:
 api_call:
 	@echo "🧠  Lancement d’un appel API Godot en mode headless..."
 	@~/Téléchargements/Godot_v4.4.1-stable_linux.x86_64 --headless --path godot/ --script scripts/ApiCallHeadless.gd
+
+## 📚 Lance le serveur MkDocs en local
+docs-serve:
+	mkdocs serve
+
+## 🚀 Déploie la documentation sur GitHub Pages
+docs-deploy:
+	mkdocs gh-deploy --clean
