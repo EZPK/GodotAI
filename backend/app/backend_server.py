@@ -1,12 +1,16 @@
 # Ce fichier contient le serveur principal FastAPI pour le backend
 # TODO: Compléter l'implémentation du backend_server
 
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Depends
 from pydantic import BaseModel
 import requests
 import base64
 import os
 from fastapi.responses import Response
+from sqlalchemy.orm import Session
+
+from .database import SessionLocal
+from .models import User, Context
 
 app = FastAPI()
 
@@ -23,6 +27,19 @@ class ImageRequest(BaseModel):
 
 class ContextRequest(BaseModel):
     context: str
+    user_id: int | None = None
+
+
+class UserCreate(BaseModel):
+    username: str
+
+
+class UserResponse(BaseModel):
+    id: int
+    username: str
+
+    class Config:
+        orm_mode = True
 
 # Utilitaire pour choisir le modèle Ollama
 OLLAMA_TEXT_MODEL = os.environ.get("OLLAMA_TEXT_MODEL", "llama2")
@@ -31,20 +48,35 @@ OLLAMA_HOST = os.environ.get("OLLAMA_HOST", "ollama")
 OLLAMA_PORT = os.environ.get("OLLAMA_PORT", "11434")
 OLLAMA_BASE_URL = f"http://{OLLAMA_HOST}:{OLLAMA_PORT}/api"
 
+
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
+
 # Endpoint pour générer du texte via Ollama
 @app.get("/gen_text")
 def gen_text_get():
     return {"text": "hello world"}
 
 @app.post("/gen_text")
-def gen_text(req: ContextRequest):
+def gen_text(req: ContextRequest, db: Session = Depends(get_db)):
     try:
         response = requests.post(
             f"{OLLAMA_BASE_URL}/generate",
             json={"model": OLLAMA_TEXT_MODEL, "prompt": req.context}
         )
         response.raise_for_status()
-        return response.json()
+        data = response.json()
+
+        if req.user_id is not None:
+            ctx = Context(user_id=req.user_id, content=req.context)
+            db.add(ctx)
+            db.commit()
+
+        return data
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
@@ -82,3 +114,17 @@ def list_models():
         return {"models": [m["name"] for m in data.get("models", [])]}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.post("/users", response_model=UserResponse)
+def create_user(user: UserCreate, db: Session = Depends(get_db)):
+    db_user = User(username=user.username)
+    db.add(db_user)
+    db.commit()
+    db.refresh(db_user)
+    return db_user
+
+
+@app.get("/users", response_model=list[UserResponse])
+def list_users(db: Session = Depends(get_db)):
+    return db.query(User).all()
