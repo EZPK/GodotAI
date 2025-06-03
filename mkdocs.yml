@@ -1,0 +1,6 @@
+site_name: GodotAI
+site_url: https://example.github.io/GodotAI
+theme: readthedocs
+nav:
+  - Accueil: index.md
+  - Installation: installation.md
