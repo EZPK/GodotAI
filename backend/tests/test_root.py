@@ -4,6 +4,7 @@ import sys
 
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 from backend.app.backend_server import app
+import uuid
 
 client = TestClient(app)
 
@@ -15,7 +16,8 @@ def test_read_root():
 
 
 def test_create_user_and_session():
-    user_resp = client.post("/users", json={"username": "alice"})
+    uname = f"user_{uuid.uuid4().hex[:8]}"
+    user_resp = client.post("/users", json={"username": uname})
     assert user_resp.status_code == 200
     user_id = user_resp.json()["user_id"]
 

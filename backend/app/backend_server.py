@@ -11,6 +11,7 @@ from sqlalchemy.orm import Session
 
 from .embedding_context import EmbeddingContext
 from .img_gen_server import generate_image as ollama_generate_image
+from .mcp import router as mcp_router
 
 from . import models
 from .database import Base, engine, get_db
@@ -18,6 +19,7 @@ from .database import Base, engine, get_db
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
+app.include_router(mcp_router)
 
 # Global context manager for storing recent messages
 context_store = EmbeddingContext()
