@@ -8,4 +8,3 @@ Bienvenue sur la documentation du projet **GodotAI**. Vous trouverez ici toutes 
 - [Stack logiciel](stack.md)
 
 Vous pouvez également explorer le [notebook d'exemple](notebooks/api_example.ipynb) pour tester l'API depuis Python.
-

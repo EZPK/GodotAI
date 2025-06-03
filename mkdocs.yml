@@ -4,5 +4,5 @@ theme:
   name: material
 nav:
   - Accueil: index.md
-  - Installation rapide: installation.md
-  - Stack logiciel: stack.md
+  - Installation: installation.md
+  - Stack: stack.md
