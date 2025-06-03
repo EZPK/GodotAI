@@ -11,15 +11,12 @@ services:
       - ollama_models:/root/.ollama
     environment:
       - OLLAMA_HOST=0.0.0.0
-      - OLLAMA_TEXT_MODEL=godotai
+      - OLLAMA_TEXT_MODEL=god:latest
       - NVIDIA_VISIBLE_DEVICES=all
+      - OLLAMA_NUM_PARALLEL=1
+      - OLLAMA_LLM_LIBRARY=cuda
     restart: unless-stopped
-    devices:
-      - /dev/nvidiactl:/dev/nvidiactl
-      - /dev/nvidia-uvm:/dev/nvidia-uvm
-      - /dev/nvidia0:/dev/nvidia0
-    # Limite ou augmente le CPU (ici 4 vCPU)
-    cpus: 8.0
-
+    gpus: all
+    
 volumes:
   ollama_models:

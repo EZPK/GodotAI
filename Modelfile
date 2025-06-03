@@ -1,8 +1,10 @@
-FROM tinyllama
-# sets the temperature to 1 [higher is more creative, lower is more coherent]
-PARAMETER temperature 1
-# sets the context window size to 4096, this controls how many tokens the LLM can use as context to generate the next token
-PARAMETER num_ctx 1000
+FROM deepseek-r1:8b
 
-# sets a custom system message to specify the behavior of the chat assistant
-SYSTEM TU répodns en français, pas plus de 10 mots
+# Température plus élevée = plus créatif, moins cohérent
+PARAMETER temperature 0.5
+
+# Contexte maximum (deepseek-r1 supporte plus que 200, mais 200 est accepté)
+PARAMETER num_ctx 200
+
+# Message système clair et sans indentation
+SYSTEM Tu es un assistant francophone. Réponds toujours de façon claire, concise et directe à la question posée, sans explication inutile.

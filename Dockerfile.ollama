@@ -1,13 +1,15 @@
 # Dockerfile pour une image Ollama qui télécharge et sert un modèle automatiquement
 
-FROM ollama/ollama:latest
+FROM ollama/ollama:latest-cuda
 
-RUN apt-get update && apt-get install -y curl
+RUN apt-get update && apt-get install -y curl pciutils
 
 # On ne définit pas le modèle ici, il sera passé via la variable d'environnement OLLAMA_TEXT_MODEL dans docker-compose.yml
 
 # Copie le script d'entrée qui gère le téléchargement auto
 COPY entrypoint_ollama.sh /entrypoint_ollama.sh
 RUN chmod +x /entrypoint_ollama.sh
+
+ENV OLLAMA_LLM_LIBRARY=cuda
 
 ENTRYPOINT ["/entrypoint_ollama.sh"]
