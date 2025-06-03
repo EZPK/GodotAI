@@ -30,9 +30,9 @@ func _ready():
 	var url := "http://localhost:11434/api/generate"
 	var body := {
 		"model": model,
-		"prompt": "Bonjour ?",
+		"prompt": "Bonjour ? Peux tu te décrires ? Qui es tu, quel est ton but ?",
 		"stream": true,
-		"num_predict": 1,
+		"num_predict": 10,
 	}
 	var headers := ["Content-Type: application/json"]
 	# Envoi de la requête HTTP POST

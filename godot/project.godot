@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="godot_ai"
-run/main_scene="res://scenes/ApiTextBoxScene.tscn"
+run/main_scene="res://scenes/ChatScene.tscn"
 config/features=PackedStringArray("4.4")
 
 [display]
@@ -26,4 +26,4 @@ quality/intended_usage/framebuffer_allocation=2
 
 [run]
 
-main_scene="res://scenes/ApiTextBoxScene.tscn"
+main_scene="res://scenes/ChatScene.tscn"

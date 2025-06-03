@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://3sjowyidj2pj"]
 
-[ext_resource type="Script" uid="uid://bpho43xnqnkeh" path="res://scripts/ApiCallHeadless.gd" id="1_akgq4"]
+[ext_resource type="Script" uid="uid://cpdxyombccwmh" path="res://scripts/ChatUI.gd" id="1_akgq4"]
 
 [node name="ApiTextBoxScene" type="Control"]
 layout_mode = 3

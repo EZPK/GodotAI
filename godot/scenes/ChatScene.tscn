@@ -1,0 +1,84 @@
+[gd_scene format=3 uid="uid://fmp7w11iml4v"]
+
+[node name="Main" type="Control"]
+custom_minimum_size = Vector2(1400, 900)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 2
+
+[node name="TopLeft" type="Panel" parent="GridContainer"]
+custom_minimum_size = Vector2(600, 400)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TopLeftLabel" type="Label" parent="GridContainer/TopLeft"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TopRight" type="Panel" parent="GridContainer"]
+custom_minimum_size = Vector2(600, 400)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TopRightLabel" type="Label" parent="GridContainer/TopRight"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "2"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BottomLeft" type="Panel" parent="GridContainer"]
+custom_minimum_size = Vector2(600, 400)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="BottomLeftLabel" type="Label" parent="GridContainer/BottomLeft"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BottomRight" type="Panel" parent="GridContainer"]
+custom_minimum_size = Vector2(600, 400)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="BottomRightLabel" type="Label" parent="GridContainer/BottomRight"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "4"
+horizontal_alignment = 1
+vertical_alignment = 1
