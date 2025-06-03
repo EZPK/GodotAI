@@ -9,12 +9,18 @@ import os
 from fastapi.responses import Response
 from sqlalchemy.orm import Session
 
+from .embedding_context import EmbeddingContext
+from .img_gen_server import generate_image as ollama_generate_image
+
 from . import models
 from .database import Base, engine, get_db
 
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
+
+# Global context manager for storing recent messages
+context_store = EmbeddingContext()
 
 
 @app.get("/")
@@ -43,6 +49,15 @@ class GenerateImageRequest(BaseModel):
 
 class ContextRequest(BaseModel):
     context: str
+
+
+class CreateUserRequest(BaseModel):
+    username: str
+
+
+class CreateSessionRequest(BaseModel):
+    user_id: int
+    scenario: str | None = None
 
 
 # Utilitaire pour choisir le modèle Ollama
@@ -90,12 +105,7 @@ def gen_image_get():
 @app.post("/gen_image")
 def gen_image(req: ImageRequest):
     try:
-        response = requests.post(
-            f"{OLLAMA_BASE_URL}/generate-image",
-            json={"model": OLLAMA_IMAGE_MODEL, "prompt": req.prompt},
-        )
-        response.raise_for_status()
-        return response.json()
+        return ollama_generate_image(req.prompt)
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
@@ -112,6 +122,35 @@ def list_models():
         raise HTTPException(status_code=500, detail=str(e))
 
 
+@app.post("/users")
+def create_user(req: CreateUserRequest, db: Session = Depends(get_db)):
+    user = models.User(username=req.username)
+    db.add(user)
+    db.commit()
+    db.refresh(user)
+    return {"user_id": user.id}
+
+
+@app.post("/sessions")
+def create_session(req: CreateSessionRequest, db: Session = Depends(get_db)):
+    user = db.query(models.User).get(req.user_id)
+    if user is None:
+        raise HTTPException(status_code=404, detail="User not found")
+    session = models.Session(user_id=req.user_id, scenario=req.scenario)
+    db.add(session)
+    db.commit()
+    db.refresh(session)
+    return {"session_id": session.id}
+
+
+@app.get("/sessions/{session_id}")
+def get_session(session_id: int, db: Session = Depends(get_db)):
+    session = db.query(models.Session).get(session_id)
+    if session is None:
+        raise HTTPException(status_code=404, detail="Session not found")
+    return {"id": session.id, "user_id": session.user_id, "scenario": session.scenario}
+
+
 # --------- Nouveaux endpoints de jeu --------- #
 
 
@@ -121,21 +160,15 @@ def generate_text(req: GenerateTextRequest, db: Session = Depends(get_db)):
     if session is None:
         raise HTTPException(status_code=404, detail="Session not found")
 
-    # Sauvegarde de l'action du joueur
+    # Save player's action
     player_msg = models.Message(
         session_id=req.session_id, sender="player", text=req.action
     )
     db.add(player_msg)
     db.commit()
+    context_store.add_message(req.session_id, req.action)
 
-    last_messages = (
-        db.query(models.Message)
-        .filter(models.Message.session_id == req.session_id)
-        .order_by(models.Message.created_at.desc())
-        .limit(5)
-        .all()
-    )
-    context = "\n".join(reversed([m.text for m in last_messages]))
+    context = context_store.get_recent_context(req.session_id)
 
     try:
         response = requests.post(
@@ -151,6 +184,7 @@ def generate_text(req: GenerateTextRequest, db: Session = Depends(get_db)):
     ai_msg = models.Message(session_id=req.session_id, sender="AI", text=ai_text)
     db.add(ai_msg)
     db.commit()
+    context_store.add_message(req.session_id, ai_text)
 
     return {"text": ai_text}
 
@@ -158,12 +192,7 @@ def generate_text(req: GenerateTextRequest, db: Session = Depends(get_db)):
 @app.post("/generate-image")
 def generate_image(req: GenerateImageRequest, db: Session = Depends(get_db)):
     try:
-        response = requests.post(
-            f"{OLLAMA_BASE_URL}/generate-image",
-            json={"model": OLLAMA_IMAGE_MODEL, "prompt": req.description},
-        )
-        response.raise_for_status()
-        data = response.json()
+        data = ollama_generate_image(req.description)
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
@@ -175,5 +204,6 @@ def generate_image(req: GenerateImageRequest, db: Session = Depends(get_db)):
         )
         db.add(img_message)
         db.commit()
+        context_store.add_message(req.session_id, data.get("image", ""))
 
     return data
