@@ -4,6 +4,7 @@ Ce projet combine un backend FastAPI orchestré avec Docker, un service Ollama p
 
 ## Fonctionnalités principales
 - **Backend FastAPI** : Fournit des endpoints pour la génération de texte et d'images, communique avec Ollama via HTTP.
+- **Support du Model Context Protocol (MCP)** : Endpoint `/mcp` compatible JSON-RPC pour initialiser un client et lister prompts, ressources et outils disponibles.
 - **Ollama** : Service LLM (ex : llama2, tinyllama) lancé dans un conteneur dédié, téléchargement automatique du modèle au démarrage, support GPU NVIDIA.
 - **Godot** : Client graphique, dialogue avec le backend pour afficher les réponses du LLM.
 - **Orchestration Docker Compose** : Démarrage, arrêt, persistance des modèles, rebuild, etc.
@@ -72,6 +73,17 @@ Ou directement :
 ```zsh
 make api_call
 ```
+
+## Utilisation du Model Context Protocol
+Un endpoint `/mcp` répond au format JSON-RPC 2.0.
+Les principales méthodes disponibles sont :
+
+- `initialize` : négocie la version du protocole et renvoie les capacités du serveur.
+- `prompts/list` : obtient la liste des prompts fournis.
+- `resources/list` : renvoie les ressources disponibles.
+- `tools/list` : liste les outils exposés par le serveur.
+
+Ces méthodes facilitent l'intégration d'applications agentiques compatibles MCP.
 
 ## Personnalisation
 - Modifiez le modèle LLM utilisé en changeant la variable d'environnement `OLLAMA_TEXT_MODEL` dans `docker-compose.yml` ou le `Modelfile`.
