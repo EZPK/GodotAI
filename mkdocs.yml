@@ -4,3 +4,4 @@ theme: readthedocs
 nav:
   - Accueil: index.md
   - Installation: installation.md
+  - Stack: stack.md
