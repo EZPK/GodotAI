@@ -1,17 +1,25 @@
 extends Control
 
-# Script pour une interface de chat simple avec le LLM
-@onready var chat_history: RichTextLabel = $BottomLeft/VBoxContainer/ChatHistory
-@onready var input_box: LineEdit = $BottomLeft/VBoxContainer/HBoxContainer/InputBox
-@onready var send_button: Button = $BottomLeft/VBoxContainer/HBoxContainer/SendButton
+@onready var chat_history: RichTextLabel = $GridContainer/BottomLeft/BoxContainer/ChatHistory
+@onready var input_box: LineEdit = $GridContainer/BottomLeft/BoxContainer/HBoxContainer/InputBox
+@onready var send_button: Button = $GridContainer/BottomLeft/BoxContainer/HBoxContainer/SendButton
 
-var conversation: Array = []
 var http := HTTPRequest.new()
-var is_waiting := false
+var stream_timer := Timer.new()
+var stream_buffer := ""
+var stream_lines := []
+var line_index := 0
+var is_streaming := false
 
 func _ready():
+	print_tree_pretty()
 	add_child(http)
+	add_child(stream_timer)
+	stream_timer.one_shot = false
+	stream_timer.wait_time = 0.05
+	stream_timer.timeout.connect(_on_stream_timer_timeout)
 	http.request_completed.connect(_on_result)
+	
 	if is_instance_valid(input_box):
 		input_box.text_submitted.connect(_on_send_pressed)
 	else:
@@ -27,58 +35,61 @@ func _ready():
 		printerr("[ChatUI] chat_history n'est pas instancié !")
 
 func _on_send_pressed(_event: Variant = null):
-	if is_waiting or input_box.text.strip_edges() == "":
+	if is_streaming or input_box.text.strip_edges() == "":
 		return
 	var user_message = input_box.text.strip_edges()
 	_append_message("Vous", user_message)
-	conversation.append({"role": "user", "content": user_message})
 	input_box.text = ""
-	is_waiting = true
 	_send_to_llm(user_message)
 
-func _send_to_llm(_message: String):
+func _send_to_llm(message: String):
 	var url := "http://localhost:11434/api/generate"
-	var prompt := _build_prompt()
 	var body := {
 		"model": "god:latest",
-		"prompt": prompt,
-		"stream": false,
-		"num_predict": 64,
-		"temperature": 0.2
+		"prompt": message,
+		"stream": true,
+		"num_predict": 128
 	}
 	var headers := ["Content-Type: application/json"]
 	var err := http.request(url, headers, HTTPClient.METHOD_POST, JSON.stringify(body))
 	if err != OK:
 		_append_message("Assistant", "[Erreur réseau]")
-		is_waiting = false
-
-func _build_prompt() -> String:
-	# Concatène l'historique pour donner du contexte au LLM
-	var prompt = ""
-	for msg in conversation:
-		if msg.role == "user":
-			prompt += "Utilisateur: %s\n" % msg.content
-		else:
-			prompt += "Assistant: %s\n" % msg.content
-	prompt += "Assistant: "
-	return prompt
+	else:
+		stream_buffer = ""
+		stream_lines.clear()
+		line_index = 0
+		is_streaming = true
 
 func _on_result(_result, _code, _headers, body):
-	is_waiting = false
-	var all_text: String = body.get_string_from_utf8()
-	var response := ""
-	for line in all_text.split("\n"):
-		line = line.strip_edges()
-		if line == "":
-			continue
-		var json := JSON.new()
-		if json.parse(line) == OK:
-			response += str(json.data.get("response", ""))
-	if response.strip_edges() == "":
-		response = "[Aucune réponse du LLM]"
-	_append_message("Assistant", response)
-	conversation.append({"role": "assistant", "content": response})
+	stream_buffer = body.get_string_from_utf8()
+	stream_lines = stream_buffer.split("\n")
+	line_index = 0
+	stream_timer.start()
+
+func _on_stream_timer_timeout():
+	if line_index >= stream_lines.size():
+		stream_timer.stop()
+		is_streaming = false
+		_append_message("Assistant", chat_history.text.split("Assistant: ")[-1])
+		return
+
+	var line = stream_lines[line_index].strip_edges()
+	line_index += 1
+	if line == "":
+		return
+
+	var json := JSON.new()
+	if json.parse(line) == OK:
+		var token := str(json.data.get("response", ""))
+		if is_instance_valid(chat_history):
+			var current = chat_history.text.split("Assistant: ")[-1]
+			chat_history.text = _format_chat("Assistant", current + token)
+	else:
+		printerr("Erreur parsing ligne: ", line)
 
 func _append_message(who: String, msg: String):
 	chat_history.append_text("%s: %s\n" % [who, msg])
 	chat_history.scroll_to_line(chat_history.get_line_count())
+
+func _format_chat(who: String, msg: String) -> String:
+	return "%s: %s" % [who, msg]
