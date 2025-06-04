@@ -1,7 +1,8 @@
 #!/bin/sh
 set -e
 
-MODEL="${OLLAMA_TEXT_MODEL:-llama3:8b}"
+MODEL_TEXT="${OLLAMA_TEXT_MODEL:-llama3:8b}"
+MODEL_IMAGE="${OLLAMA_IMAGE_MODEL:-stable-diffusion}"  # Peut être vide si non défini
 
 # Démarre ollama serve en foreground (pour Docker health/lifecycle)
 /bin/ollama serve &
@@ -13,22 +14,34 @@ until curl -s http://localhost:11434/api/tags > /dev/null; do
   sleep 1
 done
 
-# Télécharge le modèle si besoin, avec affichage de la progression
-if ! /bin/ollama list | grep -q "$MODEL"; then
-  echo "Model $MODEL not found, downloading..."
-  /bin/ollama pull "$MODEL" | while IFS= read -r line; do
-    echo "$line"
-    percent=$(echo "$line" | grep -Eo '[0-9]{1,3}%')
-    if [ -n "$percent" ]; then
-      p=${percent%%%}
-      bar=$(printf '%0.s#' $(seq 1 $((p/2))))
-      printf "\r[%-50s] %3s%%" "$bar" "$p"
+download_model() {
+  MODEL_NAME="$1"
+  if [ -z "$MODEL_NAME" ]; then
+    return
+  fi
+  if ! /bin/ollama list | grep -q "$MODEL_NAME"; then
+    echo "Model $MODEL_NAME not found, downloading..."
+    /bin/ollama pull "$MODEL_NAME" | while IFS= read -r line; do
+      echo "$line"
+      percent=$(echo "$line" | grep -Eo '[0-9]{1,3}%')
+      if [ -n "$percent" ]; then
+        p=${percent%%%}
+        bar=$(printf '%0.s#' $(seq 1 $((p/2))))
+        printf "[%-50s] %3s%%\n" "$bar" "$p"
+      fi
+    done
+    echo
+    if ! /bin/ollama list | grep -q "$MODEL_NAME"; then
+      echo "Error: model $MODEL_NAME failed to download. Exiting."
+      exit 1
     fi
-  done
-  echo
-else
-  echo "Model $MODEL already present."
-fi
+  else
+    echo "Model $MODEL_NAME already present."
+  fi
+}
+
+download_model "$MODEL_TEXT"
+download_model "$MODEL_IMAGE"
 
 # Attend la fin du processus principal (ollama serve)
 wait $OLLAMA_PID
