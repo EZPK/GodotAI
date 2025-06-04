@@ -4,6 +4,15 @@ Bienvenue sur la documentation officielle de **GodotAI**. Ce projet combine le m
 
 Pour aller plus loin, chaque page propose des liens vers le site officiel et la documentation de chaque technologie.
 
+## Déploiement chronologique
+1. Installez Docker et Git puis clonez le dépôt.
+2. Lancez `make up` pour démarrer Ollama, Stable Diffusion et FastAPI.
+3. Patientez pendant le téléchargement automatique des modèles.
+4. Vérifiez le bon fonctionnement avec `python utils/test_services.py`.
+5. (Optionnel) Ouvrez Godot avec `make run-godot`.
+6. (Optionnel) Exécutez les suites de tests `pytest -q` et `pytest e2e`.
+7. Arrêtez les services via `make down`.
+
 ## Sommaire
 - [🚀 Installation](installation.md)
 - [🧩 Vue d'ensemble de la stack](stack.md)
