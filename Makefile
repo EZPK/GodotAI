@@ -14,9 +14,11 @@ help:
 	@echo "\n\033[1;33m🛠 Commandes disponibles :\033[0m"
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m🔹 %-20s\033[0m %s\n", $$1, $$2}'
 
-## 🚢 Lancer les services Docker (Ollama + backend)
+## 🚢 Lancer les services Docker (Ollama + backend) et FastAPI
 up:
-	docker compose up -d
+        docker compose up -d
+        @uvicorn backend.app.backend_server:app --reload &
+        @echo "FastAPI launched on http://localhost:8000"
 
 ## 🛑 Arrêter les services Docker
 down:

@@ -9,7 +9,7 @@ GodotAI permet de piloter un mini-jeu Godot avec un modèle de langage local, le
    git clone <repo_url>
    cd godot_ai
    ```
-3. Lancez les services :
+3. Lancez les services (Ollama, Stable Diffusion et FastAPI) :
    ```bash
    make up
    ```
