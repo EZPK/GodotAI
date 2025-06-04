@@ -16,9 +16,9 @@ help:
 
 ## 🚢 Lancer les services Docker (Ollama + backend) et FastAPI
 up:
-        docker compose up -d
-        @uvicorn backend.app.backend_server:app --reload &
-        @echo "FastAPI launched on http://localhost:8000"
+	docker compose up -d
+	@uvicorn backend.app.backend_server:app --reload &
+	@echo "FastAPI launched on http://localhost:8000"
 
 ## 🛑 Arrêter les services Docker
 down:
