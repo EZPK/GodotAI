@@ -30,9 +30,8 @@ rebuild:
 
 ## 🎮 Lance le projet Godot (modifie selon ton chemin d'accès)
 run-godot:
-
-@echo "\033[1;36m🎮 Ouverture de Godot...\033[0m"
-$(GODOT_PATH) --editor godot/project.godot
+	@echo "\033[1;36m🎮 Ouverture de Godot...\033[0m"
+	$(GODOT_PATH) --editor godot/project.godot
 
 ## ⚡ Lance l'API FastAPI en local
 run-api:

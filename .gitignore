@@ -6,6 +6,7 @@
 .import/
 export.cfg
 export_credentials.cfg
+Godot_v4.x86_64
 
 # Imported translations (automatically generated from CSV files)
 *.translation
