@@ -65,5 +65,16 @@ universe: install ## 🪐 Lance tous les tests et génère un log complet
 	@echo "\nRunning e2e tests" >> rapports/universe.log
 	@$(PYTHON) -m pytest e2e/test_api_playwright.py -q >> rapports/universe.log 2>&1 || true
 	@echo "\nBuilding docs" >> rapports/universe.log
-	@$(PYTHON) -m mkdocs build >> rapports/universe.log 2>&1
-	@echo "Logs written to rapports/universe.log"
+        @$(PYTHON) -m mkdocs build >> rapports/universe.log 2>&1
+        @echo "Logs written to rapports/universe.log"
+
+purge-models: ## 💥 Supprime les modèles téléchargés dans les volumes Docker
+	docker compose down
+	docker volume rm $$(docker volume ls -qf name=ollama_models) $$(docker volume ls -qf name=sd_models) || true
+
+up-models: ## 🚢 Lance la stack avec MODEL_TEXT et MODEL_IMAGE
+	@TEXT=$(or $(MODEL_TEXT),$(OLLAMA_TEXT_MODEL)); \
+	IMAGE=$(or $(MODEL_IMAGE),$(OLLAMA_IMAGE_MODEL)); \
+	printf '\033[1mMODEL_TEXT:\033[0m %s\n' "$$TEXT"; \
+	printf '\033[1mMODEL_IMAGE:\033[0m %s\n' "$$IMAGE"; \
+	OLLAMA_TEXT_MODEL=$$TEXT OLLAMA_IMAGE_MODEL=$$IMAGE docker compose up -d
