@@ -23,9 +23,9 @@ GodotAI combine plusieurs briques pour créer une expérience de jeu pilotée pa
 - Permet de tester rapidement l'API en mode éditeur ou en ligne de commande.
 
 ### 4. 🐳 Docker Compose
-- Orchestration des services `ollama`, `ollama_image` et `backend`.
-- Monte des volumes `ollama_models` et `ollama_image_models` pour conserver les modèles téléchargés.
-- Les variables d'environnement (GPU, nom des modèles, etc.) sont configurables dans `docker-compose.yml`.
+- Orchestration des services `ollama`, `stablediffusion` et `backend`.
+- Monte des volumes `ollama_models`, `sd_models` et `sd_outputs` pour conserver modèles et résultats.
+- Les variables d'environnement (GPU, noms et ports des modèles...) sont centralisées dans `.env` et injectées par `docker-compose.yml`.
 
 ### 5. 📚 MkDocs
 - La documentation vit dans le dossier `docs/` et peut être servie via `mkdocs serve`.
@@ -59,7 +59,7 @@ L'endpoint `/mcp` parle JSON-RPC 2.0. Il permet :
 Ceci simplifie l'intégration d'agents compatibles MCP.
 
 ## 🎨 Personnalisation
-- Changez le modèle via `OLLAMA_TEXT_MODEL` dans `.env` ou `docker-compose.yml`.
+- Tous les modèles et ports sont configurables dans `.env` (`OLLAMA_TEXT_MODEL`, `OLLAMA_IMAGE_MODEL`, `OLLAMA_TEXT_PORT`, etc.).
 - Modifiez le prompt système dans `Modelfile`.
 - Ajoutez vos propres routes dans `backend/app` ou scripts dans `godot/`.
 

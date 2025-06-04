@@ -3,41 +3,34 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.ollama
-    container_name: ollama
+    container_name: ${OLLAMA_TEXT_HOST}
     ports:
-      - "11434:11434"
+      - "${OLLAMA_TEXT_PORT}:11434"
     volumes:
       # Volume Docker pour persister les modèles téléchargés
       - ollama_models:/root/.ollama
+    env_file: .env
     environment:
       - OLLAMA_HOST=0.0.0.0
-      - OLLAMA_TEXT_MODEL=${OLLAMA_TEXT_MODEL}
-      - OLLAMA_IMAGE_MODEL=${OLLAMA_IMAGE_MODEL}
       - NVIDIA_VISIBLE_DEVICES=all
       - OLLAMA_NUM_PARALLEL=1
       - OLLAMA_LLM_LIBRARY=cuda
     restart: unless-stopped
     gpus: all
 
-  ollama_image:
-    build:
-      context: .
-      dockerfile: Dockerfile.ollama
-    container_name: ollama_image
+  stablediffusion:
+    image: universonic/stable-diffusion-webui:full
+    container_name: ${OLLAMA_IMAGE_HOST}
     ports:
-      - "9999:11434"
+      - "${OLLAMA_IMAGE_PORT}:8080"
     volumes:
-      - ollama_image_models:/root/.ollama
-    environment:
-      - OLLAMA_HOST=0.0.0.0
-      - OLLAMA_TEXT_MODEL=${OLLAMA_IMAGE_MODEL}
-      - OLLAMA_IMAGE_MODEL=${OLLAMA_IMAGE_MODEL}
-      - NVIDIA_VISIBLE_DEVICES=all
-      - OLLAMA_NUM_PARALLEL=1
-      - OLLAMA_LLM_LIBRARY=cuda
+      - sd_models:/app/stable-diffusion-webui/models
+      - sd_outputs:/app/stable-diffusion-webui/outputs
+    env_file: .env
     restart: unless-stopped
     gpus: all
 
 volumes:
   ollama_models:
-  ollama_image_models:
+  sd_models:
+  sd_outputs:
