@@ -11,6 +11,12 @@ téléchargés avant que l'interface WebUI ne se lance.
 
 FastAPI lui transmet vos invites afin d'illustrer certaines scènes du jeu.
 
+```mermaid
+flowchart LR
+    A(FastAPI) -- prompt --> SD[Stable Diffusion]
+    SD -- image --> A
+```
+
 Vous pouvez générer une image directement via l'API :
 ```bash
 curl -X POST http://localhost:8000/generate-image \
