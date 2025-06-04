@@ -13,3 +13,6 @@ nav:
       - Godot: godot.md
       - Docker Compose: docker-compose.md
       - MkDocs: mkdocs.md
+  - Tests:
+      - Unitaires: tests-unitaires.md
+      - E2E Playwright: tests-e2e.md
