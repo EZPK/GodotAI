@@ -75,6 +75,8 @@ L’agent doit appliquer rigoureusement les instructions suivantes. Ces directiv
 
     Décris la pile technique et explique le code en profondeur.
 
+    Chaque article doit inclure une section **FAQ** anticipant les questions pertinentes ou délicates que les utilisateurs pourraient se poser, avec des réponses claires et concises.
+
     Valide la génération du site documentaire avec :
 
     mkdocs build
@@ -83,4 +85,3 @@ L’agent doit appliquer rigoureusement les instructions suivantes. Ces directiv
 
 Toutes ces consignes s’appliquent à l’ensemble du dépôt, sans exception.
 
-Fin du fichier.
