@@ -26,4 +26,4 @@ GodotAI permet de piloter un mini-jeu Godot avec un modèle de langage local, le
 L'API répond sur `localhost:8000`.
 
 ## 📚 Documentation
-Plus d'informations dans le dossier `docs/` ou sur la [documentation en ligne](https://example.github.io/godot_ai).
+Plus d'informations dans le dossier `docs/` ou sur la [documentation en ligne](https://ezpk.github.io/GodotAI).
