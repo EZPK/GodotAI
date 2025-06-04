@@ -1,37 +1,22 @@
 # 🤖 GodotAI
 
-Bienvenue sur la documentation officielle de **GodotAI**. Ce projet combine le moteur de jeu Godot avec un modèle de langage local pour contrôler un mini-jeu. Un serveur FastAPI orchestre les échanges entre Godot, Ollama pour la génération de texte et Stable Diffusion pour les images. Docker Compose relie tous ces services et stocke les données dans SQLite.
+Bienvenue sur la documentation officielle de **GodotAI**.
 
-Pour aller plus loin, chaque page propose des liens vers le site officiel et la documentation de chaque technologie.
+Ce projet associe le moteur de jeu Godot à un modèle de langage exécuté localement via Ollama. Un serveur FastAPI orchestre les requêtes et peut déclencher Stable Diffusion pour générer des images. L'ensemble tourne dans des conteneurs Docker et les données sont stockées dans SQLite.
 
-## Déploiement chronologique
-1. Installez Docker et Git puis clonez le dépôt.
-2. Lancez `make up` pour démarrer Ollama, Stable Diffusion et FastAPI.
-3. Patientez pendant le téléchargement automatique des modèles.
-4. Vérifiez le bon fonctionnement avec `python utils/test_services.py`.
-5. (Optionnel) Ouvrez Godot avec `make run-godot`.
-6. (Optionnel) Exécutez les suites de tests `pytest -q` et `pytest e2e`.
-7. Arrêtez les services via `make down`.
+Chaque page de la documentation renvoie vers les ressources officielles des technologies utilisées. La barre latérale liste l'ensemble des rubriques.
 
-## Sommaire
-- [🚀 Installation](installation.md)
-- [🧩 Vue d'ensemble de la stack](stack.md)
-  - [⚡ FastAPI](fastapi.md)
-  - [📝 Backend détaillé](backend.md)
-  - [🦙 Ollama](ollama.md)
-  - [🎨 Stable Diffusion](stable-diffusion.md)
-  - [🎮 Godot](godot.md)
-  - [🐳 Docker Compose](docker-compose.md)
-  - [📚 MkDocs](mkdocs.md)
-- [📁 Fichiers de configuration](gitignore.md)
-  - [`.vale.ini`](vale.md)
-  - [`AGENTS.md`](agents-file.md)
-  - [`docker-compose.yml`](docker-compose-yml.md)
-  - [`Dockerfile`](dockerfile.md)
-  - [`Dockerfile.ollama`](dockerfile-ollama.md)
-  - [`entrypoint_ollama.sh`](entrypoint-ollama.md)
-  - [`Makefile`](makefile.md)
-  - [`mkdocs.yml`](mkdocs-yml.md)
-- [✅ Tests unitaires](tests-unitaires.md)
-- [🚦 Tests E2E](tests-e2e.md)
-- [🔧 Vérification des services](test-services.md)
+## Pour commencer 🚀
+
+- Consultez la section [🚀 Installation pas à pas](installation.md) pour déployer les services et vérifier qu'ils répondent.
+- La page [🧩 Comprendre la stack](stack.md) présente l'architecture et le rôle de chaque composant.
+
+## Référence technique 📁
+
+La rubrique « Référence technique » décrit les fichiers de configuration du dépôt et les conventions de contribution.
+
+## Tests et validation ✅
+
+Les pages consacrées aux tests expliquent comment exécuter la suite unitaire, les tests E2E et le script de vérification des services.
+
+Bonne lecture !

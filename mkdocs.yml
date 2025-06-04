@@ -14,7 +14,7 @@ nav:
       - Godot: godot.md
       - Docker Compose: docker-compose.md
       - MkDocs: mkdocs.md
-  - Configuration:
+  - Référence technique:
       - .gitignore: gitignore.md
       - .vale.ini: vale.md
       - AGENTS.md: agents-file.md
@@ -24,7 +24,7 @@ nav:
       - entrypoint_ollama.sh: entrypoint-ollama.md
       - Makefile: makefile.md
       - mkdocs.yml: mkdocs-yml.md
-  - Tests:
-      - Unitaires: tests-unitaires.md
-      - E2E Playwright: tests-e2e.md
+  - Tests et validation:
+      - Tests unitaires: tests-unitaires.md
+      - Tests E2E: tests-e2e.md
       - Vérification des services: test-services.md

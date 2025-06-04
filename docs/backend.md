@@ -2,11 +2,17 @@
 
 Cette page explore plus en profondeur les modules Python du dossier `backend/app`.
 
+Le backend utilise **FastAPI** pour exposer plusieurs routes appelées par le
+jeu Godot. Lorsqu'une action du joueur est reçue, elle est envoyée à **Ollama**
+pour produire une réponse puis, si besoin, à **Stable Diffusion** pour
+générer une illustration. Les échanges et l'état de la partie sont stockés dans
+SQLite via SQLAlchemy.
+
 ## backend_server.py
 Ce fichier instancie FastAPI et expose les routes principales du projet. Il gère
 la génération de texte avec Ollama et la création d'images via Stable Diffusion.
 Il inclut également le routeur `mcp.py` qui implémente un petit protocole
-JSON-RPC.
+JSON-RPC (un format d'appel distant basé sur JSON).
 
 ## mcp.py
 Le module `mcp.py` définit un routeur FastAPI dédié au protocole MCP. Il permet
