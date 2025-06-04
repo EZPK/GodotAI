@@ -4,19 +4,27 @@ Bienvenue sur la documentation officielle de **GodotAI**.
 
 Ce projet associe le moteur de jeu Godot à un modèle de langage exécuté localement via Ollama. Un serveur FastAPI orchestre les requêtes et peut déclencher Stable Diffusion pour générer des images. L'ensemble tourne dans des conteneurs Docker et les données sont stockées dans SQLite.
 
-Chaque page de la documentation renvoie vers les ressources officielles des technologies utilisées. La barre latérale liste l'ensemble des rubriques.
+La documentation suit l'approche [Diátaxis](https://diataxis.fr/) afin de séparer
+les tutoriels, les guides pratiques, la référence et les explications. Chaque
+page renvoie vers les ressources officielles des technologies utilisées.
 
-## Pour commencer 🚀
+## Tutoriel : pour commencer 🚀
 
-- Consultez la section [🚀 Installation pas à pas](installation.md) pour déployer les services et vérifier qu'ils répondent.
-- La page [🧩 Comprendre la stack](stack.md) présente l'architecture et le rôle de chaque composant.
+- [Installation pas à pas](installation.md) : déployez les services et vérifiez qu'ils répondent.
+- [Comprendre la stack](stack.md) : découvrez l'architecture et le rôle de chaque composant.
 
 ## Référence technique 📁
 
-La rubrique « Référence technique » décrit les fichiers de configuration du dépôt et les conventions de contribution.
+Cette rubrique décrit les fichiers de configuration du dépôt et les conventions de contribution :
+- [AGENTS.md](agents-file.md)
+- [docker-compose.yml](docker-compose-yml.md)
+- [Makefile](makefile.md)
 
 ## Tests et validation ✅
 
-Les pages consacrées aux tests expliquent comment exécuter la suite unitaire, les tests E2E et le script de vérification des services.
+Les pages suivantes expliquent comment vérifier le bon fonctionnement de la stack :
+- [Tests unitaires](tests-unitaires.md)
+- [Tests E2E](tests-e2e.md)
+- [Vérification des services](test-services.md)
 
 Bonne lecture !
