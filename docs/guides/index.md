@@ -1,6 +1,8 @@
 # Guides pratiques
 
-- [Changer le modèle LLM](changer-modele.md)
-- [Adapter le prompt](adapter-prompt.md)
-- [Utiliser l'API](utiliser-api.md)
-- [Dépannage modèles et GPU](depannage-modeles-gpu.md)
+Ces guides répondent à des besoins précis une fois l'installation terminée.
+
+- 🔄 [Changer le modèle LLM](changer-modele.md) : télécharger et utiliser une autre base.
+- ✏️ [Adapter le prompt](adapter-prompt.md) : personnaliser le prompt système.
+- 📡 [Utiliser l'API](utiliser-api.md) : interagir avec FastAPI sans passer par Godot.
+- 🩺 [Dépannage modèles et GPU](depannage-modeles-gpu.md) : résoudre les soucis de démarrage ou de ressources.
