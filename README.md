@@ -14,11 +14,22 @@ GodotAI permet de piloter un mini-jeu Godot avec un modèle de langage local, le
    make up
    ```
    Tout tourne alors dans des conteneurs Docker et les modèles sont téléchargés au premier lancement.
-4. (Facultatif) Ouvrez Godot :
+   
+4. Vérifiez que chaque service répond bien :
+   ```bash
+   pip install -r backend/requirements.txt
+   python utils/test_services.py
+   ```
+5. (Facultatif) Ouvrez Godot :
    ```bash
    make run-godot
    ```
-5. Stoppez le tout :
+6. (Facultatif) Exécutez les suites de tests :
+   ```bash
+   pytest -q
+   pytest e2e
+   ```
+7. Stoppez le tout :
    ```bash
    make down
    ```
