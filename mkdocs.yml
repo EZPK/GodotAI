@@ -8,6 +8,7 @@ nav:
   - Stack:
       - Aperçu: stack.md
       - FastAPI: fastapi.md
+      - Backend détaillé: backend.md
       - Ollama: ollama.md
       - Stable Diffusion: stable-diffusion.md
       - Godot: godot.md
