@@ -33,6 +33,3 @@ resp = requests.post(
 )
 print(resp.json())
 ```
-
-## Notebook Jupyter
-Essayez le notebook [notebooks/api_example.ipynb](notebooks/api_example.ipynb) pour tester ces appels interactivement.

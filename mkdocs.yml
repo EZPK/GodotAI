@@ -1,5 +1,5 @@
 site_name: GodotAI
-site_url: https://example.github.io/GodotAI
+site_url: https://github.com/example/GodotAI
 theme:
   name: material
 nav:

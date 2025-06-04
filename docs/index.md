@@ -1,8 +1,13 @@
 # 🤖 GodotAI
 
-Bienvenue ! Cette documentation vous guide à travers l'installation et l'utilisation du projet.
+Bienvenue sur la documentation officielle de **GodotAI**. Ce projet combine le moteur de jeu Godot avec un modèle de langage local pour contrôler un mini-jeu. Un serveur FastAPI orchestre les échanges entre Godot, Ollama pour la génération de texte et Stable Diffusion pour les images. Docker Compose relie tous ces services et stocke les données dans SQLite. 
 
 ## Sommaire
 - [🚀 Installation](installation.md)
-- [🧩 La stack](stack.md)
-- [💻 Exemple de notebook](notebooks/api_example.ipynb)
+- [🧩 Vue d'ensemble de la stack](stack.md)
+  - [⚡ FastAPI](fastapi.md)
+  - [🦙 Ollama](ollama.md)
+  - [🎨 Stable Diffusion](stable-diffusion.md)
+  - [🎮 Godot](godot.md)
+  - [🐳 Docker Compose](docker-compose.md)
+  - [📚 MkDocs](mkdocs.md)
