@@ -5,4 +5,11 @@ theme:
 nav:
   - Accueil: index.md
   - Installation: installation.md
-  - Stack: stack.md
+  - Stack:
+      - Aperçu: stack.md
+      - FastAPI: fastapi.md
+      - Ollama: ollama.md
+      - Stable Diffusion: stable-diffusion.md
+      - Godot: godot.md
+      - Docker Compose: docker-compose.md
+      - MkDocs: mkdocs.md
