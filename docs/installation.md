@@ -12,7 +12,9 @@ Suivez les étapes ci-dessous dans l'ordre pour déployer la stack complète.
    ```bash
    make up
    ```
-   Les modèles se téléchargent automatiquement au premier démarrage.
+   Les modèles se téléchargent automatiquement au premier démarrage. Utilisez
+   `make up-models MODEL_TEXT=mistral:7b MODEL_IMAGE=stable-diffusion` pour
+   spécifier d'autres modèles. Les noms sélectionnés s'affichent alors en clair.
 
    Lors de cette étape, le conteneur **Ollama** récupère le modèle indiqué dans
    le `Modelfile` tandis que **Stable Diffusion** télécharge ses poids si
