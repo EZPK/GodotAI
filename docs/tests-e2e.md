@@ -6,8 +6,8 @@ Le projet propose également un exemple de test de bout en bout utilisant
 Pour installer Playwright et ses dépendances :
 
 ```bash
-pip install playwright
-# Optionnel : playwright install
+make install
+# Optionnel : .venv/bin/playwright install
 ```
 
 Lancez ensuite les tests E2E avec :

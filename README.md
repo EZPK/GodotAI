@@ -17,8 +17,8 @@ GodotAI permet de piloter un mini-jeu Godot avec un modèle de langage local, le
    
 4. Vérifiez que chaque service répond bien :
    ```bash
-   pip install -r backend/requirements.txt
-   python utils/test_services.py
+   make install
+   .venv/bin/python utils/test_services.py
    ```
 5. (Facultatif) Ouvrez Godot :
    ```bash

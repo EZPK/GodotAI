@@ -21,10 +21,10 @@ Suivez les étapes ci-dessous dans l'ordre pour déployer la stack complète.
    Le script `entrypoint_ollama.sh` lance `ollama serve` puis vérifie la
    présence des modèles. S'ils sont absents, il exécute `ollama pull` pour les
    récupérer avant de poursuivre l'initialisation.
-4. Vérifiez que FastAPI, Ollama et Stable Diffusion répondent :
+4. Installez les dépendances Python puis vérifiez que FastAPI, Ollama et Stable Diffusion répondent :
    ```bash
-   pip install -r backend/requirements.txt
-   python utils/test_services.py
+   make install
+   .venv/bin/python utils/test_services.py
    ```
    Ce script s'assure que chaque service est joignable.
 5. (Optionnel) Lancez Godot :

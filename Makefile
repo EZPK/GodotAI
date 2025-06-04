@@ -1,4 +1,4 @@
-# Makefile 🧙‍♂️ pour gérer le projet RPG LLM Godot avec activation automatique du venv
+			# Makefile 🧙‍♂️ pour gérer le projet RPG LLM Godot avec activation automatique du venv
 
 .DEFAULT_GOAL := help
 
@@ -8,65 +8,62 @@ ifneq (,$(wildcard ./.env))
 endif
 
 GODOT_PATH ?= godot4
+VENV_DIR ?= .venv
+PYTHON := $(VENV_DIR)/bin/python
+PIP := $(VENV_DIR)/bin/pip
 
-## 📘 Affiche cette aide
-help:
+help: ## 📘 Affiche cette aide
 	@echo "\n\033[1;33m🛠 Commandes disponibles :\033[0m"
-	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m🔹 %-20s\033[0m %s\n", $$1, $$2}'
+	@grep -h -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m🔹 %-20s\033[0m %s\n", $$1, $$2}'
 
-## 🚢 Lancer tous les services Docker (Ollama, Stable Diffusion et FastAPI)
-up:
+up: ## 🚢 Lancer tous les services Docker (Ollama, Stable Diffusion et FastAPI)
 	docker compose up -d
 
-## 🛑 Arrêter les services Docker
-down:
+down: ## 🛑 Arrêter les services Docker
 	docker compose down
 
-## 🔄 Rebuild complet des images Docker
-rebuild:
+rebuild: ## 🔄 Rebuild complet des images Docker
 	docker compose down
 	docker compose build --no-cache
 	docker compose up -d
 
-## 🎮 Lance le projet Godot (modifie selon ton chemin d'accès)
-run-godot:
+run-godot: ## 🎮 Lance le projet Godot (modifie selon ton chemin d'accès)
 	@echo "\033[1;36m🎮 Ouverture de Godot...\033[0m"
 	$(GODOT_PATH) --editor godot/project.godot
 
-## ⚡ Lance l'API FastAPI en local
-run-api:
-	@uvicorn backend.app.backend_server:app --reload
+run-api: install ## ⚡ Lance l'API FastAPI en local
+	@$(PYTHON) -m uvicorn backend.app.backend_server:app --reload
 
-## 🧹 Supprime fichiers temporaires / cache
-clean:
+clean: ## 🧹 Supprime fichiers temporaires / cache
 	@echo "\033[1;31m🗑 Nettoyage des fichiers temporaires...\033[0m"
 	rm -rf __pycache__ .pytest_cache */__pycache__ */*/__pycache__ *.pyc *.pyo
 
-# Les commandes venv/install/serve sont supprimées car la gestion Python se fait dans Docker
+install: ## 📦 Crée le venv et installe les dépendances
+	@test -x $(PYTHON) || python3 -m venv $(VENV_DIR)
+	@$(PIP) install --upgrade pip
+	@$(PIP) install -r backend/requirements.txt
+	@$(PIP) install black pytest mkdocs mkdocs-material
 
-api_call:
+api_call: ## 🧠 Appel API Godot en mode headless
 	@echo "🧠  Lancement d’un appel API Godot en mode headless..."
-	@~/Téléchargements/Godot_v4.4.1-stable_linux.x86_64 --headless --path godot/ --script scripts/ApiCallHeadless.gd
+	$(GODOT_PATH) --headless --path godot/ --script scripts/ApiCallHeadless.gd
 
-## 📚 Lance le serveur MkDocs en local
-docs-serve:
-	mkdocs serve
+docs-serve: install ## 📚 Lance le serveur MkDocs en local
+	@$(PYTHON) -m mkdocs serve
 
-## 🚀 Déploie la documentation sur GitHub Pages
-docs-deploy:
-	mkdocs gh-deploy --clean
+docs-deploy: install ## 🚀 Déploie la documentation sur GitHub Pages
+	@$(PYTHON) -m mkdocs gh-deploy --clean
 
-## 🪐 Lance tous les tests et génère un log complet
-universe:
+universe: install ## 🪐 Lance tous les tests et génère un log complet
 	@mkdir -p rapports
 	@echo "Running black" > rapports/universe.log
-	@black backend/app >> rapports/universe.log 2>&1
+	@$(PYTHON) -m black backend/app >> rapports/universe.log 2>&1
 	@echo "\nRunning unit tests" >> rapports/universe.log
-	@pytest -q >> rapports/universe.log 2>&1
+	@$(PYTHON) -m pytest -q >> rapports/universe.log 2>&1
 	@echo "\nChecking services" >> rapports/universe.log
-	@python utils/test_services.py >> rapports/universe.log 2>&1 || true
+	@$(PYTHON) utils/test_services.py >> rapports/universe.log 2>&1 || true
 	@echo "\nRunning e2e tests" >> rapports/universe.log
-	@pytest e2e/test_api_playwright.py -q >> rapports/universe.log 2>&1 || true
+	@$(PYTHON) -m pytest e2e/test_api_playwright.py -q >> rapports/universe.log 2>&1 || true
 	@echo "\nBuilding docs" >> rapports/universe.log
-	@mkdocs build >> rapports/universe.log 2>&1
+	@$(PYTHON) -m mkdocs build >> rapports/universe.log 2>&1
 	@echo "Logs written to rapports/universe.log"
