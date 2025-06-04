@@ -5,22 +5,22 @@ Cette page présente brièvement l'architecture générale avant de détailler c
 ```text
 [Utilisateur]
      |
-   Godot 🎮
+    Godot 🎮
      |
-  FastAPI ⚡
+   FastAPI ⚡
    /   \
-Ollama 🦙  Stable Diffusion 🎨
+ Ollama 🦙    Stable Diffusion 🎨
      \
-     SQLite 📂
+      SQLite 📂
 ```
 
 ## Rôle des composants
-- **Godot** : interface du jeu et point d'entrée pour le joueur.
-- **FastAPI** : serveur Python qui orchestre les échanges et stocke les données dans SQLite.
-- **Ollama** : service LLM chargé de générer les réponses textuelles.
-- **Stable Diffusion** : moteur de création d'images à partir de vos descriptions.
-- **Docker Compose** : outil qui démarre tous les conteneurs d'un coup.
-- **MkDocs** : générateur de cette documentation.
+- **Godot 🎮** : le dossier `godot/` renferme les scènes et scripts du mini-jeu. La scène `scenes/Main.tscn` communique avec l'API via des nœuds `HTTPRequest`.
+- **FastAPI ⚡** : le backend Python vit dans `backend/app`. Le module `backend_server.py` expose notamment la route `/generate-text` et enregistre les échanges dans `data/game.db` grâce à SQLAlchemy.
+- **Ollama 🦙** : construit via `Dockerfile.ollama`, ce service télécharge le modèle indiqué par `OLLAMA_TEXT_MODEL` au démarrage grâce au script `entrypoint_ollama.sh`.
+- **Stable Diffusion 🎨** : le service `stablediffusion` gère la génération d'images et conserve les fichiers dans les volumes `sd_models` et `sd_outputs`.
+- **Docker Compose 🐳** : le fichier `docker-compose.yml` orchestre tous les conteneurs et le `Makefile` fournit les raccourcis `make up` et `make down`.
+- **MkDocs 📚** : la documentation statique est générée depuis `docs/` à l'aide du fichier `mkdocs.yml`.
 
 ## Pages détaillées
 - [⚡ FastAPI](fastapi.md)
