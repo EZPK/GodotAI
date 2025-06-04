@@ -1,6 +1,7 @@
 # 🐳 docker-compose.yml
 
-Ce fichier coordonne les conteneurs nécessaires au projet. Il définit deux services :
+Ce fichier coordonne les conteneurs nécessaires au projet. Il définit trois services :
+- **fastapi** pour le backend Python ;
 - **ollama** pour la génération de texte et d’images, construit à partir du `Dockerfile.ollama` ;
 - **stablediffusion** pour l’interface Web de Stable Diffusion.
 

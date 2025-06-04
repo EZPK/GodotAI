@@ -18,6 +18,7 @@ Pour aller plus loin, chaque page propose des liens vers le site officiel et la 
   - [`.vale.ini`](vale.md)
   - [`AGENTS.md`](agents-file.md)
   - [`docker-compose.yml`](docker-compose-yml.md)
+  - [`Dockerfile`](dockerfile.md)
   - [`Dockerfile.ollama`](dockerfile-ollama.md)
   - [`entrypoint_ollama.sh`](entrypoint-ollama.md)
   - [`Makefile`](makefile.md)
