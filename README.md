@@ -9,11 +9,12 @@ GodotAI permet de piloter un mini-jeu Godot avec un modèle de langage local, le
    git clone <repo_url>
    cd godot_ai
    ```
-3. Lancez les services (Ollama, Stable Diffusion et FastAPI) :
+3. Lancez les services (FastAPI, Ollama et Stable Diffusion) :
    ```bash
    make up
    ```
-   Les modèles sont téléchargés au premier lancement.
+   Tout tourne alors dans des conteneurs Docker et les modèles sont téléchargés au premier lancement.
+   
 4. Vérifiez que chaque service répond bien :
    ```bash
    pip install -r backend/requirements.txt
