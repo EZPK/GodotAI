@@ -1,6 +1,7 @@
 from fastapi.testclient import TestClient
 import os
 import sys
+from unittest.mock import Mock
 
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 from backend.app.backend_server import app
@@ -24,3 +25,32 @@ def test_create_user_and_session():
     sess_resp = client.post("/sessions", json={"user_id": user_id})
     assert sess_resp.status_code == 200
     assert "session_id" in sess_resp.json()
+
+
+def test_text_endpoint(monkeypatch):
+    mock_resp = Mock()
+    mock_resp.raise_for_status = Mock()
+    mock_resp.json.return_value = {"response": "ok"}
+
+    def fake_post(url, json):
+        assert "generate" in url
+        assert json["prompt"] == "hi"
+        return mock_resp
+
+    monkeypatch.setattr("backend.app.backend_server.requests.post", fake_post)
+    resp = client.post("/text", json={"prompt": "hi"})
+    assert resp.status_code == 200
+    assert resp.json()["response"] == "ok"
+
+
+def test_image_endpoint(monkeypatch):
+    def fake_generate(prompt):
+        assert prompt == "draw"
+        return {"image": "imgdata"}
+
+    monkeypatch.setattr(
+        "backend.app.backend_server.ollama_generate_image", fake_generate
+    )
+    resp = client.post("/image", json={"prompt": "draw"})
+    assert resp.status_code == 200
+    assert resp.json()["image"] == "imgdata"

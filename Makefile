@@ -1,4 +1,4 @@
-	# Makefile 🧙‍♂️ pour gérer le projet RPG LLM Godot avec activation automatique du venv
+# Makefile 🧙‍♂️ pour gérer le projet RPG LLM Godot avec activation automatique du venv
 
 .DEFAULT_GOAL := help
 
@@ -30,8 +30,13 @@ rebuild:
 
 ## 🎮 Lance le projet Godot (modifie selon ton chemin d'accès)
 run-godot:
-	@echo "\033[1;36m🎮 Ouverture de Godot...\033[0m"
-	$(GODOT_PATH) --editor godot/project.godot
+
+@echo "\033[1;36m🎮 Ouverture de Godot...\033[0m"
+$(GODOT_PATH) --editor godot/project.godot
+
+## ⚡ Lance l'API FastAPI en local
+run-api:
+	@uvicorn backend.app.backend_server:app --reload
 
 ## 🧹 Supprime fichiers temporaires / cache
 clean:

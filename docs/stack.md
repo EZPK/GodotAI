@@ -14,6 +14,14 @@ Ollama 🦙  Stable Diffusion 🎨
      SQLite 📂
 ```
 
+## Rôle des composants
+- **Godot** : interface du jeu et point d'entrée pour le joueur.
+- **FastAPI** : serveur Python qui orchestre les échanges et stocke les données dans SQLite.
+- **Ollama** : service LLM chargé de générer les réponses textuelles.
+- **Stable Diffusion** : moteur de création d'images à partir de vos descriptions.
+- **Docker Compose** : outil qui démarre tous les conteneurs d'un coup.
+- **MkDocs** : générateur de cette documentation.
+
 ## Pages détaillées
 - [⚡ FastAPI](fastapi.md)
 - [🦙 Ollama](ollama.md)
@@ -21,6 +29,8 @@ Ollama 🦙  Stable Diffusion 🎨
 - [🎮 Godot](godot.md)
 - [🐳 Docker Compose](docker-compose.md)
 - [📚 MkDocs](mkdocs.md)
+
+Chaque page de la documentation renvoie vers le site officiel et le manuel de référence pour en apprendre davantage.
 
 ## Exemple d'appel API
 ```python

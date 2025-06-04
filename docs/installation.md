@@ -19,3 +19,5 @@
    ```bash
    make down
    ```
+
+Tous les outils mentionnés disposent de liens vers leur site officiel et leur documentation sur les pages correspondantes.
