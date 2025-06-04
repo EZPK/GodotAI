@@ -63,13 +63,15 @@ class CreateSessionRequest(BaseModel):
 
 
 # Utilitaire pour choisir le modèle Ollama
-OLLAMA_TEXT_MODEL = os.environ.get("OLLAMA_TEXT_MODEL", "llama2")
-OLLAMA_IMAGE_MODEL = os.environ.get("OLLAMA_IMAGE_MODEL", "llava:7b")
+from .config import settings
 
-OLLAMA_TEXT_HOST = os.environ.get("OLLAMA_TEXT_HOST", "ollama")
-OLLAMA_TEXT_PORT = os.environ.get("OLLAMA_TEXT_PORT", "11434")
-OLLAMA_IMAGE_HOST = os.environ.get("OLLAMA_IMAGE_HOST", "ollama_image")
-OLLAMA_IMAGE_PORT = os.environ.get("OLLAMA_IMAGE_PORT", "11435")
+OLLAMA_TEXT_MODEL = settings.ollama_text_model
+OLLAMA_IMAGE_MODEL = settings.ollama_image_model
+
+OLLAMA_TEXT_HOST = settings.ollama_text_host
+OLLAMA_TEXT_PORT = str(settings.ollama_text_port)
+OLLAMA_IMAGE_HOST = settings.ollama_image_host
+OLLAMA_IMAGE_PORT = str(settings.ollama_image_port)
 
 OLLAMA_TEXT_BASE_URL = f"http://{OLLAMA_TEXT_HOST}:{OLLAMA_TEXT_PORT}/api"
 OLLAMA_IMAGE_BASE_URL = f"http://{OLLAMA_IMAGE_HOST}:{OLLAMA_IMAGE_PORT}/api"
