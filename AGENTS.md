@@ -73,6 +73,8 @@ L’agent doit appliquer rigoureusement les instructions suivantes. Ces directiv
 
     Ajoute tout nouvel article Markdown au sommaire de mkdocs.yml et lie la page depuis docs/index.md.
 
+    Fais en sorte que les fichiers renseignés dans des index.md soient toujours mis en forme sous forme de liens.
+
     Décris la pile technique et explique le code en profondeur.
 
     Valide la génération du site documentaire avec :
