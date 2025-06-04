@@ -33,4 +33,3 @@ resp = requests.post(
 )
 print(resp.json())
 ```
-
