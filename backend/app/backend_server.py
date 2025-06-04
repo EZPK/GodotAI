@@ -64,10 +64,15 @@ class CreateSessionRequest(BaseModel):
 
 # Utilitaire pour choisir le modèle Ollama
 OLLAMA_TEXT_MODEL = os.environ.get("OLLAMA_TEXT_MODEL", "llama2")
-OLLAMA_IMAGE_MODEL = os.environ.get("OLLAMA_IMAGE_MODEL", "llava")
-OLLAMA_HOST = os.environ.get("OLLAMA_HOST", "ollama")
-OLLAMA_PORT = os.environ.get("OLLAMA_PORT", "11434")
-OLLAMA_BASE_URL = f"http://{OLLAMA_HOST}:{OLLAMA_PORT}/api"
+OLLAMA_IMAGE_MODEL = os.environ.get("OLLAMA_IMAGE_MODEL", "llava:7b")
+
+OLLAMA_TEXT_HOST = os.environ.get("OLLAMA_TEXT_HOST", "ollama")
+OLLAMA_TEXT_PORT = os.environ.get("OLLAMA_TEXT_PORT", "11434")
+OLLAMA_IMAGE_HOST = os.environ.get("OLLAMA_IMAGE_HOST", "ollama_image")
+OLLAMA_IMAGE_PORT = os.environ.get("OLLAMA_IMAGE_PORT", "11435")
+
+OLLAMA_TEXT_BASE_URL = f"http://{OLLAMA_TEXT_HOST}:{OLLAMA_TEXT_PORT}/api"
+OLLAMA_IMAGE_BASE_URL = f"http://{OLLAMA_IMAGE_HOST}:{OLLAMA_IMAGE_PORT}/api"
 
 
 # Endpoint pour générer du texte via Ollama
@@ -80,7 +85,7 @@ def gen_text_get():
 def gen_text(req: ContextRequest):
     try:
         response = requests.post(
-            f"{OLLAMA_BASE_URL}/generate",
+            f"{OLLAMA_TEXT_BASE_URL}/generate",
             json={"model": OLLAMA_TEXT_MODEL, "prompt": req.context},
         )
         response.raise_for_status()
@@ -115,7 +120,7 @@ def gen_image(req: ImageRequest):
 @app.get("/list_models")
 def list_models():
     try:
-        response = requests.get(f"{OLLAMA_BASE_URL}/tags")
+        response = requests.get(f"{OLLAMA_TEXT_BASE_URL}/tags")
         response.raise_for_status()
         data = response.json()
         # Retourne la liste des modèles installés
@@ -174,7 +179,7 @@ def generate_text(req: GenerateTextRequest, db: Session = Depends(get_db)):
 
     try:
         response = requests.post(
-            f"{OLLAMA_BASE_URL}/generate",
+            f"{OLLAMA_TEXT_BASE_URL}/generate",
             json={"model": OLLAMA_TEXT_MODEL, "prompt": context},
         )
         response.raise_for_status()

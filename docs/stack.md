@@ -1,23 +1,24 @@
-# Stack logiciel
+# ⚙️ Stack logiciel
 
 Cette page décrit les principaux composants utilisés dans **GodotAI** et renvoie vers leur documentation officielle.
 
-## FastAPI
+## ⚡ FastAPI
 Le backend HTTP est construit avec [FastAPI](https://fastapi.tiangolo.com/). Il expose plusieurs routes pour communiquer avec le modèle et stocker les messages.
 
-## Ollama
-[Ollama](https://github.com/ollama/ollama) fournit le Large Language Model exécuté dans un conteneur Docker dédié. Les modèles sont téléchargés automatiquement au démarrage.
+## 🦙 Ollama
+[Ollama](https://github.com/ollama/ollama) fournit le Large Language Model exécuté dans un conteneur Docker dédié. Les modèles sont téléchargés automatiquement au démarrage. Un second conteneur `ollama_image` se charge de la génération d'images avec un modèle plus léger.
 
-## Godot
+## 🎮 Godot
 Le client graphique est développé avec [Godot](https://docs.godotengine.org/en/stable/). Des scripts GDScript appellent l'API pour afficher les réponses dans le jeu.
 
-## Docker Compose
+## 🐳 Docker Compose
 L'orchestration des services se fait via [Docker Compose](https://docs.docker.com/compose/). Une simple commande `make up` démarre l'ensemble.
+Le fichier Compose définit également un service `ollama_image` dédié à la génération d'images.
 
-## MkDocs
+## 📚 MkDocs
 La documentation vit dans le dossier `docs/` et est construite avec [MkDocs](https://www.mkdocs.org/). Vous pouvez lancer `mkdocs serve` pour un aperçu local.
 
-## Exemple d'appel API
+## 📜 Exemple d'appel API
 Ci-dessous un petit exemple en Python pour générer du texte via l'API :
 
 ```python
@@ -31,5 +32,5 @@ resp = requests.post(
 print(resp.json())
 ```
 
-## Notebook Jupyter
+## 📓 Notebook Jupyter
 Un notebook prêt à l'emploi est disponible dans [notebooks/api_example.ipynb](notebooks/api_example.ipynb) pour tester ces appels de manière interactive.

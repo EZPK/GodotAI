@@ -5,10 +5,10 @@ from __future__ import annotations
 import os
 import requests
 
-OLLAMA_IMAGE_MODEL = os.environ.get("OLLAMA_IMAGE_MODEL", "llava")
-OLLAMA_HOST = os.environ.get("OLLAMA_HOST", "ollama")
-OLLAMA_PORT = os.environ.get("OLLAMA_PORT", "11434")
-BASE_URL = f"http://{OLLAMA_HOST}:{OLLAMA_PORT}/api"
+OLLAMA_IMAGE_MODEL = os.environ.get("OLLAMA_IMAGE_MODEL", "llava:7b")
+OLLAMA_IMAGE_HOST = os.environ.get("OLLAMA_IMAGE_HOST", "ollama_image")
+OLLAMA_IMAGE_PORT = os.environ.get("OLLAMA_IMAGE_PORT", "11435")
+BASE_URL = f"http://{OLLAMA_IMAGE_HOST}:{OLLAMA_IMAGE_PORT}/api"
 
 
 def generate_image(prompt: str) -> dict:
