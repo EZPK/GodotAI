@@ -1,7 +1,13 @@
 # ⚡ FastAPI
 
-FastAPI est un framework Web moderne et asynchrone pour Python.
-Dans **GodotAI**, il expose les routes HTTP utilisées par le client Godot et gère la base SQLite.
+FastAPI est un framework Web moderne et asynchrone pour Python. Il s'appuie sur
+Pydantic pour la validation des données et génère automatiquement une
+documentation interactive.
+
+Dans **GodotAI**, FastAPI sert de colonne vertébrale au backend : il expose les
+routes appelées par Godot, dialogue avec Ollama pour produire du texte et
+déclenche la génération d'images via Stable Diffusion. Il stocke aussi les
+informations de partie dans SQLite.
 
 ## Exemple minimal
 ```python
@@ -14,4 +20,6 @@ def ping():
     return {"message": "pong"}
 ```
 
-- [Documentation officielle](https://fastapi.tiangolo.com/)
+## Ressources
+- [Site officiel](https://fastapi.tiangolo.com/)
+- [Documentation](https://fastapi.tiangolo.com/)

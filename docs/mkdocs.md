@@ -1,6 +1,6 @@
 # 📚 MkDocs
 
-La documentation est générée via MkDocs et le thème Material. Toutes les pages Markdown du dossier `docs/` sont transformées en site statique.
+MkDocs transforme les fichiers Markdown du dossier `docs/` en un site statique prêt à être publié. Le thème Material apporte un rendu moderne et agréable.
 
 Pour tester en local :
 ```bash
@@ -8,4 +8,6 @@ pip install mkdocs mkdocs-material
 mkdocs serve
 ```
 
-- [Site de MkDocs](https://www.mkdocs.org/)
+## Ressources
+- [Site officiel](https://www.mkdocs.org/)
+- [Documentation](https://www.mkdocs.org/user-guide/)

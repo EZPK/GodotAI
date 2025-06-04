@@ -1,6 +1,9 @@
 # 🎨 Stable Diffusion
 
-Le service d'images fonctionne grâce à Stable Diffusion. Il s'exécute lui aussi dans un conteneur dédié.
+Stable Diffusion est un modèle de génération d'images à partir d'une description textuelle.
+Dans ce projet, il s'exécute dans un conteneur dédié.
+
+FastAPI lui transmet vos invites afin d'illustrer certaines scènes du jeu.
 
 Vous pouvez générer une image directement via l'API :
 ```bash
@@ -9,4 +12,6 @@ curl -X POST http://localhost:8000/generate-image \
   -d '{"prompt": "un village médiéval"}' -o output.png
 ```
 
-- [Dépôt officiel](https://github.com/Stability-AI/stablediffusion)
+## Ressources
+- [Site officiel](https://stability.ai/)
+- [Documentation](https://github.com/Stability-AI/stablediffusion)
