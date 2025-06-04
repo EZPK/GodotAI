@@ -4,7 +4,7 @@ Bienvenue sur la documentation officielle de **GodotAI**.
 
 Ce projet associe Godot, FastAPI et Ollama pour proposer un mini-jeu capable de communiquer avec un modèle de langage local. Toute la stack s'exécute dans des conteneurs Docker afin de rester simple à lancer.
 
-🌟 [Retrouvez le dépôt sur GitHub](https://github.com/example/GodotAI) pour explorer le code source.
+🌟 [Retrouvez le dépôt sur GitHub](https://github.com/EZPK/GodotAI/) pour explorer le code source.
 
 Cette documentation suit le cadre [Diátaxis](https://diataxis.fr/) et se divise en quatre sections :
 
