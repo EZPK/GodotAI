@@ -79,7 +79,18 @@ L’agent doit appliquer rigoureusement les instructions suivantes. Ces directiv
 
     mkdocs build
 
-8. Règle d’Or
+8. Méthode Diátaxis
+
+Respecte la structure **Diátaxis** pour toute la documentation :
+
+    - **Tutoriels** : guides pas à pas pour débutants.
+    - **Guides pratiques** : réponses rapides à un besoin précis.
+    - **Référence** : description factuelle et exhaustive de l’API ou des fichiers.
+    - **Explications** : contexte et choix techniques détaillés.
+
+Classe chaque nouvelle page dans la bonne catégorie et maintiens un sommaire clair.
+
+9. Règle d’Or
 
 Toutes ces consignes s’appliquent à l’ensemble du dépôt, sans exception.
 
