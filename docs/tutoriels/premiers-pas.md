@@ -1,4 +1,4 @@
-# 🚀 Installation pas à pas
+# 🚀 Premiers pas
 
 Suivez les étapes ci-dessous dans l'ordre pour déployer la stack complète.
 
@@ -44,3 +44,5 @@ Suivez les étapes ci-dessous dans l'ordre pour déployer la stack complète.
    ```
 
 Tous les outils mentionnés disposent de liens vers leur site officiel et leur documentation sur les pages correspondantes.
+
+Une fois ces étapes terminées, vous pouvez explorer les guides pratiques pour personnaliser le projet.
