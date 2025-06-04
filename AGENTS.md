@@ -22,5 +22,8 @@ L'agent qui contribue ici doit suivre les instructions suivantes :
 
 Ces consignes s'appliquent à l'ensemble du dépôt.
 
-5. Lorsque ces instructions mentionnent la "doc" ou la "documentation", cela
-   désigne le site généré depuis le dossier `docs/` et publié via GitHub Pages.
+5. **Documentation**
+   - Vérifier que la documentation dans `docs/` et `mkdocs.yml` reste fidèle au fonctionnement actuel du projet.
+   - Ajouter tout nouvel article Markdown au sommaire de `mkdocs.yml` et lier la page depuis `docs/index.md`.
+   - Les pages doivent détailler la pile technique et expliquer le code de ce dépôt en profondeur.
+   - Après chaque mise à jour de la documentation, exécuter `mkdocs build` pour s'assurer que le site se génère correctement.
