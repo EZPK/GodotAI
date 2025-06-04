@@ -10,7 +10,15 @@
    ```bash
    make up
    ```
-   Les modèles Ollama se téléchargent automatiquement.
+   Les modèles se téléchargent automatiquement au premier démarrage.
+
+   Lors de cette étape, le conteneur **Ollama** récupère le modèle indiqué dans
+   le `Modelfile` tandis que **Stable Diffusion** télécharge ses poids si
+   nécessaire. Cette opération peut prendre plusieurs minutes mais n'a lieu
+   qu'une seule fois.
+   Le script `entrypoint_ollama.sh` lance `ollama serve` puis vérifie la
+   présence des modèles. S'ils sont absents, il exécute `ollama pull` pour les
+   récupérer avant de poursuivre l'initialisation.
 4. (Optionnel) Lancez Godot :
    ```bash
    make run-godot
