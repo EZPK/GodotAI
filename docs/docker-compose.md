@@ -1,6 +1,9 @@
 # 🐳 Docker Compose
 
-Docker Compose orchestre les différents conteneurs du projet. Toutes les commandes sont encapsulées dans le `Makefile`.
+Docker Compose est l'outil qui lance plusieurs conteneurs Docker en une seule commande.
+Le fichier `docker-compose.yml` décrit comment démarrer FastAPI, Ollama et Stable Diffusion ensemble.
+
+Pour simplifier la vie du développeur, toutes les commandes utiles sont regroupées dans le `Makefile`.
 
 Commandes utiles :
 ```bash
@@ -11,4 +14,6 @@ make up
 make down
 ```
 
-- [Guide Docker Compose](https://docs.docker.com/compose/)
+## Ressources
+- [Site officiel](https://www.docker.com/)
+- [Documentation](https://docs.docker.com/compose/)
