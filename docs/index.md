@@ -2,29 +2,20 @@
 
 Bienvenue sur la documentation officielle de **GodotAI**.
 
-Ce projet associe le moteur de jeu Godot à un modèle de langage exécuté localement via Ollama. Un serveur FastAPI orchestre les requêtes et peut déclencher Stable Diffusion pour générer des images. L'ensemble tourne dans des conteneurs Docker et les données sont stockées dans SQLite.
+Ce projet associe Godot, FastAPI et Ollama pour proposer un mini-jeu capable de communiquer avec un modèle de langage local. Toute la stack s'exécute dans des conteneurs Docker afin de rester simple à lancer.
 
-La documentation suit l'approche [Diátaxis](https://diataxis.fr/) afin de séparer
-les tutoriels, les guides pratiques, la référence et les explications. Chaque
-page renvoie vers les ressources officielles des technologies utilisées.
+Cette documentation suit le cadre [Diátaxis](https://diataxis.fr/) et se divise en quatre sections :
 
-## Tutoriel : pour commencer 🚀
+- **Tutoriels** : apprenez pas à pas à installer et utiliser le projet.
+- **Guides pratiques** : répondez à un besoin précis après l'installation.
+- **Référence** : trouvez la description exhaustive des commandes et fichiers.
+- **Explications** : comprenez l'architecture et les choix techniques.
 
-- [Installation pas à pas](installation.md) : déployez les services et vérifiez qu'ils répondent.
-- [Comprendre la stack](stack.md) : découvrez l'architecture et le rôle de chaque composant.
+## Accès rapide
 
-## Référence technique 📁
-
-Cette rubrique décrit les fichiers de configuration du dépôt et les conventions de contribution :
-- [AGENTS.md](agents-file.md)
-- [docker-compose.yml](docker-compose-yml.md)
-- [Makefile](makefile.md)
-
-## Tests et validation ✅
-
-Les pages suivantes expliquent comment vérifier le bon fonctionnement de la stack :
-- [Tests unitaires](tests-unitaires.md)
-- [Tests E2E](tests-e2e.md)
-- [Vérification des services](test-services.md)
+- [Tutoriel de prise en main](tutoriels/premiers-pas.md)
+- [Guides pratiques](guides/index.md)
+- [Référence technique](reference/index.md)
+- [Explications](explications/architecture.md)
 
 Bonne lecture !

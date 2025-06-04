@@ -4,27 +4,36 @@ theme:
   name: material
 nav:
   - Accueil: index.md
-  - Installation: installation.md
-  - Stack:
-      - Aperçu: stack.md
-      - FastAPI: fastapi.md
-      - Backend détaillé: backend.md
-      - Ollama: ollama.md
-      - Stable Diffusion: stable-diffusion.md
-      - Godot: godot.md
-      - Docker Compose: docker-compose.md
-      - MkDocs: mkdocs.md
+  - Tutoriels:
+      - "Prise en main": tutoriels/premiers-pas.md
+  - Guides pratiques:
+      - "Présentation": guides/index.md
+      - "Changer le modèle LLM": guides/changer-modele.md
+      - "Adapter le prompt": guides/adapter-prompt.md
+      - "Utiliser l'API": guides/utiliser-api.md
+      - "Dépannage modèles et GPU": guides/depannage-modeles-gpu.md
   - Référence technique:
-      - .gitignore: gitignore.md
-      - .vale.ini: vale.md
-      - AGENTS.md: agents-file.md
-      - docker-compose.yml: docker-compose-yml.md
-      - Dockerfile: dockerfile.md
-      - Dockerfile.ollama: dockerfile-ollama.md
-      - entrypoint_ollama.sh: entrypoint-ollama.md
-      - Makefile: makefile.md
-      - mkdocs.yml: mkdocs-yml.md
-  - Tests et validation:
-      - Tests unitaires: tests-unitaires.md
-      - Tests E2E: tests-e2e.md
-      - Vérification des services: test-services.md
+      - "Présentation": reference/index.md
+      - "API du backend": reference/api-backend.md
+      - "Configuration": reference/configuration.md
+      - "Makefile": reference/makefile.md
+      - ".gitignore": reference/gitignore.md
+      - "docker-compose.yml": reference/docker-compose-yml.md
+      - "Dockerfile": reference/dockerfile.md
+      - "Dockerfile.ollama": reference/dockerfile-ollama.md
+      - "entrypoint_ollama.sh": reference/entrypoint-ollama.md
+      - "mkdocs.yml": reference/mkdocs-yml.md
+      - "Tests unitaires": reference/tests-unitaires.md
+      - "Tests E2E": reference/tests-e2e.md
+      - "Vérification des services": reference/test-services.md
+      - "AGENTS.md": reference/agents-file.md
+      - "vale": reference/vale.md
+  - Explications:
+      - "Architecture": explications/architecture.md
+      - "Backend détaillé": explications/backend.md
+      - "FastAPI": explications/fastapi.md
+      - "Ollama": explications/ollama.md
+      - "Stable Diffusion": explications/stable-diffusion.md
+      - "Godot": explications/godot.md
+      - "Docker Compose": explications/docker-compose.md
+      - "MkDocs": explications/mkdocs.md
