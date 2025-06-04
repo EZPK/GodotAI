@@ -44,6 +44,10 @@ class ImageRequest(BaseModel):
     prompt: str
 
 
+class PromptRequest(BaseModel):
+    prompt: str
+
+
 class GenerateImageRequest(BaseModel):
     description: str
     session_id: int | None = None
@@ -113,6 +117,32 @@ def gen_image_get():
 
 @app.post("/gen_image")
 def gen_image(req: ImageRequest):
+    try:
+        return ollama_generate_image(req.prompt)
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+# --- Simple endpoints for direct model access --- #
+
+
+@app.post("/text")
+def text_model(req: PromptRequest):
+    """Generate text using the Ollama container."""
+    try:
+        resp = requests.post(
+            f"{OLLAMA_TEXT_BASE_URL}/generate",
+            json={"model": OLLAMA_TEXT_MODEL, "prompt": req.prompt},
+        )
+        resp.raise_for_status()
+        return resp.json()
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.post("/image")
+def image_model(req: PromptRequest):
+    """Generate an image using the Stable Diffusion container."""
     try:
         return ollama_generate_image(req.prompt)
     except Exception as e:
