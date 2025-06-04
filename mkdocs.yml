@@ -30,6 +30,7 @@ nav:
       - "vale": reference/vale.md
   - Explications:
       - "Architecture": explications/architecture.md
+      - "Bootstrap": explications/bootstrap.md
       - "Backend détaillé": explications/backend.md
       - "FastAPI": explications/fastapi.md
       - "Ollama": explications/ollama.md

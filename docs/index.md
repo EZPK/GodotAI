@@ -41,6 +41,7 @@ Cette documentation suit le cadre [Diátaxis](https://diataxis.fr/) et se divise
 
 ### 🧩 Explications
 - 🏗️ [Architecture](explications/architecture.md)
+- 🚀 [Bootstrap](explications/bootstrap.md)
 - 💻 [Backend détaillé](explications/backend.md)
 - ⚡ [FastAPI](explications/fastapi.md)
 - 🤖 [Ollama](explications/ollama.md)
