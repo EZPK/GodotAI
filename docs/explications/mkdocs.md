@@ -4,6 +4,12 @@ MkDocs transforme les fichiers Markdown du dossier `docs/` en un site statique p
 
 La configuration active également le plugin [Mermaid](https://github.com/fralau/mkdocs-mermaid2-plugin) pour intégrer des schémas.
 
+```mermaid
+flowchart LR
+    M[Markdown] --> MK(MkDocs)
+    MK --> HTML[Site statique]
+```
+
 Pour tester en local :
 ```bash
 make install

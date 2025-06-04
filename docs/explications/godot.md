@@ -7,6 +7,17 @@ Les scripts GDScript appellent l'endpoint `/generate-text` pour afficher les ré
 Quand le joueur effectue une action, ces scripts envoient la requête à FastAPI
 qui renvoie le texte généré par Ollama.
 
+```mermaid
+sequenceDiagram
+    participant P as Joueur
+    participant G as Godot
+    participant A as FastAPI
+    P->>G: action
+    G->>A: requête
+    A-->>G: réponse
+    G-->>P: affichage
+```
+
 Pour lancer l'éditeur :
 ```bash
 make run-godot
