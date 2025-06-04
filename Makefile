@@ -58,15 +58,15 @@ docs-deploy:
 
 ## 🪐 Lance tous les tests et génère un log complet
 universe:
-	mkdir -p rapports
-	echo "Running black" > rapports/universe.log
-	black backend/app >> rapports/universe.log 2>&1
-	echo "\nRunning unit tests" >> rapports/universe.log
-	pytest -q >> rapports/universe.log 2>&1
-	echo "\nChecking services" >> rapports/universe.log
-	python utils/test_services.py >> rapports/universe.log 2>&1 || true
-	echo "\nRunning e2e tests" >> rapports/universe.log
-	pytest e2e/test_api_playwright.py -q >> rapports/universe.log 2>&1 || true
-	echo "\nBuilding docs" >> rapports/universe.log
-	mkdocs build >> rapports/universe.log 2>&1
+	@mkdir -p rapports
+	@echo "Running black" > rapports/universe.log
+	@black backend/app >> rapports/universe.log 2>&1
+	@echo "\nRunning unit tests" >> rapports/universe.log
+	@pytest -q >> rapports/universe.log 2>&1
+	@echo "\nChecking services" >> rapports/universe.log
+	@python utils/test_services.py >> rapports/universe.log 2>&1 || true
+	@echo "\nRunning e2e tests" >> rapports/universe.log
+	@pytest e2e/test_api_playwright.py -q >> rapports/universe.log 2>&1 || true
+	@echo "\nBuilding docs" >> rapports/universe.log
+	@mkdocs build >> rapports/universe.log 2>&1
 	@echo "Logs written to rapports/universe.log"

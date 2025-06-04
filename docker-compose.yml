@@ -28,7 +28,7 @@ services:
     volumes:
       - ./backend:/app/backend
       - ./utils:/app/utils
-      - ./game.db:/app/game.db
+      - ./data:/app/data
     env_file: .env
     depends_on:
       - ollama
