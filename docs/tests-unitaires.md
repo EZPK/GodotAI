@@ -13,7 +13,7 @@ Les dépendances nécessaires sont listées dans `backend/requirements.txt`.
 Avant de lancer les tests pour la première fois, installez-les avec :
 
 ```bash
-pip install -r backend/requirements.txt
+make install
 ```
 
 Chaque nouvelle fonctionnalité Python doit être accompagnée d'un test

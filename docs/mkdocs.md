@@ -4,8 +4,8 @@ MkDocs transforme les fichiers Markdown du dossier `docs/` en un site statique p
 
 Pour tester en local :
 ```bash
-pip install mkdocs mkdocs-material
-mkdocs serve
+make install
+make docs-serve
 ```
 
 ## Ressources
