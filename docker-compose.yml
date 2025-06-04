@@ -17,6 +17,25 @@ services:
       - OLLAMA_LLM_LIBRARY=cuda
     restart: unless-stopped
     gpus: all
-    
+
+  ollama_image:
+    build:
+      context: .
+      dockerfile: Dockerfile.ollama
+    container_name: ollama_image
+    ports:
+      - "11435:11434"
+    volumes:
+      - ollama_image_models:/root/.ollama
+    environment:
+      - OLLAMA_HOST=0.0.0.0
+      - OLLAMA_TEXT_MODEL=llava:7b
+      - NVIDIA_VISIBLE_DEVICES=all
+      - OLLAMA_NUM_PARALLEL=1
+      - OLLAMA_LLM_LIBRARY=cuda
+    restart: unless-stopped
+    gpus: all
+
 volumes:
   ollama_models:
+  ollama_image_models:

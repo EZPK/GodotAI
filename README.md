@@ -23,9 +23,9 @@ GodotAI combine plusieurs briques pour créer une expérience de jeu pilotée pa
 - Permet de tester rapidement l'API en mode éditeur ou en ligne de commande.
 
 ### 4. 🐳 Docker Compose
-- Orchestration des services `ollama` et `backend`.
-- Monte un volume `ollama_models` pour conserver les modèles téléchargés.
-- Les variables d'environnement (GPU, nom du modèle, etc.) sont configurables dans `docker-compose.yml`.
+- Orchestration des services `ollama`, `ollama_image` et `backend`.
+- Monte des volumes `ollama_models` et `ollama_image_models` pour conserver les modèles téléchargés.
+- Les variables d'environnement (GPU, nom des modèles, etc.) sont configurables dans `docker-compose.yml`.
 
 ### 5. 📚 MkDocs
 - La documentation vit dans le dossier `docs/` et peut être servie via `mkdocs serve`.
