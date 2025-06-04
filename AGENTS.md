@@ -1,48 +1,86 @@
-# AGENTS.md - Directives pour l'agent
+AGENTS.md – Guidelines pour l’Agent
 
-Ce dépôt rassemble un backend **FastAPI** piloté par Docker ainsi qu'un client **Godot**. L'agent qui contribue ici doit respecter les instructions suivantes, inspirées des bonnes pratiques de l'industrie :
+Ce dépôt contient :
 
-## Principes clés
+    Un backend FastAPI géré par Docker,
 
-- Adopter des commits courts au message clair et rédigé à l'impératif.
-- Créer une branche dédiée pour chaque fonctionnalité ou correctif.
-- Soumettre toute modification via une pull request pour faciliter la revue de code.
-- Couvrir les nouvelles fonctionnalités par des tests automatiques.
-- Documenter le code et les comportements attendus.
-- Appliquer un formatage cohérent, par exemple `black` pour Python.
-- Maintenir un environnement reproductible grâce aux conteneurs Docker.
-- Vérifier régulièrement la sécurité et mettre à jour les dépendances.
-- Automatiser les tâches répétitives (lint, tests) via l'intégration continue.
+    Un client Godot.
 
-1. **Tester le code Python**
-   - Si une modification touche des fichiers Python (dossier `backend/app`), exécuter `pytest -q` pour vérifier que tout passe, même s'il n'y a pas encore de tests.
-   - Ajouter des tests dans `backend/tests` pour toute nouvelle fonctionnalité.
+L’agent doit appliquer rigoureusement les instructions suivantes. Ces directives sont alignées sur les meilleures pratiques du secteur et assurent un workflow fiable, lisible et maintenable.
+1. Principes Généraux
 
-2. **Style de code et formatage**
-   - Utiliser `black` pour formater le Python.
-   - Exemple de commande :
-     ```bash
-     black backend/app
-     ```
+    Effectue des commits brefs, explicites et rédigés à l’impératif, en anglais.
 
-3. **Commits et branches**
-   - Rédiger des messages de commit concis à l'impératif en anglais, par ex. `Add example API endpoint`.
-   - Créer une branche dédiée pour chaque fonctionnalité ou correctif.
+    Crée une branche distincte pour chaque nouvelle fonctionnalité ou correction de bug.
 
-4. **Pull requests**
-   - Soumettre toute modification via une pull request pour faciliter la revue de code.
-   - Le message de la pull request doit commencer par l'emoji `🤖`.
+    Soumets toutes tes modifications via une pull request (PR) pour garantir une revue de code systématique.
 
-5. **Documentation et automatisation**
-   - Documenter le code et les comportements attendus.
-   - Automatiser les tâches répétitives (lint, tests) via l'intégration continue.
-   - Maintenir un environnement reproductible grâce à Docker.
-   - Vérifier régulièrement la sécurité et mettre à jour les dépendances.
+    Couvre chaque nouvelle fonctionnalité avec des tests automatiques.
 
-Ces consignes s'appliquent à l'ensemble du dépôt.
+    Documente tout code et tout comportement non trivial.
 
-6. **Documentation**
-   - Vérifier que la documentation dans `docs/` et `mkdocs.yml` reste fidèle au fonctionnement actuel du projet.
-   - Ajouter tout nouvel article Markdown au sommaire de `mkdocs.yml` et lier la page depuis `docs/index.md`.
-   - Les pages doivent détailler la pile technique et expliquer le code de ce dépôt en profondeur.
-   - Après chaque mise à jour de la documentation, exécuter `mkdocs build` pour s'assurer que le site se génère correctement.
+    Applique un formatage uniforme (utilise black pour le Python).
+
+    Maintiens un environnement reproductible grâce à Docker.
+
+    Vérifie régulièrement la sécurité et mets à jour les dépendances.
+
+    Automatise les tâches répétitives (lint, tests) via l’intégration continue (CI).
+
+2. Tests & Qualité du Code
+
+    Teste systématiquement tout fichier Python modifié dans backend/app avec :
+
+    pytest -q
+
+    Ajoute des tests pour toute nouvelle fonctionnalité dans backend/tests.
+
+3. Style et Formatage
+
+    Formate tout code Python avec :
+
+    black backend/app
+
+    Vérifie que le style reste cohérent sur tout le projet.
+
+4. Gestion des Commits & Branches
+
+    Rédige des messages de commit concis, à l’impératif, en anglais (ex. : Add authentication middleware).
+
+    Utilise une branche dédiée pour chaque évolution ou correctif.
+
+5. Pull Requests (PR)
+
+    Soumets chaque modification via une PR pour validation.
+
+    Commence le titre de ta PR par l’emoji 🤖.
+
+    Assure-toi que la PR décrit clairement la modification proposée.
+
+6. Documentation & Automatisation
+
+    Documente tout changement ou nouvelle fonctionnalité.
+
+    Automatise le linting, les tests et la CI.
+
+    Maintiens un environnement de développement reproductible avec Docker.
+
+    Surveille les dépendances et mets-les à jour régulièrement.
+
+7. Documentation Technique
+
+    Vérifie que la documentation dans docs/ et la configuration mkdocs.yml sont à jour.
+
+    Ajoute tout nouvel article Markdown au sommaire de mkdocs.yml et lie la page depuis docs/index.md.
+
+    Décris la pile technique et explique le code en profondeur.
+
+    Valide la génération du site documentaire avec :
+
+    mkdocs build
+
+8. Règle d’Or
+
+Toutes ces consignes s’appliquent à l’ensemble du dépôt, sans exception.
+
+Fin du fichier.
