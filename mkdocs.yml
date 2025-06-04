@@ -26,3 +26,4 @@ nav:
   - Tests:
       - Unitaires: tests-unitaires.md
       - E2E Playwright: tests-e2e.md
+      - Vérification des services: test-services.md

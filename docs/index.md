@@ -24,3 +24,4 @@ Pour aller plus loin, chaque page propose des liens vers le site officiel et la 
   - [`mkdocs.yml`](mkdocs-yml.md)
 - [✅ Tests unitaires](tests-unitaires.md)
 - [🚦 Tests E2E](tests-e2e.md)
+- [🔧 Vérification des services](test-services.md)
