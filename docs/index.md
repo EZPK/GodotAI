@@ -1,10 +1,8 @@
 # 🤖 GodotAI
 
-## Articles
-===========
-Bienvenue sur la documentation du projet **GodotAI**. 🚀 Ce site couvre l'installation rapide et les principales commandes pour démarrer.
+Bienvenue ! Cette documentation vous guide à travers l'installation et l'utilisation du projet.
 
-- [📥 Installation rapide](installation.md)
-- [🛠️ Stack logiciel](stack.md)
-
-Vous pouvez également explorer le [notebook d'exemple](notebooks/api_example.ipynb) pour tester l'API depuis Python.
+## Sommaire
+- [🚀 Installation](installation.md)
+- [🧩 La stack](stack.md)
+- [💻 Exemple de notebook](notebooks/api_example.ipynb)
