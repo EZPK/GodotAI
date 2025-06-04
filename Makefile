@@ -1,6 +1,13 @@
-# Makefile 🧙‍♂️ pour gérer le projet RPG LLM Godot avec activation automatique du venv
+	# Makefile 🧙‍♂️ pour gérer le projet RPG LLM Godot avec activation automatique du venv
 
 .DEFAULT_GOAL := help
+
+ifneq (,$(wildcard ./.env))
+    include .env
+    export
+endif
+
+GODOT_PATH ?= godot4
 
 ## 📘 Affiche cette aide
 help:
@@ -24,7 +31,7 @@ rebuild:
 ## 🎮 Lance le projet Godot (modifie selon ton chemin d'accès)
 run-godot:
 	@echo "\033[1;36m🎮 Ouverture de Godot...\033[0m"
-	godot4 --editor godot/project.godot
+	$(GODOT_PATH) --editor godot/project.godot
 
 ## 🧹 Supprime fichiers temporaires / cache
 clean:
