@@ -21,3 +21,6 @@ L'agent qui contribue ici doit suivre les instructions suivantes :
    - Le message de la pull request doit commencer par l'emoji `🤖`.
 
 Ces consignes s'appliquent à l'ensemble du dépôt.
+
+5. Lorsque ces instructions mentionnent la "doc" ou la "documentation", cela
+   désigne le site généré depuis le dossier `docs/` et publié via GitHub Pages.

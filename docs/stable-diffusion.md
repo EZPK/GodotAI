@@ -2,6 +2,8 @@
 
 Stable Diffusion est un modèle de génération d'images à partir d'une description textuelle.
 Dans ce projet, il s'exécute dans un conteneur dédié.
+Au premier `make up`, le conteneur télécharge automatiquement les poids du
+modèle puis les conserve pour les exécutions suivantes.
 
 FastAPI lui transmet vos invites afin d'illustrer certaines scènes du jeu.
 
