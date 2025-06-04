@@ -19,6 +19,7 @@ nav:
       - .vale.ini: vale.md
       - AGENTS.md: agents-file.md
       - docker-compose.yml: docker-compose-yml.md
+      - Dockerfile: dockerfile.md
       - Dockerfile.ollama: dockerfile-ollama.md
       - entrypoint_ollama.sh: entrypoint-ollama.md
       - Makefile: makefile.md

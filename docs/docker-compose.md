@@ -1,7 +1,7 @@
 # 🐳 Docker Compose
 
 Docker Compose est l'outil qui lance plusieurs conteneurs Docker en une seule commande.
-Le fichier `docker-compose.yml` décrit comment démarrer FastAPI, Ollama et Stable Diffusion ensemble.
+Le fichier `docker-compose.yml` définit trois services : **fastapi**, **ollama** et **stablediffusion**.
 
 Pour simplifier la vie du développeur, toutes les commandes utiles sont regroupées dans le `Makefile`.
 
