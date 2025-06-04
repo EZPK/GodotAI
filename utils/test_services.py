@@ -1,6 +1,10 @@
 import os
 import requests
 
+EMO_SUCCESS = "✅"
+EMO_ERROR = "❌"
+EMO_WAIT = "⏳"
+
 FASTAPI_URL = os.getenv("FASTAPI_URL", "http://localhost:8000")
 
 # Build Ollama base URL from individual variables if available
@@ -18,10 +22,10 @@ def check_fastapi():
     try:
         r = requests.get(f"{FASTAPI_URL}/")
         r.raise_for_status()
-        print("FastAPI OK:", r.json())
+        print(f"FastAPI {EMO_SUCCESS}", r.json())
         return True
     except Exception as e:
-        print("FastAPI error:", e)
+        print(f"FastAPI {EMO_ERROR}", e)
         return False
 
 
@@ -29,10 +33,10 @@ def check_ollama():
     try:
         r = requests.get(f"{OLLAMA_URL}/api/tags")
         r.raise_for_status()
-        print("Ollama OK:", r.json())
+        print(f"Ollama {EMO_SUCCESS}", r.json())
         return True
     except Exception as e:
-        print("Ollama error:", e)
+        print(f"Ollama {EMO_ERROR}", e)
         return False
 
 
@@ -40,10 +44,16 @@ def check_stablediffusion():
     try:
         r = requests.get(f"{SD_URL}/sdapi/v1/sd-models")
         r.raise_for_status()
-        print("Stable Diffusion OK")
+        print(f"Stable Diffusion {EMO_SUCCESS}")
         return True
+    except requests.HTTPError as e:
+        if e.response is not None and e.response.status_code == 404:
+            print(f"Stable Diffusion {EMO_WAIT} model loading")
+        else:
+            print(f"Stable Diffusion {EMO_ERROR}", e)
+        return False
     except Exception as e:
-        print("Stable Diffusion error:", e)
+        print(f"Stable Diffusion {EMO_ERROR}", e)
         return False
 
 
