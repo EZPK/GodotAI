@@ -21,6 +21,7 @@ nav:
       - "docker-compose.yml": reference/docker-compose-yml.md
       - "Dockerfile": reference/dockerfile.md
       - "Dockerfile.ollama": reference/dockerfile-ollama.md
+      - "Modelfile": reference/modelfile.md
       - "entrypoint_ollama.sh": reference/entrypoint-ollama.md
       - "mkdocs.yml": reference/mkdocs-yml.md
       - "Tests unitaires": reference/tests-unitaires.md

@@ -1,5 +1,17 @@
 # 📚 mkdocs.yml
 
-Ce fichier configure le site de documentation. On y trouve le nom du projet, l’URL du répertoire et surtout la liste des pages à afficher dans la barre de navigation. Le thème Material apporte un style moderne prêt à l’emploi.
+Ce fichier configure le site de documentation généré par **MkDocs**.
 
-Modifier `mkdocs.yml` permet d’ajouter de nouvelles pages ou de changer l’organisation du menu. Un `mkdocs build` vérifie que tout se génère correctement.
+Principales sections :
+
+- `site_name` et `site_url` définissent le nom du projet et son adresse en ligne.
+- `theme` indique le thème Material utilisé pour le rendu.
+- `nav` liste l'ensemble des pages et leur organisation dans la barre de navigation.
+
+Après chaque ajout de page, exécutez :
+
+```bash
+mkdocs build
+```
+
+Cette commande s'assure que la documentation est valide avant une éventuelle publication.
