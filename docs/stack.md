@@ -1,27 +1,28 @@
-# ⚙️ Stack logiciel
+# 🧩 Comprendre la stack
 
-Cette page décrit les principaux composants utilisés dans **GodotAI** et renvoie vers leur documentation officielle.
+Cette page présente brièvement l'architecture générale avant de détailler chaque composant.
 
-## ⚡ FastAPI
-Le backend HTTP est construit avec [FastAPI](https://fastapi.tiangolo.com/). Il expose plusieurs routes pour communiquer avec le modèle et stocker les messages.
+```text
+[Utilisateur]
+     |
+   Godot 🎮
+     |
+  FastAPI ⚡
+   /   \
+Ollama 🦙  Stable Diffusion 🎨
+     \
+     SQLite 📂
+```
 
-## 🦙 Ollama
-[Ollama](https://github.com/ollama/ollama) fournit le Large Language Model exécuté dans un conteneur Docker dédié. Les modèles sont téléchargés automatiquement au démarrage. Le conteneur `stablediffusion` utilise désormais Stable Diffusion pour la génération d'images.
+## Pages détaillées
+- [⚡ FastAPI](fastapi.md)
+- [🦙 Ollama](ollama.md)
+- [🎨 Stable Diffusion](stable-diffusion.md)
+- [🎮 Godot](godot.md)
+- [🐳 Docker Compose](docker-compose.md)
+- [📚 MkDocs](mkdocs.md)
 
-## 🎮 Godot
-Le client graphique est développé avec [Godot](https://docs.godotengine.org/en/stable/). Des scripts GDScript appellent l'API pour afficher les réponses dans le jeu.
-
-## 🐳 Docker Compose
-L'orchestration des services se fait via [Docker Compose](https://docs.docker.com/compose/). Une simple commande `make up` démarre l'ensemble.
-Le fichier Compose définit également un service `stablediffusion` basé sur Stable Diffusion pour la génération d'images.
-Toutes les options de modèles et de ports sont déclarées dans le fichier `.env` et reprises par Compose.
-
-## 📚 MkDocs
-La documentation vit dans le dossier `docs/` et est construite avec [MkDocs](https://www.mkdocs.org/). Vous pouvez lancer `mkdocs serve` pour un aperçu local.
-
-## 📜 Exemple d'appel API
-Ci-dessous un petit exemple en Python pour générer du texte via l'API :
-
+## Exemple d'appel API
 ```python
 import requests
 
@@ -33,5 +34,3 @@ resp = requests.post(
 print(resp.json())
 ```
 
-## 📓 Notebook Jupyter
-Un notebook prêt à l'emploi est disponible dans [notebooks/api_example.ipynb](notebooks/api_example.ipynb) pour tester ces appels de manière interactive.

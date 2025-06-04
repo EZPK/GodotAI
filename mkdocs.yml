@@ -1,8 +1,15 @@
 site_name: GodotAI
-site_url: https://example.github.io/GodotAI
+site_url: https://github.com/example/GodotAI
 theme:
   name: material
 nav:
   - Accueil: index.md
   - Installation: installation.md
-  - Stack: stack.md
+  - Stack:
+      - Aperçu: stack.md
+      - FastAPI: fastapi.md
+      - Ollama: ollama.md
+      - Stable Diffusion: stable-diffusion.md
+      - Godot: godot.md
+      - Docker Compose: docker-compose.md
+      - MkDocs: mkdocs.md
