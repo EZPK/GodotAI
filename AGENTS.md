@@ -18,6 +18,7 @@ L’agent doit appliquer rigoureusement les instructions suivantes. Ces directiv
     Couvre chaque nouvelle fonctionnalité avec des tests automatiques.
 
     Documente tout code et tout comportement non trivial.
+    Met en avant les informations importantes avec des warnings, tips, hints, etc.
 
     Applique un formatage uniforme (utilise black pour le Python).
 
