@@ -1,8 +1,8 @@
 extends Control
 
-@onready var chat_history: RichTextLabel = $GridContainer/BottomLeft/BoxContainer/ChatHistory
-@onready var input_box: LineEdit = $GridContainer/BottomLeft/BoxContainer/HBoxContainer/InputBox
-@onready var send_button: Button = $GridContainer/BottomLeft/BoxContainer/HBoxContainer/SendButton
+@onready var chat_history: RichTextLabel = $GridContainer/BottomLeft/Panel/BoxContainer/ChatHistory
+@onready var input_box: LineEdit = $GridContainer/BottomLeft/Panel/BoxContainer/HBoxContainer/InputBox
+@onready var send_button: Button = $GridContainer/BottomLeft/Panel/BoxContainer/HBoxContainer/SendButton
 
 var http := HTTPRequest.new()
 var stream_timer := Timer.new()
@@ -70,7 +70,6 @@ func _on_stream_timer_timeout():
 	if line_index >= stream_lines.size():
 		stream_timer.stop()
 		is_streaming = false
-		_append_message("Assistant", chat_history.text.split("Assistant: ")[-1])
 		return
 
 	var line = stream_lines[line_index].strip_edges()
@@ -82,8 +81,11 @@ func _on_stream_timer_timeout():
 	if json.parse(line) == OK:
 		var token := str(json.data.get("response", ""))
 		if is_instance_valid(chat_history):
-			var current = chat_history.text.split("Assistant: ")[-1]
-			chat_history.text = _format_chat("Assistant", current + token)
+			# Si c'est le premier token, on ajoute "Assistant: "
+			if chat_history.text.ends_with("\n") or chat_history.text == "":
+				chat_history.append_text("Assistant: ")
+			chat_history.append_text(token)
+			chat_history.scroll_to_line(chat_history.get_line_count())
 	else:
 		printerr("Erreur parsing ligne: ", line)
 

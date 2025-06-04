@@ -51,19 +51,25 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="BoxContainer" type="VBoxContainer" parent="GridContainer/BottomLeft"]
+[node name="Panel" type="Panel" parent="GridContainer/BottomLeft"]
+layout_mode = 0
+offset_right = 702.0
+offset_bottom = 443.0
+
+[node name="BoxContainer" type="VBoxContainer" parent="GridContainer/BottomLeft/Panel"]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_top = -225.0
+offset_top = -222.0
 offset_right = 699.0
-offset_bottom = 222.0
+offset_bottom = 225.0
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="ChatHistory" type="RichTextLabel" parent="GridContainer/BottomLeft/BoxContainer"]
+[node name="ChatHistory" type="RichTextLabel" parent="GridContainer/BottomLeft/Panel/BoxContainer"]
+z_index = 10
 custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -71,17 +77,17 @@ size_flags_vertical = 3
 scroll_following = true
 autowrap_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="GridContainer/BottomLeft/BoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="GridContainer/BottomLeft/Panel/BoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="InputBox" type="LineEdit" parent="GridContainer/BottomLeft/BoxContainer/HBoxContainer"]
+[node name="InputBox" type="LineEdit" parent="GridContainer/BottomLeft/Panel/BoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 size_flags_horizontal = 3
 placeholder_text = "Votre message..."
 
-[node name="SendButton" type="Button" parent="GridContainer/BottomLeft/BoxContainer/HBoxContainer"]
+[node name="SendButton" type="Button" parent="GridContainer/BottomLeft/Panel/BoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(100, 40)
 layout_mode = 2
 size_flags_horizontal = 3
