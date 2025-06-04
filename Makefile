@@ -42,7 +42,7 @@ install: ## 📦 Crée le venv et installe les dépendances
 	@test -x $(PYTHON) || python3 -m venv $(VENV_DIR)
 	@$(PIP) install --upgrade pip
 	@$(PIP) install -r backend/requirements.txt
-	@$(PIP) install black pytest mkdocs mkdocs-material
+	@$(PIP) install black pytest mkdocs mkdocs-material mkdocs-mermaid2-plugin
 
 api_call: ## 🧠 Appel API Godot en mode headless
 	@echo "🧠  Lancement d’un appel API Godot en mode headless..."
@@ -65,8 +65,8 @@ universe: install ## 🪐 Lance tous les tests et génère un log complet
 	@echo "\nRunning e2e tests" >> rapports/universe.log
 	@$(PYTHON) -m pytest e2e/test_api_playwright.py -q >> rapports/universe.log 2>&1 || true
 	@echo "\nBuilding docs" >> rapports/universe.log
-        @$(PYTHON) -m mkdocs build >> rapports/universe.log 2>&1
-        @echo "Logs written to rapports/universe.log"
+	@$(PYTHON) -m mkdocs build >> rapports/universe.log 2>&1
+	@echo "Logs written to rapports/universe.log"
 
 purge-models: ## 💥 Supprime les modèles téléchargés dans les volumes Docker
 	docker compose down

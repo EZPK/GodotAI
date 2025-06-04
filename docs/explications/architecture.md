@@ -2,16 +2,16 @@
 
 Cette page présente brièvement l'architecture générale avant de détailler chaque composant.
 
-```text
-[Utilisateur]
-     |
-    Godot 🎮
-     |
-   FastAPI ⚡
-   /   \
- Ollama 🦙    Stable Diffusion 🎨
-     \
-      SQLite 📂
+Le diagramme ci-dessous est généré avec **Mermaid** :
+
+```mermaid
+flowchart TD
+    U[Utilisateur]
+    U --> G[Godot 🎮]
+    G --> A[FastAPI ⚡]
+    A --> O[Ollama 🦙]
+    A --> SD[Stable Diffusion 🎨]
+    A --> DB[(SQLite 📂)]
 ```
 
 ## Rôle des composants
