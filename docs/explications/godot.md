@@ -19,6 +19,22 @@ sequenceDiagram
     G-->>P: affichage
 ```
 
+Extrait de la fonction d'envoi d'un message au modèle :
+
+```gdscript
+func _send_to_llm(message: String):
+    var url := "http://localhost:11434/api/generate"
+    var body := {
+        "model": "god:latest",
+        "prompt": message,
+        "stream": true
+    }
+    var headers := ["Content-Type: application/json"]
+    var err := http.request(url, headers, HTTPClient.METHOD_POST, JSON.stringify(body))
+    if err != OK:
+        _append_message("Assistant", "[Erreur r\u00e9seau]")
+```
+
 Pour lancer l'éditeur :
 ```bash
 make run-godot

@@ -2,13 +2,27 @@
 
 Suivez les étapes ci-dessous dans l'ordre pour déployer la stack complète.
 
-1. Installez [Docker](https://docs.docker.com/get-docker/) et [Git](https://git-scm.com/).
-2. Clonez le dépôt :
+1. Préparez les variables d'environnement en copiant le fichier `.env` fourni puis ajustez les valeurs selon vos besoins :
+   ```bash
+   cp .env .env.local
+   # OLLAMA_TEXT_MODEL=god:latest
+   # OLLAMA_IMAGE_MODEL=stable-diffusion
+   ```
+   Consultez la [référence](../reference/configuration.md) pour la liste complète des variables.
+
+2. Installez [Docker](https://docs.docker.com/get-docker/) et [Git](https://git-scm.com/).
+3. Clonez le dépôt :
    ```bash
    git clone <repo_url>
    cd godot_ai
    ```
-3. Démarrez les services :
+4. Installez les dépendances Python puis vérifiez la configuration :
+   ```bash
+   make install
+   .venv/bin/python utils/test_services.py
+   ```
+   Ce script confirme que chaque service est joignable.
+5. Démarrez les services :
    ```bash
    make up
    ```
@@ -23,23 +37,17 @@ Suivez les étapes ci-dessous dans l'ordre pour déployer la stack complète.
    Le script `entrypoint_ollama.sh` lance `ollama serve` puis vérifie la
    présence des modèles. S'ils sont absents, il exécute `ollama pull` pour les
    récupérer avant de poursuivre l'initialisation.
-4. Installez les dépendances Python puis vérifiez que FastAPI, Ollama et Stable Diffusion répondent :
-   ```bash
-   make install
-   .venv/bin/python utils/test_services.py
-   ```
-   Ce script s'assure que chaque service est joignable.
    Pour plus de détails, consultez [test_services.py](../reference/test-services.md).
-5. (Optionnel) Lancez Godot :
+6. (Optionnel) Lancez Godot :
    ```bash
    make run-godot
    ```
-6. (Optionnel) Exécutez les tests unitaires et E2E :
+7. (Optionnel) Exécutez les tests unitaires et E2E :
    ```bash
    pytest -q
    pytest e2e
    ```
-7. Coupez les conteneurs :
+8. Coupez les conteneurs :
    ```bash
    make down
    ```
