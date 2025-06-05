@@ -12,7 +12,7 @@ var line_index := 0
 var is_streaming := false
 
 func _ready():
-	print_tree_pretty()
+	# print_tree_pretty()
 	add_child(http)
 	add_child(stream_timer)
 	stream_timer.one_shot = false
