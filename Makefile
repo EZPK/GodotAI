@@ -1,6 +1,6 @@
 # Makefile 🧙‍♂️ pour gérer le projet RPG LLM Godot avec activation automatique du venv
 
-.DEFAULT_GOAL := help
+	.DEFAULT_GOAL := help
 
 ifneq (,$(wildcard .env))
 include .env
@@ -19,7 +19,8 @@ help: ## 📘 Affiche cette aide
 	@grep -h -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m🔹 %-20s\033[0m %s\n", $$1, $$2}'
 
 up: ## 👍 Lancer tous les services Docker (Ollama, Stable Diffusion et FastAPI)
-	docker compose up -d
+       ./entrypoint_ollama.sh --download
+       docker compose up -d
 
 down: ## 🛑 Arrêter les services Docker
 	docker compose down

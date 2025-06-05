@@ -1,24 +1,30 @@
 #!/bin/sh
 set -e
 
-MODEL_TEXT="${OLLAMA_TEXT_MODEL:-llama3:8b}"
-MODEL_IMAGE="${OLLAMA_IMAGE_MODEL:-stable-diffusion}"  # Peut être vide si non défini
+# Charge les variables de l'environnement si le fichier existe
+[ -f .env ] && . .env
 
-# Démarre ollama serve en foreground (pour Docker health/lifecycle)
-/bin/ollama serve &
-OLLAMA_PID=$!
+MODELS=""
+[ -n "$OLLAMA_TEXT_MODEL" ] && MODELS="$MODELS $OLLAMA_TEXT_MODEL"
+[ -n "$OLLAMA_IMAGE_MODEL" ] && MODELS="$MODELS $OLLAMA_IMAGE_MODEL"
 
-# Attend que le daemon soit prêt
-echo "Waiting for Ollama daemon to be ready..."
-until curl -s http://localhost:11434/api/tags > /dev/null; do
-  sleep 1
-done
+# Télécharge les modèles en utilisant docker compose (mode hôte)
+download_models_host() {
+  for MODEL in $MODELS; do
+    [ -z "$MODEL" ] && continue
+    if docker compose run --rm --entrypoint ollama ollama list | grep -q "^$MODEL"; then
+      echo "Model $MODEL already present."
+    else
+      echo "Downloading $MODEL..."
+      docker compose run --rm --entrypoint ollama ollama pull "$MODEL"
+    fi
+  done
+}
 
-download_model() {
+# Télécharge un modèle à l'intérieur du conteneur
+pull_model_container() {
   MODEL_NAME="$1"
-  if [ -z "$MODEL_NAME" ]; then
-    return
-  fi
+  [ -z "$MODEL_NAME" ] && return
   if ! /bin/ollama list | grep -q "$MODEL_NAME"; then
     echo "Model $MODEL_NAME not found, downloading..."
     /bin/ollama pull "$MODEL_NAME" | while IFS= read -r line; do
@@ -40,8 +46,23 @@ download_model() {
   fi
 }
 
-download_model "$MODEL_TEXT"
-download_model "$MODEL_IMAGE"
+# Si l'argument --download est présent, on télécharge juste les modèles
+if [ "$1" = "--download" ]; then
+  download_models_host
+  exit 0
+fi
 
-# Attend la fin du processus principal (ollama serve)
+# Sinon on agit comme entrypoint du conteneur
+/bin/ollama serve &
+OLLAMA_PID=$!
+
+echo "Waiting for Ollama daemon to be ready..."
+until curl -s http://localhost:11434/api/tags > /dev/null; do
+  sleep 1
+done
+
+for MODEL in $MODELS; do
+  pull_model_container "$MODEL"
+done
+
 wait $OLLAMA_PID
