@@ -9,6 +9,7 @@ L’agent Codex doit suivre rigoureusement les instructions ci-dessous, alignée
 
 ## 1. Principes Généraux
 
+- Suivre la procédure Git-flow pour la génération des commits.
 - Effectuer des commits brefs, explicites et rédigés à l’impératif, en anglais.
 - Créer une branche distincte pour chaque nouvelle fonctionnalité ou correction de bug.
 - Soumettre toutes les modifications via une pull request (PR) pour garantir une revue de code systématique.
