@@ -21,6 +21,11 @@ make up
 make down
 ```
 
+## Voir aussi
+
+- [Fichier `docker-compose.yml`](../reference/docker-compose-yml.md)
+- [Makefile](../reference/makefile.md)
+
 ## Ressources
 - [Site officiel](https://www.docker.com/)
 - [Documentation](https://docs.docker.com/compose/)

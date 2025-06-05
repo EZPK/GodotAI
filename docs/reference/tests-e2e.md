@@ -18,3 +18,8 @@ pytest e2e
 
 Le script démarre brièvement le serveur FastAPI sur un port local puis effectue
 un appel HTTP via l'API `request` de Playwright.
+
+## Voir aussi
+
+- [Tests unitaires](tests-unitaires.md)
+- [Guide de démarrage](../tutoriels/premiers-pas.md)

@@ -15,3 +15,8 @@ Quelques pistes si les modèles ne se chargent pas ou si le GPU n'est pas utilis
   ```bash
   docker exec -it ollama nvidia-smi
   ```
+
+## Voir aussi
+
+- [Changer le modèle LLM](changer-modele.md)
+- [Détails de `docker-compose.yml`](../reference/docker-compose-yml.md)

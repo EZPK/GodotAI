@@ -14,6 +14,7 @@ Le fichier `Modelfile` définit le prompt système envoyé au modèle lors de ch
 ## Voir aussi
 
 - [Référence du `Modelfile`](../reference/modelfile.md)
+- [Changer de modèle LLM](changer-modele.md)
 
 ## FAQ
 

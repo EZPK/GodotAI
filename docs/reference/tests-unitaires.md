@@ -18,3 +18,8 @@ make install
 
 Chaque nouvelle fonctionnalité Python doit être accompagnée d'un test
 correspondant dans ce répertoire.
+
+## Voir aussi
+
+- [Tests E2E](tests-e2e.md)
+- [AGENTS.md](agents-file.md)

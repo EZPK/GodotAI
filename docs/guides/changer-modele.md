@@ -19,6 +19,7 @@ Ce guide explique comment utiliser un autre modèle de langage avec GodotAI.
 
 - [Fichier `docker-compose.yml`](../reference/docker-compose-yml.md)
 - [Détails du `Modelfile`](../reference/modelfile.md)
+- [Dépannage modèles et GPU](depannage-modeles-gpu.md)
 
 ## FAQ
 

@@ -43,3 +43,7 @@ resp = requests.post(
 )
 print(resp.json())
 ```
+
+## Voir aussi
+
+- [Tutoriel de prise en main](../tutoriels/premiers-pas.md)

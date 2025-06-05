@@ -7,3 +7,7 @@ Contenu principal :
 - `BasedOnStyles = Vale` : utilise le jeu de règles standard fourni par l’outil.
 
 Ainsi, `.vale.ini` permet de vérifier rapidement les textes sans configuration complexe.
+
+## Voir aussi
+
+- [Guide d'utilisation de Vale](../guides/qualite-redaction-vale.md)

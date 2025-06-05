@@ -19,3 +19,7 @@ Pour lancer l'API seule en local :
 ```bash
 make run-api
 ```
+
+## Voir aussi
+
+- [Guide d'utilisation de l'API](../guides/utiliser-api.md)

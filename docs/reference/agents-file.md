@@ -8,3 +8,7 @@
 
 Ces règles assurent une base de code cohérente et des contributions faciles à relire.
 
+## Voir aussi
+
+- [Tests unitaires](tests-unitaires.md)
+

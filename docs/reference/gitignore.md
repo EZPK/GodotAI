@@ -8,3 +8,7 @@ Principales entrées :
 - Le dossier `ollama_models` et autres volumes Docker ne sont pas suivis pour préserver l’espace du répertoire Git.
 
 En résumé, `.gitignore` garde le dépôt propre et léger.
+
+## Voir aussi
+
+- [Configuration des volumes](docker-compose-yml.md)
