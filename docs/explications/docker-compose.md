@@ -3,7 +3,13 @@
 Docker Compose est l'outil qui lance plusieurs conteneurs Docker en une seule commande.
 Le fichier `docker-compose.yml` définit trois services : **fastapi**, **ollama** et **stablediffusion**.
 
-```mermaid
+```html
+<script type="module">
+  import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs";
+  mermaid.initialize({ startOnLoad: true });
+</script>
+
+<div class="mermaid">
 %%{init: {'theme':'base','themeVariables':{'primaryColor':'#6200ee','primaryTextColor':'#ffffff','primaryBorderColor':'#6200ee','lineColor':'#6200ee','fontFamily':'Roboto'}}}%%
 flowchart LR
     DC[Docker Compose] --> F(fastapi)
@@ -13,6 +19,7 @@ flowchart LR
     click F "fastapi.md" "Voir la page FastAPI"
     click O "ollama.md" "Voir la page Ollama"
     click SD "stable-diffusion.md" "Voir la page Stable Diffusion"
+</div>
 ```
 
 Pour simplifier la vie du développeur, toutes les commandes utiles sont regroupées dans le `Makefile`.
