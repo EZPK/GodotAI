@@ -21,7 +21,7 @@ def test_gen_text(monkeypatch):
 
     monkeypatch.setattr("backend.app.main.requests.post", fake_post)
 
-    resp = client.post("/gen_text", json={"context": "context"})
+    resp = client.post("/txt", json={"context": "context"})
     assert resp.status_code == 200
     assert resp.json() == {"response": "text"}
 
@@ -44,10 +44,10 @@ def test_list_models(monkeypatch):
 
 def test_generate_image(monkeypatch):
     monkeypatch.setattr(
-        "backend.app.main.ollama_generate_image",
+        "backend.app.main.stablediffusion_generate_image",
         lambda prompt: {"image": "imgdata"},
     )
 
-    resp = client.post("/gen_image", json={"prompt": "hello"})
+    resp = client.post("/img", json={"prompt": "hello"})
     assert resp.status_code == 200
     assert resp.json() == {"image": "imgdata"}

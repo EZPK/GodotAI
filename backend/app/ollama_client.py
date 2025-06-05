@@ -7,9 +7,11 @@ import requests
 from .config import settings
 
 TEXT_BASE_URL = f"http://{settings.ollama_text_host}:{settings.ollama_text_port}/api"
+
 IMAGE_BASE_URL = (
     f"http://{settings.STABLEDIFFUSION_HOST}:{settings.STABLEDIFFUSION_PORT}/api"
 )
+
 
 
 def generate_text(prompt: str) -> dict:
@@ -17,16 +19,6 @@ def generate_text(prompt: str) -> dict:
     resp = requests.post(
         f"{TEXT_BASE_URL}/generate",
         json={"model": settings.ollama_text_model, "prompt": prompt},
-    )
-    resp.raise_for_status()
-    return resp.json()
-
-
-def generate_image(prompt: str) -> dict:
-    """Generate an image with the configured Stable Diffusion model."""
-    resp = requests.post(
-        f"{IMAGE_BASE_URL}/generate-image",
-        json={"model": settings.STABLEDIFFUSION_MODEL, "prompt": prompt},
     )
     resp.raise_for_status()
     return resp.json()
