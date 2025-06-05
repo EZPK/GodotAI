@@ -10,3 +10,8 @@ playwright
 SQLAlchemy>=1.4
 psycopg2-binary>=2.9
 httpx
+
+black 
+pytest 
+mkdocs 
+mkdocs-material

@@ -42,16 +42,15 @@ install: ## 📦 Crée le venv et installe les dépendances
 	@test -x $(PYTHON) || python3 -m venv $(VENV_DIR)
 	@$(PIP) install --upgrade pip
 	@$(PIP) install -r backend/requirements.txt
-	@$(PIP) install black pytest mkdocs mkdocs-material
 
-api_call: ## 🧠 Appel API Godot en mode headless
+godot_api_call: ## 🧠 Appel API Godot en mode headless
 	@echo "🧠  Lancement d’un appel API Godot en mode headless..."
 	$(GODOT_PATH) --headless --path godot/ --script scripts/ApiCallHeadless.gd
 
 docs-serve: install ## 📚 Lance le serveur MkDocs en local
 	@$(PYTHON) -m mkdocs serve
 
-docs-deploy: install ## 🚀 Déploie la documentation sur GitHub Pages
+docs-deploy: install ## 🚀 Déploie la documentation sur GitHub Pages (automatisé via Github Action)
 	@$(PYTHON) -m mkdocs gh-deploy --clean
 
 universe: install ## 🪐 Lance tous les tests et génère un log complet
