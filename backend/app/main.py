@@ -122,6 +122,7 @@ def gen_image(req: ImageRequest):
 
 
 @app.post("/text")
+@app.post("/txt")
 def text_model(req: PromptRequest):
     """Generate text using the Ollama container."""
     try:
@@ -131,6 +132,7 @@ def text_model(req: PromptRequest):
 
 
 @app.post("/image")
+@app.post("/img")
 def image_model(req: PromptRequest):
     """Generate an image using the Stable Diffusion container."""
     try:

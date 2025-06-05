@@ -6,6 +6,8 @@
 | POST | `/gen_text` | Génère du texte à partir d'un contexte |
 | GET | `/gen_image` | Retourne une image d'exemple |
 | POST | `/gen_image` | Génère une image via Ollama |
+| POST | `/txt` | Appelle directement Ollama pour générer du texte |
+| POST | `/img` | Appelle Stable Diffusion pour générer une image |
 | GET | `/list_models` | Liste les modèles disponibles |
 | POST | `/users` | Crée un utilisateur |
 | POST | `/sessions` | Crée une session de jeu |
@@ -14,12 +16,12 @@
 | POST | `/generate-image` | Génère une image et l'enregistre |
 
 
-Pour lancer l'API seule en local :
+L'API démarre automatiquement avec les autres services :
 
 ```bash
-make run-api
+make up
 ```
-La commande affiche à présent un simple message 💡 indiquant que FastAPI démarre, puis conserve les journaux verbeux en niveau *warning*.
+Cette commande lance Docker Compose qui orchestre les conteneurs FastAPI, Ollama et Stable Diffusion.
 
 ## Voir aussi
 

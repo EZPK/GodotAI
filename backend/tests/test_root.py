@@ -38,7 +38,7 @@ def test_text_endpoint(monkeypatch):
         return mock_resp
 
     monkeypatch.setattr("backend.app.main.requests.post", fake_post)
-    resp = client.post("/text", json={"prompt": "hi"})
+    resp = client.post("/txt", json={"prompt": "hi"})
     assert resp.status_code == 200
     assert resp.json()["response"] == "ok"
 
@@ -51,6 +51,6 @@ def test_image_endpoint(monkeypatch):
     monkeypatch.setattr(
         "backend.app.main.ollama_generate_image", fake_generate
     )
-    resp = client.post("/image", json={"prompt": "draw"})
+    resp = client.post("/img", json={"prompt": "draw"})
     assert resp.status_code == 200
     assert resp.json()["image"] == "imgdata"
