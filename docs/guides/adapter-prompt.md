@@ -10,3 +10,19 @@ Le fichier `Modelfile` définit le prompt système envoyé au modèle lors de ch
    make up
    ```
    Le prompt modifié sera pris en compte lors des prochaines requêtes.
+
+## Voir aussi
+
+- [Référence du `Modelfile`](../reference/modelfile.md)
+
+## FAQ
+
+### Comment vérifier que le nouveau prompt est appliqué ?
+
+Redémarrez Ollama avec `make down` puis `make up`. Les journaux indiquent le
+modèle et le prompt chargés.
+
+### Peut‑on définir plusieurs prompts ?
+
+Non. Le fichier `Modelfile` ne contient qu'une seule section `SYSTEM`. Modifiez
+cette section pour changer de prompt.
