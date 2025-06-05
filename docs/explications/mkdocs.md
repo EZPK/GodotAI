@@ -2,7 +2,7 @@
 
 MkDocs transforme les fichiers Markdown du dossier `docs/` en un site statique prêt à être publié. Le thème Material apporte un rendu moderne et agréable.
 
-La configuration active également le plugin [Mermaid](https://github.com/fralau/mkdocs-mermaid2-plugin) pour intégrer des schémas. Celui‑ci insère automatiquement la bibliothèque Mermaid et initialise les diagrammes avec `securityLevel: loose`.
+Depuis la version 8 du thème, Mermaid est pris en charge nativement. En déclarant simplement un bloc de code `mermaid`, le script est chargé et les diagrammes sont rendus automatiquement.
 
 ```mermaid
 %%{init: {'theme':'base','themeVariables':{'primaryColor':'#6200ee','primaryTextColor':'#ffffff','primaryBorderColor':'#6200ee','lineColor':'#6200ee','fontFamily':'Roboto'}}}%%
