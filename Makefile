@@ -58,10 +58,14 @@ godot_api_call: ## 🧠 Appel API Godot en mode headless
 	$(GODOT_PATH) --headless --path godot/ --script scripts/ApiCallHeadless.gd
 
 generate-diagrams: ## 🖼️ Convertit les fichiers D2 en SVG
-	@command -v d2 >/dev/null 2>&1 || { echo "d2 missing"; exit 1; }
-	@for f in docs/diagrams/*.d2; do \
-	d2 "$$f" "docs/assets/$$(basename "$$f" .d2).svg"; \
-	done
+	@if command -v d2 >/dev/null 2>&1; then \
+		for f in docs/diagrams/*.d2; do \
+			d2 "$$f" "docs/assets/$$(basename "$$f" .d2).svg"; \
+		done; \
+	else \
+		echo "Warning: d2 not installed; skipping diagram generation."; \
+	fi
+
 
 docs-serve: install generate-diagrams ## 📚 Lance le serveur MkDocs en local
 	@$(PYTHON) -m mkdocs serve
