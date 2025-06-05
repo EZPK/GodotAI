@@ -1,6 +1,6 @@
-# 🐋 Dockerfile
+# 🐋 Dockerfile.fastapi
 
-Le `Dockerfile` construit l'image du backend FastAPI. Basée sur `python:3.11-slim`,
+Le `Dockerfile.fastapi` construit l'image du backend FastAPI. Basée sur `python:3.11-slim`,
 elle installe les dépendances listées dans `backend/requirements.txt` puis copie
 le code du dossier `backend`.
 
