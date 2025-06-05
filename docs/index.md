@@ -53,6 +53,7 @@ Cette documentation suit le cadre [Diátaxis](https://diataxis.fr/) et se divise
 
 ### 🧩 Explications
 - 🏗️ [Architecture](explications/architecture.md)
+- 🗺️ [Flux complet](explications/flux-global.md)
 - 🚀 [Bootstrap](explications/bootstrap.md)
 - 💻 [Backend détaillé](explications/backend.md)
 - ⚡ [FastAPI](explications/fastapi.md)
