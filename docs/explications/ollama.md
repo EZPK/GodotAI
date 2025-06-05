@@ -24,20 +24,13 @@ partie en cours.
 - [Fichier `Modelfile`](../reference/modelfile.md)
 - [Changer de modèle](../guides/changer-modele.md)
 
-```html
-<script type="module">
-  import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs";
-  mermaid.initialize({ startOnLoad: true });
-</script>
-
-<div class="mermaid">
+```mermaid
 %%{init: {'theme':'base','themeVariables':{'primaryColor':'#6200ee','primaryTextColor':'#ffffff','primaryBorderColor':'#6200ee','lineColor':'#6200ee','fontFamily':'Roboto'}}}%%
 flowchart LR
     A(FastAPI) -- requête --> O(Ollama)
     O -- réponse --> A
     click A "fastapi.md" "Voir la page FastAPI"
     click O "ollama.md" "Voir la page Ollama"
-</div>
 ```
 
 Exemple d'exécution manuelle :
