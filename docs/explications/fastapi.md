@@ -10,6 +10,7 @@ déclenche la génération d'images via Stable Diffusion. Il stocke aussi les
 informations de partie dans SQLite.
 
 ```mermaid
+%%{init: {'theme':'base','themeVariables':{'primaryColor':'#6200ee','primaryTextColor':'#ffffff','primaryBorderColor':'#6200ee','lineColor':'#6200ee','fontFamily':'Roboto'}}}%%
 flowchart LR
     G[Godot] --> F(FastAPI)
     F --> O[Ollama]

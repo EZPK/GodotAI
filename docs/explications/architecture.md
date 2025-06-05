@@ -5,6 +5,7 @@ Cette page présente brièvement l'architecture générale avant de détailler c
 Le diagramme ci-dessous est généré avec **Mermaid** :
 
 ```mermaid
+%%{init: {'theme':'base','themeVariables':{'primaryColor':'#6200ee','primaryTextColor':'#ffffff','primaryBorderColor':'#6200ee','lineColor':'#6200ee','fontFamily':'Roboto'}}}%%
 flowchart TD
     U[Utilisateur]
     U --> G[Godot 🎮]
