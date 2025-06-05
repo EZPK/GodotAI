@@ -43,7 +43,7 @@ Cette page recense les erreurs les plus courantes et comment les résoudre.
 
 - Purgez les volumes et relancez :
   ```bash
-  make purge-models
+  make cleanall
   make up
   ```
 
