@@ -9,7 +9,7 @@ from datetime import datetime
 
 from .embedding_context import EmbeddingContext
 from .ollama_client import generate_text as ollama_generate_text
-from .ollama_client import generate_image as ollama_generate_image
+from .stablediffusion_client import generate_image as stablediffusion_generate_image
 from .mcp import router as mcp_router
 from .mongo_database import get_mongo_db
 
@@ -78,7 +78,7 @@ STABLEDIFFUSION_HOST = settings.STABLEDIFFUSION_HOST
 STABLEDIFFUSION_PORT = str(settings.STABLEDIFFUSION_PORT)
 
 OLLAMA_TEXT_BASE_URL = f"http://{OLLAMA_TEXT_HOST}:{OLLAMA_TEXT_PORT}/api"
-OLLAMA_IMAGE_BASE_URL = f"http://{STABLEDIFFUSION_HOST}:{STABLEDIFFUSION_PORT}/api"
+STABLEDIFFUSION_BASE_URL = f"http://{STABLEDIFFUSION_HOST}:{STABLEDIFFUSION_PORT}/api"
 
 
 # Endpoint pour générer du texte via Ollama
@@ -95,7 +95,7 @@ def gen_text(req: ContextRequest):
         raise HTTPException(status_code=500, detail=str(e))
 
 
-# Endpoint pour générer une image via Ollama
+# Endpoint pour générer une image via Stable Diffusion
 @app.get("/img")
 def gen_image_get():
     # Chemin unique, car utils est monté dans /app/utils dans le conteneur Docker
@@ -113,7 +113,7 @@ def gen_image_get():
 @app.post("/img")
 def gen_image(req: ImageRequest):
     try:
-        return ollama_generate_image(req.prompt)
+        return stablediffusion_generate_image(req.prompt)
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
@@ -134,7 +134,7 @@ def text_model(req: PromptRequest):
 def image_model(req: PromptRequest):
     """Generate an image using the Stable Diffusion container."""
     try:
-        return ollama_generate_image(req.prompt)
+        return stablediffusion_generate_image(req.prompt)
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
@@ -226,7 +226,7 @@ def generate_text(req: GenerateTextRequest, db: Session = Depends(get_db)):
 @app.post("/generate-image")
 def generate_image(req: GenerateImageRequest, db: Session = Depends(get_db)):
     try:
-        data = ollama_generate_image(req.description)
+        data = stablediffusion_generate_image(req.description)
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 

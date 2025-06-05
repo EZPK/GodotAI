@@ -32,9 +32,14 @@ sauvegardées dans MongoDB grâce au module
 de fournir un contexte lors des échanges avec le modèle de langage.
 
 ## ollama_client.py
-Ce module regroupe les appels HTTP nécessaires pour interroger Ollama pour le
-texte et les images. Il est invoqué par le serveur lorsqu'une scène du jeu doit
-être illustrée ou lorsqu'une réponse textuelle est nécessaire.
+Ce module regroupe les appels HTTP nécessaires pour interroger **Ollama** afin
+de générer du texte. Il est invoqué par le serveur lorsqu'une réponse
+conversationnelle est demandée.
+
+## stablediffusion_client.py
+Cette nouvelle unité se charge d'appeler **Stable Diffusion** pour produire les
+illustrations. Elle est isolée afin de ne plus mêler la logique de génération
+d'images avec celle du texte.
 
 ## config.py
 Toutes les variables de configuration (hôtes, ports, nom des modèles Ollama)
