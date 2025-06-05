@@ -1,10 +1,10 @@
-			# Makefile 🧙‍♂️ pour gérer le projet RPG LLM Godot avec activation automatique du venv
+# Makefile 🧙‍♂️ pour gérer le projet RPG LLM Godot avec activation automatique du venv
 
 .DEFAULT_GOAL := help
 
 ifneq (,$(wildcard ./.env))
-    include .env
-    export
+	include .env
+	export
 endif
 
 GODOT_PATH ?= godot4
@@ -47,10 +47,16 @@ godot_api_call: ## 🧠 Appel API Godot en mode headless
 	@echo "🧠  Lancement d’un appel API Godot en mode headless..."
 	$(GODOT_PATH) --headless --path godot/ --script scripts/ApiCallHeadless.gd
 
-docs-serve: install ## 📚 Lance le serveur MkDocs en local
+generate-diagrams: ## 🖼️ Convertit les fichiers D2 en SVG
+	@command -v d2 >/dev/null 2>&1 || { echo "d2 missing"; exit 1; }
+	@for f in docs/diagrams/*.d2; do \
+	d2 "$$f" "docs/assets/$$(basename "$$f" .d2).svg"; \
+	done
+
+docs-serve: install generate-diagrams ## 📚 Lance le serveur MkDocs en local
 	@$(PYTHON) -m mkdocs serve
 
-docs-deploy: install ## 🚀 Déploie la documentation sur GitHub Pages (automatisé via Github Action)
+docs-deploy: install generate-diagrams ## 🚀 Déploie la documentation sur GitHub Pages (automatisé via Github Action)
 	@$(PYTHON) -m mkdocs gh-deploy --clean
 
 universe: install ## 🪐 Lance tous les tests et génère un log complet
@@ -64,5 +70,17 @@ universe: install ## 🪐 Lance tous les tests et génère un log complet
 	@echo "\nRunning e2e tests" >> rapports/universe.log
 	@$(PYTHON) -m pytest e2e/test_api_playwright.py -q >> rapports/universe.log 2>&1 || true
 	@echo "\nBuilding docs" >> rapports/universe.log
+	@$(MAKE) generate-diagrams >> rapports/universe.log 2>&1
 	@$(PYTHON) -m mkdocs build >> rapports/universe.log 2>&1
 	@echo "Logs written to rapports/universe.log"
+
+purge-models: ## 💥 Supprime les modèles téléchargés dans les volumes Docker
+	docker compose down
+	docker volume rm $$(docker volume ls -qf name=ollama_models) $$(docker volume ls -qf name=sd_models) || true
+
+up-models: ## 🚢 Lance la stack avec MODEL_TEXT et MODEL_IMAGE
+	@TEXT=$(or $(MODEL_TEXT),$(OLLAMA_TEXT_MODEL)); \
+	IMAGE=$(or $(MODEL_IMAGE),$(OLLAMA_IMAGE_MODEL)); \
+	printf '\033[1mMODEL_TEXT:\033[0m %s\n' "$$TEXT"; \
+	printf '\033[1mMODEL_IMAGE:\033[0m %s\n' "$$IMAGE"; \
+	OLLAMA_TEXT_MODEL=$$TEXT OLLAMA_IMAGE_MODEL=$$IMAGE docker compose up -d

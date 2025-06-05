@@ -1,40 +1,18 @@
 # 🤖 GodotAI
 
-GodotAI permet de piloter un mini-jeu Godot avec un modèle de langage local, le tout orchestré par Docker.
+GodotAI combine Godot, FastAPI et Ollama pour expérimenter localement l'intelligence artificielle dans un mini-jeu. Tout fonctionne dans des conteneurs Docker pour une mise en route rapide.
 
-## 🚀 Démarrage rapide
-1. Installez [Docker](https://docs.docker.com/get-docker/) et [Git](https://git-scm.com/).
-2. Clonez le dépôt :
-   ```bash
-   git clone <repo_url>
-   cd godot_ai
-   ```
-3. Lancez les services (FastAPI, Ollama et Stable Diffusion) :
-   ```bash
-   make up
-   ```
-   Tout tourne alors dans des conteneurs Docker et les modèles sont téléchargés au premier lancement.
-   
-4. Vérifiez que chaque service répond bien :
-   ```bash
-   make install
-   .venv/bin/python utils/test_services.py
-   ```
-5. (Facultatif) Ouvrez Godot :
-   ```bash
-   make run-godot
-   ```
-6. (Facultatif) Exécutez les suites de tests :
-   ```bash
-   pytest -q
-   pytest e2e
-   ```
-7. Stoppez le tout :
-   ```bash
-   make down
-   ```
+👉 Consultez la [documentation complète](https://ezpk.github.io/GodotAI/) pour suivre le tutoriel de prise en main et découvrir les guides, la référence et les explications détaillées.
 
-L'API répond sur `localhost:8000`.
+## Architecture rapide
 
-## 📚 Documentation
-Plus d'informations dans le dossier `docs/` ou sur la [documentation en ligne](https://ezpk.github.io/GodotAI).
+```mermaid
+flowchart LR
+    G[Godot] -->|HTTP| A[FastAPI]
+    A --> O[Ollama]
+    A --> SD[Stable Diffusion]
+    A --> DB[(SQLite)]
+```
+
+Godot envoie les actions du joueur à FastAPI qui interroge Ollama pour le texte et
+Stable Diffusion pour les images. Les données sont stockées dans SQLite.

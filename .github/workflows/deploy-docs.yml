@@ -9,12 +9,21 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: actions/setup-python@v4
         with:
           python-version: '3.11'
-      - name: Install dependencies
+      - name: Install MkDocs
         run: pip install mkdocs mkdocs-material
+      - name: Install D2
+        run: curl -fsSL https://d2lang.com/install.sh | sh
+      - name: Generate diagrams
+        run: |
+          for f in docs/diagrams/*.d2; do
+            d2 "$f" "docs/assets/$(basename "$f" .d2).svg"
+          done
+      - name: Build docs
+        run: mkdocs build
       - name: Deploy
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -2,21 +2,64 @@
 
 Bienvenue sur la documentation officielle de **GodotAI**.
 
-Ce projet associe le moteur de jeu Godot à un modèle de langage exécuté localement via Ollama. Un serveur FastAPI orchestre les requêtes et peut déclencher Stable Diffusion pour générer des images. L'ensemble tourne dans des conteneurs Docker et les données sont stockées dans SQLite.
+Ce projet associe Godot, FastAPI et Ollama pour proposer un mini-jeu capable de communiquer avec un modèle de langage local. Toute la stack s'exécute dans des conteneurs Docker afin de rester simple à lancer.
 
-Chaque page de la documentation renvoie vers les ressources officielles des technologies utilisées. La barre latérale liste l'ensemble des rubriques.
+🌟 [Retrouvez le dépôt sur GitHub](https://github.com/EZPK/GodotAI/) pour explorer le code source.
 
-## Pour commencer 🚀
+## Aperçu de l'architecture
 
-- Consultez la section [🚀 Installation pas à pas](installation.md) pour déployer les services et vérifier qu'ils répondent.
-- La page [🧩 Comprendre la stack](stack.md) présente l'architecture et le rôle de chaque composant.
+Voici le fonctionnement général : le joueur dialogue avec **Godot**, qui fait
+appel au backend **FastAPI**. Celui-ci interroge **Ollama** pour le texte et
+**Stable Diffusion** pour l'image, puis consigne les échanges dans **SQLite**
+avant de répondre au client.
 
-## Référence technique 📁
+![Architecture](assets/architecture.svg)
 
-La rubrique « Référence technique » décrit les fichiers de configuration du dépôt et les conventions de contribution.
+Cette documentation suit le cadre [Diátaxis](https://diataxis.fr/) et se divise en quatre sections :
 
-## Tests et validation ✅
+- **Tutoriels** 🛠️ : apprenez pas à pas à installer et utiliser le projet.
+- **Guides pratiques** 🧰 : répondez à un besoin précis après l'installation.
+- **Référence** 📚 : trouvez la description exhaustive des commandes et fichiers.
+- **Explications** 🧩 : comprenez l'architecture et les choix techniques.
 
-Les pages consacrées aux tests expliquent comment exécuter la suite unitaire, les tests E2E et le script de vérification des services.
+## Accès rapide
+
+- [Tutoriel de prise en main](tutoriels/premiers-pas.md)
+- [Guides pratiques](guides/index.md)
+- [Référence technique](reference/index.md)
+- [Explications](explications/architecture.md)
+
+## Structure détaillée
+
+### 🛠️ Tutoriels
+- 🚀 [Prise en main](tutoriels/premiers-pas.md)
+
+### 🧰 Guides pratiques
+- 🔄 [Changer le modèle LLM](guides/changer-modele.md)
+- ✏️ [Adapter le prompt](guides/adapter-prompt.md)
+- 📡 [Utiliser l'API](guides/utiliser-api.md)
+- ⚙️ [Configurer l'environnement](guides/configurer-env.md)
+- 🩺 [Dépannage modèles et GPU](guides/depannage-modeles-gpu.md)
+- ✍️ [Contrôler la rédaction avec Vale](guides/qualite-redaction-vale.md)
+- 🛠️ [Troubleshooting](guides/troubleshooting.md)
+
+### 📚 Référence technique
+- 🔗 [API du backend](reference/api-backend.md)
+- ⚙️ [Configuration](reference/configuration.md)
+- 🛠️ [Makefile](reference/makefile.md)
+- 🐳 [docker-compose.yml](reference/docker-compose-yml.md)
+- 📄 [Dockerfile](reference/dockerfile.md)
+- ✅ [Tests unitaires](reference/tests-unitaires.md)
+
+### 🧩 Explications
+- 🏗️ [Architecture](explications/architecture.md)
+- 🚀 [Bootstrap](explications/bootstrap.md)
+- 💻 [Backend détaillé](explications/backend.md)
+- ⚡ [FastAPI](explications/fastapi.md)
+- 🤖 [Ollama](explications/ollama.md)
+- 🎨 [Stable Diffusion](explications/stable-diffusion.md)
+- 🎮 [Godot](explications/godot.md)
+- 🐋 [Docker Compose](explications/docker-compose.md)
+- 📖 [MkDocs](explications/mkdocs.md)
 
 Bonne lecture !

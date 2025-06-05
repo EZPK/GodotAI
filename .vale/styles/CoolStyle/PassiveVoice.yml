@@ -1,0 +1,10 @@
+extends: existence
+message: "Évite la voix passive pour un ton plus engageant."
+level: warning
+scope: sentence
+nonword: true
+tokens:
+  - "est .*é"
+  - "sont .*és"
+  - "a été .*é"
+  - "ont été .*és"

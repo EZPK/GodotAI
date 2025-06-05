@@ -1,0 +1,10 @@
+extends: existence
+message: "Ajoute un emoji pour renforcer le ton dynamique."
+level: suggestion
+scope: sentence
+nonword: true
+tokens:
+  - "Bravo"
+  - "Félicitations"
+  - "Attention"
+  - "Note"

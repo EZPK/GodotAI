@@ -18,6 +18,7 @@ L’agent doit appliquer rigoureusement les instructions suivantes. Ces directiv
     Couvre chaque nouvelle fonctionnalité avec des tests automatiques.
 
     Documente tout code et tout comportement non trivial.
+    Met en avant les informations importantes avec des warnings, tips, hints, etc.
 
     Applique un formatage uniforme (utilise black pour le Python).
 
@@ -73,14 +74,32 @@ L’agent doit appliquer rigoureusement les instructions suivantes. Ces directiv
 
     Ajoute tout nouvel article Markdown au sommaire de mkdocs.yml et lie la page depuis docs/index.md.
 
+    Fais en sorte que les fichiers renseignés dans des index.md soient toujours mis en forme sous forme de liens.
+
     Décris la pile technique et explique le code en profondeur.
+
+    Ajoute une section **FAQ** uniquement lorsque c'est pertinent. Elle doit contenir des questions réellement intéressantes pour les lecteurs, sans texte de remplissage ni questions évidentes.
 
     Valide la génération du site documentaire avec :
 
     mkdocs build
 
-8. Règle d’Or
+    Vérifie la qualité rédactionnelle avec :
+
+    vale docs/
+
+8. Méthode Diátaxis
+
+Respecte la structure **Diátaxis** pour toute la documentation :
+
+    - **Tutoriels** : guides pas à pas pour débutants.
+    - **Guides pratiques** : réponses rapides à un besoin précis.
+    - **Référence** : description factuelle et exhaustive de l’API ou des fichiers.
+    - **Explications** : contexte et choix techniques détaillés.
+
+Classe chaque nouvelle page dans la bonne catégorie et maintiens un sommaire clair.
+
+9. Règle d’Or
 
 Toutes ces consignes s’appliquent à l’ensemble du dépôt, sans exception.
 
-Fin du fichier.
