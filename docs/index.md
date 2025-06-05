@@ -6,6 +6,15 @@ Ce projet associe Godot, FastAPI et Ollama pour proposer un mini-jeu capable de 
 
 🌟 [Retrouvez le dépôt sur GitHub](https://github.com/EZPK/GodotAI/) pour explorer le code source.
 
+## Aperçu de l'architecture
+
+Voici le fonctionnement général : le joueur dialogue avec **Godot**, qui fait
+appel au backend **FastAPI**. Celui-ci interroge **Ollama** pour le texte et
+**Stable Diffusion** pour l'image, puis consigne les échanges dans **SQLite**
+avant de répondre au client.
+
+![Architecture](assets/architecture.svg)
+
 Cette documentation suit le cadre [Diátaxis](https://diataxis.fr/) et se divise en quatre sections :
 
 - **Tutoriels** 🛠️ : apprenez pas à pas à installer et utiliser le projet.
