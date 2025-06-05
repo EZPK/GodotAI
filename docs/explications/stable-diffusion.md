@@ -14,10 +14,12 @@ FastAPI lui transmet vos invites afin d'illustrer certaines scènes du jeu.
 ![Interaction Stable Diffusion](../assets/stable-diffusion.svg)
 
 Vous pouvez générer une image directement via l'API :
+Assurez‑vous que les conteneurs sont démarrés avec `make up` (ou au moins
+`make run-api`) avant d'interroger l'API :
 ```bash
 curl -X POST http://localhost:8000/generate-image \
   -H 'Content-Type: application/json' \
-  -d '{"prompt": "un village médiéval"}' -o output.png
+  -d '{"description": "un village médiéval"}' -o output.png
 ```
 
 ## Voir aussi
