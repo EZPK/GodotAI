@@ -21,6 +21,14 @@ Cette page recense les erreurs les plus courantes et comment les résoudre.
   docker compose logs -f
   ```
 
+## FastAPI ne trouve pas `backend.app.main`
+
+- Si les logs affichent `ModuleNotFoundError: No module named 'backend.app.main'`,
+  reconstruisez les images :
+  ```bash
+  make rebuild
+  ```
+
 ## Erreurs de dépendances Python
 
 - (Ré)installez les paquets :
