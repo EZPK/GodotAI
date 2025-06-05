@@ -16,3 +16,5 @@ mkdocs build
 ```
 
 Cette commande s'assure que la documentation est valide avant une éventuelle publication.
+
+Pour faciliter ces actions, utilisez `make docs-serve` pour un aperçu local et `make docs-deploy` pour la publication.

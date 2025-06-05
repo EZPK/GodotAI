@@ -7,3 +7,4 @@
 - la génération de la documentation avec `mkdocs build` après chaque mise à jour.
 
 Ces règles assurent une base de code cohérente et des contributions faciles à relire.
+
