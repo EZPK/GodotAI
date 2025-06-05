@@ -1,6 +1,6 @@
 # Makefile 🧙‍♂️ pour gérer le projet RPG LLM Godot avec activation automatique du venv
 
-	.DEFAULT_GOAL := help
+.DEFAULT_GOAL := help
 
 ifneq (,$(wildcard .env))
 include .env
@@ -15,8 +15,8 @@ PYTHON := $(VENV_DIR)/bin/python
 PIP := $(VENV_DIR)/bin/pip
 
 help: ## 📘 Affiche cette aide
-	@echo "\n\033[1;33m🛠 Commandes disponibles :\033[0m"
-	@grep -h -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m🔹 %-20s\033[0m %s\n", $$1, $$2}'
+	@echo "\n\033[1;33m🛠 Commandes disponibles :"
+	@grep -h -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m🔹 %-20s %s\n", $$1, $$2}'
 
 up: ## 👍 Lancer tous les services Docker (Ollama, Stable Diffusion et FastAPI)
 	docker compose up -d
@@ -32,7 +32,7 @@ rebuild: ## 🔄 Rebuild complet des images Docker
 .PHONY: godot
 
 godot: ## 🎮 Lance le projet Godot (modifie selon ton chemin d'accès)
-	@echo "\033[1;36m🎮 Ouverture de Godot...\033[0m"
+	@echo "🎮 Ouverture de Godot..."
 	$(GODOT_PATH) --editor godot/project.godot
 
 run-api: install ## ⚡ Lance l'API FastAPI en local
@@ -40,14 +40,17 @@ run-api: install ## ⚡ Lance l'API FastAPI en local
 	@$(PYTHON) -m uvicorn backend.app.main:app --reload --log-level warning
 
 clean: ## 🧹 Supprime fichiers temporaires / cache
-	@echo "\033[1;31m🗑 Nettoyage des fichiers temporaires...\033[0m"
-	@find . -name '__pycache__' -type d -exec rm -rf {} + 2>/dev/null
-	@find . -name '*.py[cod]' -delete 2>/dev/null
+	@echo "🗑 Nettoyage des fichiers temporaires..."
+	@find . -name '__pycache__' -type d -exec rm -rf {} + 2>/dev/null || true
+	@find . -name '*.py[cod]' -delete 2>/dev/null || true
 	@rm -rf .pytest_cache
 
-cleanall: clean ## 💥 Supprime caches et volumes Docker
-	@echo "\033[1;31m🗑 Suppression des volumes Docker...\033[0m"
-	docker compose down -v
+cleanall: clean ## 💥 Supprime caches, volumes Docker et le venv
+	@echo "🗑 Suppression des volumes Docker..."
+	@MAKEFLAGS=--no-print-directory docker compose down -v
+	@echo "🗑 Suppression du venv Python..."
+	@if [ -n "$$VIRTUAL_ENV" ]; then deactivate; fi; \
+	rm -rf $(VENV_DIR)
 
 install: ## 📦 Crée le venv et installe les dépendances
 	@test -x $(PYTHON) || python3 -m venv $(VENV_DIR)
@@ -98,6 +101,6 @@ purge-models: ## 💥 Supprime les modèles téléchargés dans les volumes Dock
 up-models: ## 🚢 Lance la stack avec MODEL_TEXT et MODEL_IMAGE
 	@TEXT=$(or $(MODEL_TEXT),$(OLLAMA_TEXT_MODEL)); \
 	IMAGE=$(or $(MODEL_IMAGE),$(OLLAMA_IMAGE_MODEL)); \
-	printf '\033[1mMODEL_TEXT:\033[0m %s\n' "$$TEXT"; \
-	printf '\033[1mMODEL_IMAGE:\033[0m %s\n' "$$IMAGE"; \
+	printf 'MODEL_TEXT: %s\n' "$$TEXT"; \
+	printf 'MODEL_IMAGE: %s\n' "$$IMAGE"; \
 	OLLAMA_TEXT_MODEL=$$TEXT OLLAMA_IMAGE_MODEL=$$IMAGE docker compose up -d
