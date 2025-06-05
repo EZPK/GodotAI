@@ -24,13 +24,12 @@ partie en cours.
 - [Fichier `Modelfile`](../reference/modelfile.md)
 - [Changer de modèle](../guides/changer-modele.md)
 
-```mermaid
-%%{init: {'theme':'base','themeVariables':{'primaryColor':'#6200ee','primaryTextColor':'#ffffff','primaryBorderColor':'#6200ee','lineColor':'#6200ee','fontFamily':'Roboto'}}}%%
-flowchart LR
-    A(FastAPI) -- requête --> O(Ollama)
-    O -- réponse --> A
-    click A "fastapi.md" "Voir la page FastAPI"
-    click O "ollama.md" "Voir la page Ollama"
+```d2
+A: "FastAPI"
+O: "Ollama"
+
+A -> O: requête
+O -> A: réponse
 ```
 
 Exemple d'exécution manuelle :

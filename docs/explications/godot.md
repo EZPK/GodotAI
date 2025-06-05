@@ -7,18 +7,16 @@ Les scripts GDScript appellent l'endpoint `/generate-text` pour afficher les ré
 Quand le joueur effectue une action, ces scripts envoient la requête à FastAPI
 qui renvoie le texte généré par Ollama.
 
-```mermaid
-%%{init: {'theme':'base','themeVariables':{'primaryColor':'#6200ee','primaryTextColor':'#ffffff','primaryBorderColor':'#6200ee','lineColor':'#6200ee','fontFamily':'Roboto'}}}%%
-sequenceDiagram
-    participant P as Joueur
-    participant G as Godot
-    participant A as FastAPI
-    P->>G: action
-    G->>A: requête
-    A-->>G: réponse
-    G-->>P: affichage
-    click G "godot.md" "Voir la page Godot"
-    click A "fastapi.md" "Voir la page FastAPI"
+```d2
+sequence: {
+  P: "Joueur"
+  G: "Godot"
+  A: "FastAPI"
+  P -> G: action
+  G -> A: requête
+  A -> G: réponse
+  G -> P: affichage
+}
 ```
 
 Extrait de la fonction d'envoi d'un message au modèle :

@@ -9,17 +9,17 @@ routes appelées par Godot, dialogue avec Ollama pour produire du texte et
 déclenche la génération d'images via Stable Diffusion. Il stocke aussi les
 informations de partie dans SQLite.
 
-```mermaid
-%%{init: {'theme':'base','themeVariables':{'primaryColor':'#6200ee','primaryTextColor':'#ffffff','primaryBorderColor':'#6200ee','lineColor':'#6200ee','fontFamily':'Roboto'}}}%%
-flowchart LR
-    G[Godot] --> F(FastAPI)
-    F --> O[Ollama]
-    F --> SD[Stable Diffusion]
-    F --> DB[(SQLite)]
-    click G "godot.md" "Voir la page Godot"
-    click F "fastapi.md" "Voir la page FastAPI"
-    click O "ollama.md" "Voir la page Ollama"
-    click SD "stable-diffusion.md" "Voir la page Stable Diffusion"
+```d2
+G: "Godot"
+F: "FastAPI"
+O: "Ollama"
+SD: "Stable Diffusion"
+DB: "SQLite"
+
+G -> F
+F -> O
+F -> SD
+F -> DB
 ```
 
 ## Exemple minimal

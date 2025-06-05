@@ -11,13 +11,12 @@ téléchargés avant que l'interface WebUI ne se lance.
 
 FastAPI lui transmet vos invites afin d'illustrer certaines scènes du jeu.
 
-```mermaid
-%%{init: {'theme':'base','themeVariables':{'primaryColor':'#6200ee','primaryTextColor':'#ffffff','primaryBorderColor':'#6200ee','lineColor':'#6200ee','fontFamily':'Roboto'}}}%%
-flowchart LR
-    A(FastAPI) -- prompt --> SD[Stable Diffusion]
-    SD -- image --> A
-    click A "fastapi.md" "Voir la page FastAPI"
-    click SD "stable-diffusion.md" "Voir la page Stable Diffusion"
+```d2
+A: "FastAPI"
+SD: "Stable Diffusion"
+
+A -> SD: prompt
+SD -> A: image
 ```
 
 Vous pouvez générer une image directement via l'API :
