@@ -27,7 +27,7 @@ rebuild: ## 🔄 Rebuild complet des images Docker
 	docker compose build --no-cache
 	docker compose up -d
 
-run-godot: ## 🎮 Lance le projet Godot (modifie selon ton chemin d'accès)
+godot: ## 🎮 Lance le projet Godot (modifie selon ton chemin d'accès)
 	@echo "\033[1;36m🎮 Ouverture de Godot...\033[0m"
 	$(GODOT_PATH) --editor godot/project.godot
 
