@@ -16,6 +16,8 @@ sequenceDiagram
     G->>A: requête
     A-->>G: réponse
     G-->>P: affichage
+    click G "godot.md" "Voir la page Godot"
+    click A "fastapi.md" "Voir la page FastAPI"
 ```
 
 Pour lancer l'éditeur :

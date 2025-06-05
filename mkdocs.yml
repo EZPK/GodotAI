@@ -7,6 +7,8 @@ plugins:
   - mermaid2
 markdown_extensions:
   - pymdownx.superfences
+extra_javascript:
+  - js/mermaid-init.js
 nav:
   - Accueil: index.md
   - Tutoriels:

@@ -15,6 +15,10 @@ flowchart LR
     F --> O[Ollama]
     F --> SD[Stable Diffusion]
     F --> DB[(SQLite)]
+    click G "godot.md" "Voir la page Godot"
+    click F "fastapi.md" "Voir la page FastAPI"
+    click O "ollama.md" "Voir la page Ollama"
+    click SD "stable-diffusion.md" "Voir la page Stable Diffusion"
 ```
 
 ## Exemple minimal

@@ -28,6 +28,8 @@ partie en cours.
 flowchart LR
     A(FastAPI) -- requête --> O(Ollama)
     O -- réponse --> A
+    click A "fastapi.md" "Voir la page FastAPI"
+    click O "ollama.md" "Voir la page Ollama"
 ```
 
 Exemple d'exécution manuelle :
