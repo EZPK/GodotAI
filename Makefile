@@ -24,7 +24,7 @@ help: ## 📘 Affiche cette aide
 up: ## 👍 Lancer tous les services Docker (Ollama, Stable Diffusion et FastAPI)
 	@echo "🚀 Starting Docker services in background..."
 	@docker compose up -d >/dev/null &
-	@echo " 🪄 Pour vérifier si un modèle est en train d'être téléchargé, vous pouvez utiliser `docker compose logs -f ollama`"
+	@echo " 🪄 Pour vérifier si un modèle est en train d'être téléchargé, vous pouvez utiliser docker compose logs -f <nom_du_docker>"
 
 down: ## 🛑 Arrêter les services Docker
 	docker compose down
@@ -40,7 +40,7 @@ godot: ## 🎮 Lance le projet Godot (modifie selon ton chemin d'accès)
 	@echo "🎮 Ouverture de Godot..."
 	$(GODOT_PATH) --editor godot/project.godot
 
-run-api: install ## ⚡ Lance l'API FastAPI en local
+api: install ## ⚡ Lance l'API FastAPI en local
 	@echo "⚡ Starting FastAPI..."
 	@$(PYTHON) -m uvicorn backend.app.main:app --reload --log-level warning
 

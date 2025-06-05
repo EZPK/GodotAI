@@ -7,7 +7,6 @@ services:
     ports:
       - "${OLLAMA_TEXT_PORT}:11434"
     volumes:
-      # Volume Docker pour persister les modèles téléchargés
       - ollama_models:/root/.ollama
     env_file: .env
     environment:
@@ -43,7 +42,8 @@ services:
       - "${STABLEDIFFUSION_PORT}:8080"
     volumes:
       - sd_models:/app/stable-diffusion-webui/models
-      - sd_outputs:/app/stable-diffusion-webui/outputs
+      - sd_outputs:/app/stable-diffusion-webui/outputs      # <--- volume Docker (tout le dossier)
+      - ./outputs:/app/stable-diffusion-webui/outputs/dev-mirror  # <--- dossier local dans un sous-dossier
     env_file: .env
     restart: unless-stopped
     gpus: all
