@@ -40,9 +40,6 @@ godot: ## 🎮 Lance le projet Godot (modifie selon ton chemin d'accès)
 	@echo "🎮 Ouverture de Godot..."
 	$(GODOT_PATH) --editor godot/project.godot
 
-api: install ## ⚡ Lance l'API FastAPI en local
-	@echo "⚡ Starting FastAPI..."
-	@$(PYTHON) -m uvicorn backend.app.main:app --reload --log-level warning
 
 clean: ## 🧹 Supprime fichiers temporaires / cache
 	@echo "🗑 Nettoyage des fichiers temporaires..."

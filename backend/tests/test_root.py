@@ -38,7 +38,9 @@ def test_text_endpoint(monkeypatch):
         return mock_resp
 
     monkeypatch.setattr("backend.app.main.requests.post", fake_post)
+
     resp = client.post("/txt", json={"context": "hi"})
+
     assert resp.status_code == 200
     assert resp.json()["response"] == "ok"
 

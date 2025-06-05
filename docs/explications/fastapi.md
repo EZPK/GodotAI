@@ -10,6 +10,10 @@ déclenche la génération d'images via Stable Diffusion. Les données sont
 enregistrées dans SQLite ou PostgreSQL, et les réponses complètes du modèle sont
 également consignées dans MongoDB.
 
+Le service tourne dans son propre conteneur Docker, démarré avec
+`make up`. Il redirige les requêtes vers Ollama via l'endpoint `/txt` et vers
+Stable Diffusion via `/img`.
+
 ![Flux FastAPI](../assets/fastapi.svg)
 
 ## Exemple minimal
