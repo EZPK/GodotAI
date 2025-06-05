@@ -70,15 +70,15 @@ class CreateSessionRequest(BaseModel):
 from .config import settings
 
 OLLAMA_TEXT_MODEL = settings.ollama_text_model
-OLLAMA_IMAGE_MODEL = settings.ollama_image_model
+STABLEDIFFUSION_MODEL = settings.STABLEDIFFUSION_MODEL
 
 OLLAMA_TEXT_HOST = settings.ollama_text_host
 OLLAMA_TEXT_PORT = str(settings.ollama_text_port)
-OLLAMA_IMAGE_HOST = settings.ollama_image_host
-OLLAMA_IMAGE_PORT = str(settings.ollama_image_port)
+STABLEDIFFUSION_HOST = settings.STABLEDIFFUSION_HOST
+STABLEDIFFUSION_PORT = str(settings.STABLEDIFFUSION_PORT)
 
 OLLAMA_TEXT_BASE_URL = f"http://{OLLAMA_TEXT_HOST}:{OLLAMA_TEXT_PORT}/api"
-OLLAMA_IMAGE_BASE_URL = f"http://{OLLAMA_IMAGE_HOST}:{OLLAMA_IMAGE_PORT}/api"
+OLLAMA_IMAGE_BASE_URL = f"http://{STABLEDIFFUSION_HOST}:{STABLEDIFFUSION_PORT}/api"
 
 
 # Endpoint pour générer du texte via Ollama

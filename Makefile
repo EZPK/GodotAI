@@ -66,7 +66,7 @@ install: ## 📦 Crée le venv et installe les dépendances
 
 godot_api_call: ## 🧠 Appel API Godot en mode headless
 	@echo "🧠  Lancement d’un appel API Godot en mode headless..."
-	$(GODOT_PATH) --headless --path godot/ --script scripts/ApiCallHeadless.gd
+	$(GODOT_PATH) --headless --path godot/ --script scripts/ChatUI.gd
 
 generate-diagrams: ## 🖼️ Convertit les fichiers D2 en SVG
 	@if command -v d2 >/dev/null 2>&1; then \
@@ -105,10 +105,10 @@ purge-models: ## 💥 Supprime les modèles téléchargés dans les volumes Dock
 
 up-models: ## 🚢 Lance la stack avec MODEL_TEXT et MODEL_IMAGE
 	@TEXT=$(or $(MODEL_TEXT),$(OLLAMA_TEXT_MODEL)); \
-	IMAGE=$(or $(MODEL_IMAGE),$(OLLAMA_IMAGE_MODEL)); \
+	IMAGE=$(or $(MODEL_IMAGE),$(STABLEDIFFUSION_MODEL)); \
 	printf 'MODEL_TEXT: %s\n' "$$TEXT"; \
 	printf 'MODEL_IMAGE: %s\n' "$$IMAGE"; \
-	OLLAMA_TEXT_MODEL=$$TEXT OLLAMA_IMAGE_MODEL=$$IMAGE docker compose up -d
+	OLLAMA_TEXT_MODEL=$$TEXT STABLEDIFFUSION_MODEL=$$IMAGE docker compose up -d
 
 modeldl:
 	@docker logs -f ollama | grep --line-buffered -E 'Pulling|[0-9]{1,3}%'

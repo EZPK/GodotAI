@@ -11,7 +11,7 @@ ENTRYPOINT ["/entrypoint_ollama.sh"]
 
 L’entrée `ENTRYPOINT` lance ce script pour s’assurer que les modèles précisés sont bien présents avant d’exposer l’API Ollama.
 
-- Les modèles à récupérer sont définis par `OLLAMA_TEXT_MODEL` et `OLLAMA_IMAGE_MODEL` dans `docker-compose.yml`.
+- Les modèles à récupérer sont définis par `OLLAMA_TEXT_MODEL` et `STABLEDIFFUSION_MODEL` dans `docker-compose.yml`.
 - Ils sont enregistrés dans le volume Docker `ollama_models` afin d’éviter des téléchargements répétés.
 
 Ce conteneur se combine ensuite avec le service FastAPI via `docker compose up`.

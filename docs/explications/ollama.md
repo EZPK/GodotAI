@@ -7,7 +7,7 @@ Lorsque vous exécutez `make up`, le conteneur lance le script `entrypoint_ollam
 Le processus est piloté par le script `entrypoint_ollama.sh` :
 1. Il démarre `ollama serve` en arrière-plan et attend que l'API réponde.
 2. Il vérifie la présence des modèles listés dans les variables d'environnement
-   `OLLAMA_TEXT_MODEL` et `OLLAMA_IMAGE_MODEL` via `ollama list`.
+   `OLLAMA_TEXT_MODEL` et `STABLEDIFFUSION_MODEL` via `ollama list`.
 3. Si l'un d'eux est absent, `ollama pull` est exécuté pour le télécharger.
 4. Enfin, le script laisse tourner `ollama serve` pour traiter les requêtes.
 

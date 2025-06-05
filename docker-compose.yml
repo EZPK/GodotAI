@@ -38,9 +38,9 @@ services:
 
   stablediffusion:
     image: universonic/stable-diffusion-webui:full
-    container_name: ${OLLAMA_IMAGE_HOST}
+    container_name: ${STABLEDIFFUSION_HOST}
     ports:
-      - "${OLLAMA_IMAGE_PORT}:8080"
+      - "${STABLEDIFFUSION_PORT}:8080"
     volumes:
       - sd_models:/app/stable-diffusion-webui/models
       - sd_outputs:/app/stable-diffusion-webui/outputs

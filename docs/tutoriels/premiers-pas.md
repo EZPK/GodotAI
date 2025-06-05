@@ -6,7 +6,7 @@ Suivez les étapes ci-dessous dans l'ordre pour déployer la stack complète.
    ```bash
    cp .env .env.local
    # OLLAMA_TEXT_MODEL=god:latest
-   # OLLAMA_IMAGE_MODEL=stable-diffusion
+   # STABLEDIFFUSION_MODEL=stable-diffusion
    ```
    Consultez la [référence](../reference/configuration.md) pour la liste complète des variables.
 

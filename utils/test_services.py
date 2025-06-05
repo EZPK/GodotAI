@@ -13,8 +13,8 @@ ollama_port = os.getenv("OLLAMA_TEXT_PORT", "11434")
 OLLAMA_URL = os.getenv("OLLAMA_URL", f"http://{ollama_host}:{ollama_port}")
 
 # Same logic for Stable Diffusion
-sd_host = os.getenv("OLLAMA_IMAGE_HOST", "localhost")
-sd_port = os.getenv("OLLAMA_IMAGE_PORT", "7860")
+sd_host = os.getenv("STABLEDIFFUSION_HOST", "localhost")
+sd_port = os.getenv("STABLEDIFFUSION_PORT", "7860")
 SD_URL = os.getenv("SD_URL", f"http://{sd_host}:{sd_port}")
 
 
