@@ -14,12 +14,15 @@ sudo mv vale /usr/local/bin/
 
 ## Utiliser le fichier `.vale.ini`
 
-Le dépôt fournit une configuration minimale :
+Le dépôt fournit une configuration personnalisée :
 
 ```ini
 MinAlertLevel = warning
+StylesPath = .vale/styles
+
 [*]
 BasedOnStyles = Vale
+Packages = CoolStyle
 ```
 
 Lancez Vale sur le dossier `docs` pour vérifier tous les articles :

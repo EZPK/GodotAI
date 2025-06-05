@@ -1,10 +1,12 @@
 # 🔍 .vale.ini
 
-`Vale` est un outil de lint pour la rédaction. Ce fichier minimal active le style par défaut et affiche les alertes à partir du niveau *warning*. L’objectif est d’harmoniser le ton de la documentation sans surcharger les auteurs de messages.
+`Vale` est un outil de lint pour la rédaction. Le projet active un style personnalisable pour un ton plus direct et cohérent.
 
 Contenu principal :
 - `MinAlertLevel = warning` : ne signale que les règles importantes.
-- `BasedOnStyles = Vale` : utilise le jeu de règles standard fourni par l’outil.
+- `StylesPath = .vale/styles` : localisation des règles maison.
+- `BasedOnStyles = Vale` : conserve le jeu de règles standard.
+- `Packages = CoolStyle` : applique nos règles supplémentaires.
 
 Ainsi, `.vale.ini` permet de vérifier rapidement les textes sans configuration complexe.
 
