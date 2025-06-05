@@ -28,4 +28,4 @@ Il est intégré à l'image Ollama lors de la construction. Toute modification n
 
 ### Peut‑on utiliser plusieurs Modelfiles ?
 
-`docker-compose.yml` fait référence à un unique `Modelfile`. Pour tester plusieurs prompts, modifiez ce fichier puis redémarrez Ollama.
+`docker-compose.yml` fait référence à un unique `Modelfile`. Pour tester plusieurs prompts, modifiez ce fichier puis redémarrez Ollama avec `make down` puis `make up` pour prendre en compte les changements.

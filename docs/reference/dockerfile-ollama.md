@@ -15,3 +15,5 @@ L’entrée `ENTRYPOINT` lance ce script pour s’assurer que les modèles préc
 - Ils sont enregistrés dans le volume Docker `ollama_models` afin d’éviter des téléchargements répétés.
 
 Ce conteneur se combine ensuite avec le service FastAPI via `docker compose up`.
+
+Lancez la stack et la construction de l'image avec `make up`.
