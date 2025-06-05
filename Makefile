@@ -2,12 +2,14 @@
 
 .DEFAULT_GOAL := help
 
-ifneq (,$(wildcard ./.env))
-	include .env
-	export
+ifneq (,$(wildcard .env))
+include .env
+export
 endif
 
-GODOT_PATH ?= godot4
+ifndef GODOT_PATH
+GODOT_PATH := $(shell command -v godot4 2>/dev/null || echo godot4)
+endif
 VENV_DIR ?= .venv
 PYTHON := $(VENV_DIR)/bin/python
 PIP := $(VENV_DIR)/bin/pip

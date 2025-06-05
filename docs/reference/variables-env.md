@@ -10,7 +10,7 @@ Le fichier `.env` centralise la configuration de l'ensemble des services. Voici 
 | `OLLAMA_IMAGE_MODEL` | `stable-diffusion` | Modèle de génération d'images. |
 | `OLLAMA_IMAGE_HOST` | `stablediffusion` | Hôte pour la génération d'images. |
 | `OLLAMA_IMAGE_PORT` | `7860` | Port du service d'images. |
-| `GODOT_PATH` | `./Godot_v4.x86_64` | Exécutable Godot utilisé par le `Makefile`. |
+| `GODOT_PATH` | `./Godot_v4.x86_64` | Exécutable Godot utilisé par le `Makefile`. Si absent, `godot4` est essayé. |
 | `DATABASE_URL` | `sqlite:///./data/game.db` | Chemin de la base de données. |
 | `NVIDIA_VISIBLE_DEVICES` | _(vide)_ | Active l'accélération GPU dans les conteneurs. |
 
