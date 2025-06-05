@@ -2,14 +2,15 @@
 
 MkDocs transforme les fichiers Markdown du dossier `docs/` en un site statique prêt à être publié. Le thème Material apporte un rendu moderne et agréable.
 
-Depuis la version 8 du thème, Mermaid est pris en charge nativement. En déclarant simplement un bloc de code `mermaid`, le script est chargé et les diagrammes sont rendus automatiquement.
+Le thème Material peut également afficher des diagrammes **D2** depuis des blocs de code `d2`.
 
-```mermaid
-%%{init: {'theme':'base','themeVariables':{'primaryColor':'#6200ee','primaryTextColor':'#ffffff','primaryBorderColor':'#6200ee','lineColor':'#6200ee','fontFamily':'Roboto'}}}%%
-flowchart LR
-    M[Markdown] --> MK(MkDocs)
-    MK --> HTML[Site statique]
-    click MK "mkdocs.md" "Voir la page MkDocs"
+```d2
+M: "Markdown"
+MK: "MkDocs"
+HTML: "Site statique"
+
+M -> MK
+MK -> HTML
 ```
 
 Pour tester en local :

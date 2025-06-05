@@ -2,21 +2,22 @@
 
 Cette page présente brièvement l'architecture générale avant de détailler chaque composant.
 
-Le diagramme ci-dessous est généré avec **Mermaid** :
+Le diagramme ci-dessous est généré avec **D2** :
 
-```mermaid
-%%{init: {'theme':'base','themeVariables':{'primaryColor':'#6200ee','primaryTextColor':'#ffffff','primaryBorderColor':'#6200ee','lineColor':'#6200ee','fontFamily':'Roboto'}}}%%
-flowchart TD
-    U[Utilisateur]
-    U --> G[Godot 🎮]
-    G --> A[FastAPI ⚡]
-    A --> O[Ollama 🦙]
-    A --> SD[Stable Diffusion 🎨]
-    A --> DB[(SQLite 📂)]
-    click G "godot.md" "Voir la page Godot"
-    click A "fastapi.md" "Voir la page FastAPI"
-    click O "ollama.md" "Voir la page Ollama"
-    click SD "stable-diffusion.md" "Voir la page Stable Diffusion"
+```d2
+direction: right
+U: "Utilisateur"
+G: "Godot 🎮"
+A: "FastAPI ⚡"
+O: "Ollama 🦙"
+SD: "Stable Diffusion 🎨"
+DB: "SQLite 📂"
+
+U -> G
+G -> A
+A -> O
+A -> SD
+A -> DB
 ```
 
 ## Rôle des composants
