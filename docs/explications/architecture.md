@@ -4,7 +4,13 @@ Cette page présente brièvement l'architecture générale avant de détailler c
 
 Le diagramme ci-dessous est généré avec **Mermaid** :
 
-```mermaid
+```html
+<script type="module">
+  import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs";
+  mermaid.initialize({ startOnLoad: true });
+</script>
+
+<div class="mermaid">
 %%{init: {'theme':'base','themeVariables':{'primaryColor':'#6200ee','primaryTextColor':'#ffffff','primaryBorderColor':'#6200ee','lineColor':'#6200ee','fontFamily':'Roboto'}}}%%
 flowchart TD
     U[Utilisateur]
@@ -17,6 +23,7 @@ flowchart TD
     click A "fastapi.md" "Voir la page FastAPI"
     click O "ollama.md" "Voir la page Ollama"
     click SD "stable-diffusion.md" "Voir la page Stable Diffusion"
+</div>
 ```
 
 ## Rôle des composants
