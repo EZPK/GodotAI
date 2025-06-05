@@ -1,0 +1,1 @@
+FROM universonic/stable-diffusion-webui:full

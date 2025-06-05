@@ -5,7 +5,7 @@ Cette section recense les fichiers essentiels du dépôt et la façon de les uti
 ## Fichiers principaux
 
 - [`docker-compose.yml`](docker-compose-yml.md) : orchestre FastAPI, Ollama et Stable Diffusion.
-- [`Dockerfile`](dockerfile.md) : construit l'image du backend FastAPI.
+- [`Dockerfile.fastapi`](dockerfile.md) : construit l'image du backend FastAPI.
 - [`Dockerfile.ollama`](dockerfile-ollama.md) : prépare le service Ollama et lance `entrypoint_ollama.sh`.
 - [`Modelfile`](modelfile.md) : définit le prompt système et les paramètres du modèle.
 - [`Makefile`](makefile.md) : rassemble les commandes (`make up`, `make down`, `make docs-serve`...).

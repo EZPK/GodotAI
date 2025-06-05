@@ -48,7 +48,7 @@ Cette documentation suit le cadre [Diátaxis](https://diataxis.fr/) et se divise
 - ⚙️ [Configuration](reference/configuration.md)
 - 🛠️ [Makefile](reference/makefile.md)
 - 🐳 [docker-compose.yml](reference/docker-compose-yml.md)
-- 📄 [Dockerfile](reference/dockerfile.md)
+- 📄 [Dockerfile.fastapi](reference/dockerfile.md)
 - ✅ [Tests unitaires](reference/tests-unitaires.md)
 
 ### 🧩 Explications

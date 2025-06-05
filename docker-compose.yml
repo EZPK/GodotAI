@@ -20,7 +20,7 @@ services:
   fastapi:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.fastapi
     container_name: fastapi
     ports:
       - "8000:8000"
@@ -36,6 +36,9 @@ services:
       - mongo
 
   stablediffusion:
+    build:
+      context: .
+      dockerfile: Dockerfile.stablediffusion
     image: universonic/stable-diffusion-webui:full
     container_name: ${STABLEDIFFUSION_HOST}
     ports:
@@ -49,6 +52,9 @@ services:
     gpus: all
 
   postgres:
+    build:
+      context: .
+      dockerfile: Dockerfile.postgres
     image: postgres:16
     container_name: postgres
     restart: unless-stopped
@@ -62,6 +68,9 @@ services:
       - "5432:5432"
 
   mongo:
+    build:
+      context: .
+      dockerfile: Dockerfile.mongo
     image: mongo:6
     container_name: mongo
     restart: unless-stopped
