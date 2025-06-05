@@ -31,6 +31,7 @@ Cette documentation suit le cadre [Diátaxis](https://diataxis.fr/) et se divise
 - 📡 [Utiliser l'API](guides/utiliser-api.md)
 - 🩺 [Dépannage modèles et GPU](guides/depannage-modeles-gpu.md)
 - ✍️ [Contrôler la rédaction avec Vale](guides/qualite-redaction-vale.md)
+- 🛠️ [Troubleshooting](guides/troubleshooting.md)
 
 ### 📚 Référence technique
 - 🔗 [API du backend](reference/api-backend.md)
