@@ -6,8 +6,9 @@ documentation interactive.
 
 Dans **GodotAI**, FastAPI sert de colonne vertébrale au backend : il expose les
 routes appelées par Godot, dialogue avec Ollama pour produire du texte et
-déclenche la génération d'images via Stable Diffusion. Il stocke aussi les
-informations de partie dans SQLite.
+déclenche la génération d'images via Stable Diffusion. Les données sont
+enregistrées dans SQLite ou PostgreSQL, et les réponses complètes du modèle sont
+également consignées dans MongoDB.
 
 ![Flux FastAPI](../assets/fastapi.svg)
 
