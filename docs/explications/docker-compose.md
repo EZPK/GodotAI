@@ -4,6 +4,7 @@ Docker Compose est l'outil qui lance plusieurs conteneurs Docker en une seule co
 Le fichier `docker-compose.yml` définit trois services : **fastapi**, **ollama** et **stablediffusion**.
 
 ```mermaid
+%%{init: {'theme':'base','themeVariables':{'primaryColor':'#6200ee','primaryTextColor':'#ffffff','primaryBorderColor':'#6200ee','lineColor':'#6200ee','fontFamily':'Roboto'}}}%%
 flowchart LR
     DC[Docker Compose] --> F(fastapi)
     DC --> O(ollama)

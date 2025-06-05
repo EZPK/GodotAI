@@ -25,6 +25,7 @@ partie en cours.
 - [Changer de modèle](../guides/changer-modele.md)
 
 ```mermaid
+%%{init: {'theme':'base','themeVariables':{'primaryColor':'#6200ee','primaryTextColor':'#ffffff','primaryBorderColor':'#6200ee','lineColor':'#6200ee','fontFamily':'Roboto'}}}%%
 flowchart LR
     A(FastAPI) -- requête --> O(Ollama)
     O -- réponse --> A
