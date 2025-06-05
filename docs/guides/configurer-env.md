@@ -9,7 +9,7 @@ Ce guide explique comment personnaliser les variables d'environnement de GodotAI
    make down
    make up
    ```
-   La commande téléchargera les modèles définis dans `.env` grâce à `entrypoint_ollama.sh --download` s'ils ne sont pas encore présents.
+   Les modèles seront téléchargés automatiquement par le conteneur Ollama s'ils ne sont pas encore présents.
 
 Pour utiliser le GPU, définissez `NVIDIA_VISIBLE_DEVICES=all` avant de lancer `make up`.
 

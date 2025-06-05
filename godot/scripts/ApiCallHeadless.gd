@@ -1,9 +1,7 @@
 extends SceneTree
 
-# Label d'affichage de la réponse dans l'UI
-@onready var response_label: Label = $VBoxContainer/Label
 # Instance HTTPRequest pour les appels API
-var http = HTTPRequest.new()
+var http := HTTPRequest.new()
 # Texte partiel accumulé lors du streaming
 var partial_text := ""
 # Timestamps pour monitoring
@@ -12,8 +10,8 @@ var t_request_sent := 0
 var t_response_received := 0
 var t_response_displayed := 0
 
-func _ready():
-	# Préparation du modèle et du prompt
+func _initialize():
+        # Préparation du modèle et du prompt
 	var model = "god:latest"
 	print("[🧠] Appel API Godot avec interface graphique en streaming...")
 	print("[🧠] Modèle utilisé : ", model)
@@ -21,8 +19,8 @@ func _ready():
 	t_start_request = Time.get_ticks_msec()
 	print("⌛ Début de la requête : ", t_start_request)
 
-	# Ajout du noeud HTTPRequest à la scène
-	add_child(http)
+        # Ajout du noeud HTTPRequest à la scène
+        get_root().add_child(http)
 	# Connexion du signal de complétion
 	http.request_completed.connect(_on_result)
 
@@ -66,10 +64,7 @@ func _on_result(_result: int, _code: int, _headers: PackedStringArray, body: Pac
 		if err == OK:
 			var token := str(json.data.get("response", ""))
 			partial_text += token
-			# Affichage progressif dans le label
-			if is_instance_valid(response_label):
-				response_label.text = partial_text
-			await get_tree().process_frame
+                        print(token)
 		else:
 			printerr("❌ JSON invalide :", line)
 
@@ -77,7 +72,5 @@ func _on_result(_result: int, _code: int, _headers: PackedStringArray, body: Pac
 	print("✅ Texte complet reçu à : ", t_response_displayed, " (delta : ", t_response_displayed - t_response_received, " ms depuis réception)")
 	print("⏱️ Temps total (requête -> affichage) : ", t_response_displayed - t_start_request, " ms")
 	print("⏱️ Nombre de lignes JSON traitées : ", line_count)
-	print("\n---\nTexte final affiché :\n" + partial_text)
-	# Affichage final dans le label (sécurité)
-	if is_instance_valid(response_label):
-		response_label.text = partial_text
+        print("\n---\nTexte final affiché :\n" + partial_text)
+        quit()
