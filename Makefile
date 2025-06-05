@@ -40,7 +40,13 @@ run-api: install ## ⚡ Lance l'API FastAPI en local
 
 clean: ## 🧹 Supprime fichiers temporaires / cache
 	@echo "\033[1;31m🗑 Nettoyage des fichiers temporaires...\033[0m"
-	rm -rf __pycache__ .pytest_cache */__pycache__ */*/__pycache__ *.pyc *.pyo
+	@find . -name '__pycache__' -type d -exec rm -rf {} + 2>/dev/null
+	@find . -name '*.py[cod]' -delete 2>/dev/null
+	@rm -rf .pytest_cache
+
+cleanall: clean ## 💥 Supprime caches et volumes Docker
+	@echo "\033[1;31m🗑 Suppression des volumes Docker...\033[0m"
+	docker compose down -v
 
 install: ## 📦 Crée le venv et installe les dépendances
 	@test -x $(PYTHON) || python3 -m venv $(VENV_DIR)
