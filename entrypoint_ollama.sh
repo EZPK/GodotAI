@@ -1,54 +1,46 @@
 #!/bin/sh
 set -e
 
-# Charge les variables de l'environnement si le fichier existe
-[ -f .env ] && . .env
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+[ -f "$SCRIPT_DIR/.env" ] && . "$SCRIPT_DIR/.env"
 
 MODELS=""
 [ -n "$OLLAMA_TEXT_MODEL" ] && MODELS="$MODELS $OLLAMA_TEXT_MODEL"
 [ -n "$OLLAMA_IMAGE_MODEL" ] && MODELS="$MODELS $OLLAMA_IMAGE_MODEL"
-
-# Télécharge les modèles en utilisant docker compose (mode hôte)
-download_models_host() {
-  for MODEL in $MODELS; do
-    [ -z "$MODEL" ] && continue
-    if docker compose run --rm --entrypoint ollama ollama list | grep -q "^$MODEL"; then
-      echo "Model $MODEL already present."
-    else
-      echo "Downloading $MODEL..."
-      docker compose run --rm --entrypoint ollama ollama pull "$MODEL"
-    fi
-  done
-}
 
 # Télécharge un modèle à l'intérieur du conteneur
 pull_model_container() {
   MODEL_NAME="$1"
   [ -z "$MODEL_NAME" ] && return
   if ! /bin/ollama list | grep -q "$MODEL_NAME"; then
-    echo "Model $MODEL_NAME not found, downloading..."
+    echo "⏬ Téléchargement du modèle '$MODEL_NAME' en cours..."
+    start_time=$(date +%s)
     /bin/ollama pull "$MODEL_NAME" | while IFS= read -r line; do
-      echo "$line"
       percent=$(echo "$line" | grep -Eo '[0-9]{1,3}%')
       if [ -n "$percent" ]; then
         p=${percent%%%}
         bar=$(printf '%0.s#' $(seq 1 $((p/2))))
-        printf "[%-50s] %3s%%\n" "$bar" "$p"
+        elapsed=$(( $(date +%s) - start_time ))
+        printf "\r[%-50s] %3s%% | %ds écoulées" "$bar" "$p" "$elapsed"
       fi
     done
     echo
+    end_time=$(date +%s)
+    duration=$((end_time - start_time))
     if ! /bin/ollama list | grep -q "$MODEL_NAME"; then
-      echo "Error: model $MODEL_NAME failed to download. Exiting."
+      echo "❌ Erreur : le modèle '$MODEL_NAME' n'a pas pu être téléchargé."
       exit 1
+    else
+      echo "✅ Modèle '$MODEL_NAME' téléchargé en $duration secondes."
     fi
   else
-    echo "Model $MODEL_NAME already present."
+    echo "✔️ Modèle '$MODEL_NAME' déjà présent."
   fi
 }
 
-# Si l'argument --download est présent, on télécharge juste les modèles
+# Si l'argument --download est présent, on ne fait rien (plus de pull côté hôte)
 if [ "$1" = "--download" ]; then
-  download_models_host
+  echo "No-op: download only handled inside the container."
   exit 0
 fi
 
