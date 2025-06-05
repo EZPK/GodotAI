@@ -36,7 +36,8 @@ godot: ## 🎮 Lance le projet Godot (modifie selon ton chemin d'accès)
 	$(GODOT_PATH) --editor godot/project.godot
 
 run-api: install ## ⚡ Lance l'API FastAPI en local
-        @$(PYTHON) -m uvicorn backend.app.main:app --reload
+	@echo "⚡ Starting FastAPI..."
+	@$(PYTHON) -m uvicorn backend.app.main:app --reload --log-level warning
 
 clean: ## 🧹 Supprime fichiers temporaires / cache
 	@echo "\033[1;31m🗑 Nettoyage des fichiers temporaires...\033[0m"
@@ -50,8 +51,9 @@ cleanall: clean ## 💥 Supprime caches et volumes Docker
 
 install: ## 📦 Crée le venv et installe les dépendances
 	@test -x $(PYTHON) || python3 -m venv $(VENV_DIR)
-	@$(PIP) install --upgrade pip
-	@$(PIP) install -r backend/requirements.txt
+	@echo "📦 Installing Python dependencies..."
+	@$(PIP) install --upgrade pip -q
+	@$(PIP) install -q -r backend/requirements.txt
 
 godot_api_call: ## 🧠 Appel API Godot en mode headless
 	@echo "🧠  Lancement d’un appel API Godot en mode headless..."
@@ -74,6 +76,7 @@ docs-deploy: install generate-diagrams ## 🚀 Déploie la documentation sur Git
 	@$(PYTHON) -m mkdocs gh-deploy --clean
 
 universe: install ## 🪐 Lance tous les tests et génère un log complet
+	@echo "🪐 Launching full test suite..."
 	@mkdir -p rapports
 	@echo "Running black" > rapports/universe.log
 	@$(PYTHON) -m black backend/app >> rapports/universe.log 2>&1
@@ -86,7 +89,7 @@ universe: install ## 🪐 Lance tous les tests et génère un log complet
 	@echo "\nBuilding docs" >> rapports/universe.log
 	@$(MAKE) generate-diagrams >> rapports/universe.log 2>&1
 	@$(PYTHON) -m mkdocs build >> rapports/universe.log 2>&1
-	@echo "Logs written to rapports/universe.log"
+	@echo "✅ Logs written to rapports/universe.log"
 
 purge-models: ## 💥 Supprime les modèles téléchargés dans les volumes Docker
 	docker compose down
