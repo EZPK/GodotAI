@@ -6,7 +6,7 @@ SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 
 MODELS=""
 [ -n "$OLLAMA_TEXT_MODEL" ] && MODELS="$MODELS $OLLAMA_TEXT_MODEL"
-[ -n "$STABLEDIFFUSION_MODEL" ] && MODELS="$MODELS $STABLEDIFFUSION_MODEL"
+# [ -n "$STABLEDIFFUSION_MODEL" ] && MODELS="$MODELS $STABLEDIFFUSION_MODEL"
 
 # Télécharge un modèle à l'intérieur du conteneur
 pull_model_container() {
