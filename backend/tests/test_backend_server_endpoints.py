@@ -4,7 +4,7 @@ import sys
 from unittest.mock import Mock
 
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
-from backend.app.backend_server import app
+from backend.app.main import app
 
 client = TestClient(app)
 
@@ -19,7 +19,7 @@ def test_gen_text(monkeypatch):
         resp.json.return_value = {"response": "text"}
         return resp
 
-    monkeypatch.setattr("backend.app.backend_server.requests.post", fake_post)
+    monkeypatch.setattr("backend.app.main.requests.post", fake_post)
 
     resp = client.post("/gen_text", json={"context": "context"})
     assert resp.status_code == 200
@@ -35,7 +35,7 @@ def test_list_models(monkeypatch):
         assert "tags" in url
         return mock_resp
 
-    monkeypatch.setattr("backend.app.backend_server.requests.get", fake_get)
+    monkeypatch.setattr("backend.app.main.requests.get", fake_get)
 
     resp = client.get("/list_models")
     assert resp.status_code == 200
@@ -44,7 +44,7 @@ def test_list_models(monkeypatch):
 
 def test_generate_image(monkeypatch):
     monkeypatch.setattr(
-        "backend.app.backend_server.ollama_generate_image",
+        "backend.app.main.ollama_generate_image",
         lambda prompt: {"image": "imgdata"},
     )
 

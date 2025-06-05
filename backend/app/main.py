@@ -1,17 +1,15 @@
-# Ce fichier contient le serveur principal FastAPI pour le backend
-# TODO: Compléter l'implémentation du backend_server
+"""Main FastAPI application for the backend."""
 
 from fastapi import FastAPI, HTTPException, Depends
 from pydantic import BaseModel
 import requests
-import base64
-import os
 from fastapi.responses import Response
 from sqlalchemy.orm import Session
 from datetime import datetime
 
 from .embedding_context import EmbeddingContext
-from .img_gen_server import generate_image as ollama_generate_image
+from .ollama_client import generate_text as ollama_generate_text
+from .ollama_client import generate_image as ollama_generate_image
 from .mcp import router as mcp_router
 from .mongo_database import get_mongo_db
 
@@ -92,12 +90,7 @@ def gen_text_get():
 @app.post("/gen_text")
 def gen_text(req: ContextRequest):
     try:
-        response = requests.post(
-            f"{OLLAMA_TEXT_BASE_URL}/generate",
-            json={"model": OLLAMA_TEXT_MODEL, "prompt": req.context},
-        )
-        response.raise_for_status()
-        return response.json()
+        return ollama_generate_text(req.context)
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
@@ -132,12 +125,7 @@ def gen_image(req: ImageRequest):
 def text_model(req: PromptRequest):
     """Generate text using the Ollama container."""
     try:
-        resp = requests.post(
-            f"{OLLAMA_TEXT_BASE_URL}/generate",
-            json={"model": OLLAMA_TEXT_MODEL, "prompt": req.prompt},
-        )
-        resp.raise_for_status()
-        return resp.json()
+        return ollama_generate_text(req.prompt)
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
@@ -212,12 +200,7 @@ def generate_text(req: GenerateTextRequest, db: Session = Depends(get_db)):
     context = context_store.get_recent_context(req.session_id)
 
     try:
-        response = requests.post(
-            f"{OLLAMA_TEXT_BASE_URL}/generate",
-            json={"model": OLLAMA_TEXT_MODEL, "prompt": context},
-        )
-        response.raise_for_status()
-        data = response.json()
+        data = ollama_generate_text(context)
         ai_text = data.get("response", "")
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))

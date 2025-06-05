@@ -8,7 +8,7 @@ Le diagramme ci-dessous est généré en SVG avec **D2** :
 
 ## Rôle des composants
 - **Godot 🎮** : le dossier `godot/` renferme les scènes et scripts du mini-jeu. La scène `scenes/Main.tscn` communique avec l'API via des nœuds `HTTPRequest`.
-- **FastAPI ⚡** : le backend Python vit dans `backend/app`. Le module `backend_server.py` expose notamment la route `/generate-text` et enregistre les échanges dans `data/game.db` grâce à SQLAlchemy.
+- **FastAPI ⚡** : le backend Python vit dans `backend/app`. Le module `main.py` expose notamment la route `/generate-text` et enregistre les échanges dans `data/game.db` grâce à SQLAlchemy.
 - **Ollama 🦙** : construit via `Dockerfile.ollama`, ce service télécharge le modèle indiqué par `OLLAMA_TEXT_MODEL` au démarrage grâce au script `entrypoint_ollama.sh`.
 - **Stable Diffusion 🎨** : le service `stablediffusion` gère la génération d'images et conserve les fichiers dans les volumes `sd_models` et `sd_outputs`.
 - **Docker Compose 🐳** : le fichier `docker-compose.yml` orchestre tous les conteneurs et le `Makefile` fournit les raccourcis `make up` et `make down`.

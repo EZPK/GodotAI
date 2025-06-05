@@ -4,7 +4,7 @@ import sys
 from unittest.mock import Mock
 
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
-from backend.app.backend_server import app
+from backend.app.main import app
 import uuid
 
 client = TestClient(app)
@@ -37,7 +37,7 @@ def test_text_endpoint(monkeypatch):
         assert json["prompt"] == "hi"
         return mock_resp
 
-    monkeypatch.setattr("backend.app.backend_server.requests.post", fake_post)
+    monkeypatch.setattr("backend.app.main.requests.post", fake_post)
     resp = client.post("/text", json={"prompt": "hi"})
     assert resp.status_code == 200
     assert resp.json()["response"] == "ok"
@@ -49,7 +49,7 @@ def test_image_endpoint(monkeypatch):
         return {"image": "imgdata"}
 
     monkeypatch.setattr(
-        "backend.app.backend_server.ollama_generate_image", fake_generate
+        "backend.app.main.ollama_generate_image", fake_generate
     )
     resp = client.post("/image", json={"prompt": "draw"})
     assert resp.status_code == 200

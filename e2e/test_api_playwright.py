@@ -6,7 +6,7 @@ import sys
 import uvicorn
 
 sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
-from backend.app.backend_server import app
+from backend.app.main import app
 from playwright.sync_api import sync_playwright
 
 
