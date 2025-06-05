@@ -5,8 +5,9 @@ Cette page explore plus en profondeur les modules Python du dossier `backend/app
 Le backend utilise **FastAPI** pour exposer plusieurs routes appelées par le
 jeu Godot. Lorsqu'une action du joueur est reçue, elle est envoyée à **Ollama**
 pour produire une réponse puis, si besoin, à **Stable Diffusion** pour
-générer une illustration. Les échanges et l'état de la partie sont stockés dans
-SQLite via SQLAlchemy.
+générer une illustration. Les échanges structurés sont stockés dans SQLite ou
+PostgreSQL via SQLAlchemy, tandis que les réponses brutes du modèle sont
+archivées dans MongoDB.
 
 ## backend_server.py
 Ce fichier instancie FastAPI et expose les routes principales du projet. Il gère
@@ -20,10 +21,11 @@ de décrire les outils et ressources mis à disposition par le backend et gère
 les requêtes JSON-RPC entrantes.
 
 ## models.py et database.py
-La persistance s'appuie sur SQLAlchemy et une base SQLite. Les modèles
-`User`, `Session`, `Message`, `PlayerState` et `Inventory` décrivent la structure
-principale des données du jeu. Le fichier `database.py` fournit la fonction
-`get_db` utilisée par les dépendances FastAPI.
+La persistance s'appuie sur SQLAlchemy avec une base SQLite par défaut ou
+PostgreSQL si configuré. Les modèles `User`, `Session`, `Message`,
+`PlayerState` et `Inventory` décrivent la structure principale des données du
+jeu. Les réponses JSON complètes sont sauvegardées dans MongoDB grâce au module
+`mongo_database.py`.
 
 ## embedding_context.py
 `EmbeddingContext` conserve en mémoire les derniers messages d'une session afin

@@ -1,7 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://fmp7w11iml4v"]
+[gd_scene load_steps=3 format=3 uid="uid://fmp7w11iml4v"]
 
 [ext_resource type="Script" uid="uid://cpdxyombccwmh" path="res://scripts/ChatUI.gd" id="1_td7ck"]
 
+[ext_resource type="Script" uid="uid://draggablepanel" path="res://scripts/DraggablePanel.gd" id="2_dgpnl"]
 [node name="Main" type="Control"]
 custom_minimum_size = Vector2(1400, 900)
 layout_mode = 3
@@ -23,6 +24,7 @@ size_flags_vertical = 3
 columns = 2
 
 [node name="TopLeft" type="Panel" parent="GridContainer"]
+script = ExtResource("2_dgpnl")
 custom_minimum_size = Vector2(600, 400)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -34,6 +36,7 @@ offset_right = 1.0
 offset_bottom = 23.0
 
 [node name="TopRight" type="Panel" parent="GridContainer"]
+script = ExtResource("2_dgpnl")
 custom_minimum_size = Vector2(600, 400)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -46,6 +49,7 @@ offset_right = -701.0
 offset_bottom = 23.0
 
 [node name="BottomLeft" type="Panel" parent="GridContainer"]
+script = ExtResource("2_dgpnl")
 custom_minimum_size = Vector2(600, 400)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -88,6 +92,7 @@ size_flags_horizontal = 3
 text = "Envoyer"
 
 [node name="BottomRight" type="Panel" parent="GridContainer"]
+script = ExtResource("2_dgpnl")
 custom_minimum_size = Vector2(600, 400)
 layout_mode = 2
 size_flags_horizontal = 3

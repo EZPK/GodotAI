@@ -8,10 +8,12 @@ import base64
 import os
 from fastapi.responses import Response
 from sqlalchemy.orm import Session
+from datetime import datetime
 
 from .embedding_context import EmbeddingContext
 from .img_gen_server import generate_image as ollama_generate_image
 from .mcp import router as mcp_router
+from .mongo_database import get_mongo_db
 
 from . import models
 from .database import Base, engine, get_db
@@ -219,6 +221,16 @@ def generate_text(req: GenerateTextRequest, db: Session = Depends(get_db)):
         ai_text = data.get("response", "")
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+
+    mongo_db = get_mongo_db()
+    mongo_db.llm_logs.insert_one(
+        {
+            "session_id": req.session_id,
+            "prompt": req.action,
+            "response": data,
+            "timestamp": datetime.utcnow(),
+        }
+    )
 
     ai_msg = models.Message(session_id=req.session_id, sender="AI", text=ai_text)
     db.add(ai_msg)

@@ -11,7 +11,11 @@ Le fichier `.env` centralise la configuration de l'ensemble des services. Voici 
 | `OLLAMA_IMAGE_HOST` | `stablediffusion` | Hôte pour la génération d'images. |
 | `OLLAMA_IMAGE_PORT` | `7860` | Port du service d'images. |
 | `GODOT_PATH` | `./Godot_v4.x86_64` | Exécutable Godot utilisé par le `Makefile`. Si absent, `godot4` est essayé. |
-| `DATABASE_URL` | `sqlite:///./data/game.db` | Chemin de la base de données. |
+| `DATABASE_URL` | `sqlite:///./data/game.db` | Chaîne de connexion SQL. |
+| `POSTGRES_USER` | `postgres` | Utilisateur de la base PostgreSQL. |
+| `POSTGRES_PASSWORD` | `postgres` | Mot de passe PostgreSQL. |
+| `POSTGRES_DB` | `godotai` | Nom de la base PostgreSQL. |
+| `MONGO_URL` | `mongodb://mongo:27017` | Adresse de la base MongoDB. |
 | `NVIDIA_VISIBLE_DEVICES` | _(vide)_ | Active l'accélération GPU dans les conteneurs. |
 
 Ces valeurs sont chargées automatiquement par Docker Compose et le `Makefile`.

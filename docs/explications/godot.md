@@ -3,6 +3,7 @@
 Godot est un moteur de jeu libre et léger. Dans ce projet, il fournit l'interface
 graphique du mini-jeu et communique avec l'API Python.
 Les scripts GDScript appellent l'endpoint `/generate-text` pour afficher les réponses du modèle.
+Chaque zone de l'écran est un panneau pouvant être déplacé grâce au script `DraggablePanel.gd`.
 
 Quand le joueur effectue une action, ces scripts envoient la requête à FastAPI
 qui renvoie le texte généré par Ollama.
