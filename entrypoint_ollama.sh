@@ -4,6 +4,10 @@ set -e
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 [ -f "$SCRIPT_DIR/.env" ] && . "$SCRIPT_DIR/.env"
 
+# Ensure Ollama binds to an accessible interface
+HOST=${OLLAMA_HOST:-0.0.0.0}
+PORT=${OLLAMA_PORT:-11434}
+
 MODELS=""
 [ -n "$OLLAMA_TEXT_MODEL" ] && MODELS="$MODELS $OLLAMA_TEXT_MODEL"
 # [ -n "$STABLEDIFFUSION_MODEL" ] && MODELS="$MODELS $STABLEDIFFUSION_MODEL"
@@ -45,11 +49,12 @@ if [ "$1" = "--download" ]; then
 fi
 
 # Sinon on agit comme entrypoint du conteneur
-/bin/ollama serve &
+echo "Launching Ollama on ${HOST}:${PORT}..."
+/bin/ollama serve --host "$HOST" --port "$PORT" &
 OLLAMA_PID=$!
 
 echo "Waiting for Ollama daemon to be ready..."
-until curl -s http://localhost:11434/api/tags > /dev/null; do
+until curl -s "http://$HOST:$PORT/api/tags" > /dev/null; do
   sleep 1
 done
 
