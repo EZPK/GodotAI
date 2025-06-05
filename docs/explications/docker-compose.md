@@ -9,6 +9,10 @@ flowchart LR
     DC[Docker Compose] --> F(fastapi)
     DC --> O(ollama)
     DC --> SD(stablediffusion)
+    click DC "docker-compose.md" "Voir Docker Compose"
+    click F "fastapi.md" "Voir la page FastAPI"
+    click O "ollama.md" "Voir la page Ollama"
+    click SD "stable-diffusion.md" "Voir la page Stable Diffusion"
 ```
 
 Pour simplifier la vie du développeur, toutes les commandes utiles sont regroupées dans le `Makefile`.

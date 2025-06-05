@@ -17,6 +17,8 @@ sequenceDiagram
     G->>A: requête
     A-->>G: réponse
     G-->>P: affichage
+    click G "godot.md" "Voir la page Godot"
+    click A "fastapi.md" "Voir la page FastAPI"
 ```
 
 Extrait de la fonction d'envoi d'un message au modèle :

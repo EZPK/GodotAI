@@ -13,6 +13,10 @@ flowchart TD
     A --> O[Ollama 🦙]
     A --> SD[Stable Diffusion 🎨]
     A --> DB[(SQLite 📂)]
+    click G "godot.md" "Voir la page Godot"
+    click A "fastapi.md" "Voir la page FastAPI"
+    click O "ollama.md" "Voir la page Ollama"
+    click SD "stable-diffusion.md" "Voir la page Stable Diffusion"
 ```
 
 ## Rôle des composants

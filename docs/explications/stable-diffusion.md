@@ -16,6 +16,8 @@ FastAPI lui transmet vos invites afin d'illustrer certaines scènes du jeu.
 flowchart LR
     A(FastAPI) -- prompt --> SD[Stable Diffusion]
     SD -- image --> A
+    click A "fastapi.md" "Voir la page FastAPI"
+    click SD "stable-diffusion.md" "Voir la page Stable Diffusion"
 ```
 
 Vous pouvez générer une image directement via l'API :

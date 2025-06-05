@@ -9,6 +9,7 @@ La configuration active également le plugin [Mermaid](https://github.com/fralau
 flowchart LR
     M[Markdown] --> MK(MkDocs)
     MK --> HTML[Site statique]
+    click MK "mkdocs.md" "Voir la page MkDocs"
 ```
 
 Pour tester en local :
