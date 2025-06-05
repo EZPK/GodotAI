@@ -4,6 +4,7 @@ theme:
   name: material
 plugins:
   - search
+  - mermaid2
 markdown_extensions:
   - pymdownx.superfences:
       custom_fences:
