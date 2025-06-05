@@ -1,4 +1,4 @@
-extends Node
+extends SceneTree
 
 # Label d'affichage de la réponse dans l'UI
 @onready var response_label: Label = $VBoxContainer/Label

@@ -1,5 +1,8 @@
 # Makefile 🧙‍♂️ pour gérer le projet RPG LLM Godot avec activation automatique du venv
 
+# Empêche make d'afficher "on entre/quitte le répertoire"
+MAKEFLAGS += --no-print-directory
+
 .DEFAULT_GOAL := help
 
 ifneq (,$(wildcard .env))
@@ -15,11 +18,13 @@ PYTHON := $(VENV_DIR)/bin/python
 PIP := $(VENV_DIR)/bin/pip
 
 help: ## 📘 Affiche cette aide
-	@echo "\n\033[1;33m🛠 Commandes disponibles :"
-	@grep -h -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m🔹 %-20s %s\n", $$1, $$2}'
+	@echo "🛠 Commandes disponibles :"
+	@grep -h -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "🔹 %-20s %s\n", $$1, $$2}'
 
 up: ## 👍 Lancer tous les services Docker (Ollama, Stable Diffusion et FastAPI)
-	docker compose up -d
+	@echo "🚀 Starting Docker services in background..."
+	@docker compose up -d >/dev/null &
+	@echo " 🪄 Pour vérifier si un modèle est en train d'être téléchargé, vous pouvez utiliser `docker compose logs -f ollama`"
 
 down: ## 🛑 Arrêter les services Docker
 	docker compose down
@@ -47,7 +52,7 @@ clean: ## 🧹 Supprime fichiers temporaires / cache
 
 cleanall: clean ## 💥 Supprime caches, volumes Docker et le venv
 	@echo "🗑 Suppression des volumes Docker..."
-	@MAKEFLAGS=--no-print-directory docker compose down -v
+	docker compose down -v
 	@echo "🗑 Suppression du venv Python..."
 	@if [ -n "$$VIRTUAL_ENV" ]; then deactivate; fi; \
 	rm -rf $(VENV_DIR)
@@ -57,6 +62,7 @@ install: ## 📦 Crée le venv et installe les dépendances
 	@echo "📦 Installing Python dependencies..."
 	@$(PIP) install --upgrade pip -q
 	@$(PIP) install -q -r backend/requirements.txt
+	@echo "✅ Pour activer le venv : source .venv/bin/activate"
 
 godot_api_call: ## 🧠 Appel API Godot en mode headless
 	@echo "🧠  Lancement d’un appel API Godot en mode headless..."
@@ -70,7 +76,6 @@ generate-diagrams: ## 🖼️ Convertit les fichiers D2 en SVG
 	else \
 		echo "Warning: d2 not installed; skipping diagram generation."; \
 	fi
-
 
 docs-serve: install generate-diagrams ## 📚 Lance le serveur MkDocs en local
 	@$(PYTHON) -m mkdocs serve
@@ -104,3 +109,6 @@ up-models: ## 🚢 Lance la stack avec MODEL_TEXT et MODEL_IMAGE
 	printf 'MODEL_TEXT: %s\n' "$$TEXT"; \
 	printf 'MODEL_IMAGE: %s\n' "$$IMAGE"; \
 	OLLAMA_TEXT_MODEL=$$TEXT OLLAMA_IMAGE_MODEL=$$IMAGE docker compose up -d
+
+modeldl:
+	@docker logs -f ollama | grep --line-buffered -E 'Pulling|[0-9]{1,3}%'
