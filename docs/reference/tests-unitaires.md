@@ -9,6 +9,26 @@ Pour exécuter l'ensemble des tests :
 pytest -q
 ```
 
+Exemple de test issu du fichier `test_root.py` :
+
+```python
+from fastapi.testclient import TestClient
+from backend.app.backend_server import app
+
+client = TestClient(app)
+
+def test_read_root():
+    resp = client.get("/")
+    assert resp.status_code == 200
+    assert resp.json()["message"] == "Backend FastAPI fonctionne !"
+```
+
+Pour cibler un seul test pendant le développement :
+
+```bash
+pytest backend/tests/test_root.py::test_read_root -q
+```
+
 Les dépendances nécessaires sont listées dans `backend/requirements.txt`.
 Avant de lancer les tests pour la première fois, installez-les avec :
 

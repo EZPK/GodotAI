@@ -19,6 +19,18 @@ pytest e2e
 Le script démarre brièvement le serveur FastAPI sur un port local puis effectue
 un appel HTTP via l'API `request` de Playwright.
 
+Extrait du fichier `test_api_playwright.py` :
+
+```python
+from playwright.sync_api import sync_playwright
+
+def test_root_endpoint():
+    with sync_playwright() as p:
+        request = p.request.new_context(base_url="http://127.0.0.1:8002")
+        resp = request.get("/")
+        assert resp.status == 200
+```
+
 ## Voir aussi
 
 - [Tests unitaires](tests-unitaires.md)
