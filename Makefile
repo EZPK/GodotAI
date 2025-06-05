@@ -66,7 +66,7 @@ install: ## 📦 Crée le venv et installe les dépendances
 
 godot_api_call: ## 🧠 Appel API Godot en mode headless
 	@echo "🧠  Lancement d’un appel API Godot en mode headless..."
-	$(GODOT_PATH) --headless --path godot/ --script scripts/ChatUI.gd
+	$(GODOT_PATH) --headless --path godot/ --scene scenes/ChatScene.tscn
 
 generate-diagrams: ## 🖼️ Convertit les fichiers D2 en SVG
 	@if command -v d2 >/dev/null 2>&1; then \
