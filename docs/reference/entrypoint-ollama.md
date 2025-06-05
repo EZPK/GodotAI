@@ -10,8 +10,7 @@ Ce script s'exécute lorsque le conteneur Ollama démarre. Son rôle est de pré
 
 Grâce à cette séquence, on dispose d'un service prêt à répondre dès le premier `docker compose up`.
 
-Le même script peut être invoqué avec `--download` pour pré-télécharger les modèles avant le démarrage des services.
-Ce processus complet se déclenche automatiquement lors d'un `make up`.
+Ce script se charge automatiquement de télécharger les modèles lors du démarrage du conteneur.
 
 ## Voir aussi
 

@@ -28,7 +28,7 @@ func _send_to_llm(message: String):
 
 Pour lancer l'éditeur :
 ```bash
-make run-godot
+make godot
 ```
 
 ## Voir aussi

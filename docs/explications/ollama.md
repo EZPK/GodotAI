@@ -2,11 +2,7 @@
 
 Ollama lance le modèle de langage à l'intérieur d'un conteneur Docker. Il télécharge
 le modèle choisi lors du premier démarrage (par exemple Mistral ou Llama 3).
-Ce téléchargement s'effectue automatiquement lorsque vous exécutez `make up` et
-le modèle reste ensuite disponible localement pour les démarrages suivants. La
-commande appelle d'abord `entrypoint_ollama.sh --download`,
-qui exécute `ollama pull` sur les modèles déclarés dans `.env` s'ils sont
-absents.
+Lorsque vous exécutez `make up`, le conteneur lance le script `entrypoint_ollama.sh` qui vérifie la présence des modèles et les télécharge automatiquement s'ils sont absents.
 
 Le processus est piloté par le script `entrypoint_ollama.sh` :
 1. Il démarre `ollama serve` en arrière-plan et attend que l'API réponde.

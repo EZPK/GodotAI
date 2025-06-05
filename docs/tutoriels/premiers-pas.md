@@ -40,7 +40,7 @@ Suivez les étapes ci-dessous dans l'ordre pour déployer la stack complète.
    Pour plus de détails, consultez [test_services.py](../reference/test-services.md).
 6. (Optionnel) Lancez Godot :
    ```bash
-   make run-godot
+   make godot
    ```
 7. (Optionnel) Exécutez les tests unitaires et E2E :
    ```bash
