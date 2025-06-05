@@ -19,6 +19,7 @@ Pour lancer l'API seule en local :
 ```bash
 make run-api
 ```
+La commande affiche à présent un simple message 💡 indiquant que FastAPI démarre, puis conserve les journaux verbeux en niveau *warning*.
 
 ## Voir aussi
 
