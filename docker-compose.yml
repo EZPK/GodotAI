@@ -39,7 +39,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.stablediffusion
-    image: universonic/stable-diffusion-webui:full
     container_name: stablediffusion
     ports:
       - "8080:8080"

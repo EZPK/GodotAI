@@ -6,9 +6,11 @@ RUN apt-get update && apt-get install -y curl pciutils
 # On ne définit pas le modèle ici, il sera passé via la variable d'environnement OLLAMA_TEXT_MODEL dans docker-compose.yml
 
 # Copie le script d'entrée qui gère le téléchargement auto
-COPY entrypoint_ollama.sh /entrypoint_ollama.sh
-RUN chmod +x /entrypoint_ollama.sh
+# COPY entrypoint_ollama.sh /entrypoint_ollama.sh
+# RUN chmod +x /entrypoint_ollama.sh
 
 ENV OLLAMA_LLM_LIBRARY=cuda
 
-ENTRYPOINT ["/entrypoint_ollama.sh"]
+RUN ollama pull ${OLLAMA_TEXT_MODEL}
+
+# ENTRYPOINT ["/entrypoint_ollama.sh"]
