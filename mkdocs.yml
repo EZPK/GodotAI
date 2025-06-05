@@ -10,6 +10,8 @@ plugins:
         securityLevel: loose
 markdown_extensions:
   - pymdownx.superfences
+extra_javascript:
+  - mermaid-config.js
 nav:
   - Accueil: index.md
   - Tutoriels:

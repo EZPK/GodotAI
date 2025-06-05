@@ -1,0 +1,1 @@
+mermaid.initialize({ securityLevel: 'loose' });
