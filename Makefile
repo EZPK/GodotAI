@@ -18,7 +18,7 @@ help: ## 📘 Affiche cette aide
 	@echo "\n\033[1;33m🛠 Commandes disponibles :\033[0m"
 	@grep -h -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m🔹 %-20s\033[0m %s\n", $$1, $$2}'
 
-up: ## 🚢 Lancer tous les services Docker (Ollama, Stable Diffusion et FastAPI)
+up: ## 👍 Lancer tous les services Docker (Ollama, Stable Diffusion et FastAPI)
 	docker compose up -d
 
 down: ## 🛑 Arrêter les services Docker
