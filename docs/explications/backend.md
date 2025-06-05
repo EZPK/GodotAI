@@ -9,7 +9,7 @@ générer une illustration. Les échanges structurés sont stockés dans SQLite 
 PostgreSQL via SQLAlchemy, tandis que les réponses brutes du modèle sont
 archivées dans MongoDB.
 
-## backend_server.py
+## main.py
 Ce fichier instancie FastAPI et expose les routes principales du projet. Il gère
 la génération de texte avec Ollama et la création d'images via Stable Diffusion.
 Il inclut également le routeur `mcp.py` qui implémente un petit protocole
@@ -22,19 +22,19 @@ les requêtes JSON-RPC entrantes.
 
 ## models.py et database.py
 La persistance s'appuie sur SQLAlchemy avec une base SQLite par défaut ou
-PostgreSQL si configuré. Les modèles `User`, `Session`, `Message`,
-`PlayerState` et `Inventory` décrivent la structure principale des données du
-jeu. Les réponses JSON complètes sont sauvegardées dans MongoDB grâce au module
+PostgreSQL si configuré. Les modèles `User`, `Session` et `Message` décrivent la
+structure principale des données du jeu. Les réponses JSON complètes sont
+sauvegardées dans MongoDB grâce au module
 `mongo_database.py`.
 
 ## embedding_context.py
 `EmbeddingContext` conserve en mémoire les derniers messages d'une session afin
 de fournir un contexte lors des échanges avec le modèle de langage.
 
-## img_gen_server.py
-Ce module regroupe les appels HTTP nécessaires pour demander à Ollama la
-création d'images. Il est invoqué par le serveur lorsqu'une scène du jeu doit
-être illustrée.
+## ollama_client.py
+Ce module regroupe les appels HTTP nécessaires pour interroger Ollama pour le
+texte et les images. Il est invoqué par le serveur lorsqu'une scène du jeu doit
+être illustrée ou lorsqu'une réponse textuelle est nécessaire.
 
 ## config.py
 Toutes les variables de configuration (hôtes, ports, nom des modèles Ollama)

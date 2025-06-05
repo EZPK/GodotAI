@@ -24,7 +24,7 @@ make up
              |     - télécharge les poids si nécessaire
              |
              `-> fastapi
-                   - exécute uvicorn avec backend_server
+                   - exécute uvicorn avec main
 ```
 
 ## Détail des étapes
@@ -38,7 +38,7 @@ du fichier `.env` pour choisir les ports et les modèles.
 4. **Lancement de `stablediffusion`** : l'image prévoit un script similaire pour récupérer les poids
 avant de démarrer la WebUI.
 5. **Lancement de `fastapi`** : une fois les services précédents disponibles, Uvicorn
-exécute `backend.app.backend_server:app`.
+exécute `backend.app.main:app`.
 6. **Application prête** : Godot ou tout autre client peut désormais appeler l'API.
 
 ## Voir aussi

@@ -13,7 +13,7 @@ Exemple de test issu du fichier `test_root.py` :
 
 ```python
 from fastapi.testclient import TestClient
-from backend.app.backend_server import app
+from backend.app.main import app
 
 client = TestClient(app)
 

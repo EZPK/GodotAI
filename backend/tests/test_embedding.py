@@ -4,7 +4,7 @@ import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 
 from backend.app.embedding_context import EmbeddingContext
-from backend.app.img_gen_server import generate_image
+from backend.app.ollama_client import generate_image
 
 from unittest.mock import Mock
 
@@ -31,6 +31,6 @@ def test_generate_image(monkeypatch):
         assert json["prompt"] == "a prompt"
         return mock_response
 
-    monkeypatch.setattr("backend.app.img_gen_server.requests.post", fake_post)
+    monkeypatch.setattr("backend.app.ollama_client.requests.post", fake_post)
     result = generate_image("a prompt")
     assert result == {"image": "data"}
