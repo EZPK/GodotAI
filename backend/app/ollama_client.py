@@ -7,7 +7,9 @@ import requests
 from .config import settings
 
 TEXT_BASE_URL = f"http://{settings.ollama_text_host}:{settings.ollama_text_port}/api"
-IMAGE_BASE_URL = f"http://{settings.STABLEDIFFUSION_HOST}:{settings.STABLEDIFFUSION_PORT}/api"
+IMAGE_BASE_URL = (
+    f"http://{settings.STABLEDIFFUSION_HOST}:{settings.STABLEDIFFUSION_PORT}/api"
+)
 
 
 def generate_text(prompt: str) -> dict:
