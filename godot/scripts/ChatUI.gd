@@ -43,7 +43,7 @@ func _on_send_pressed(_event: Variant = null):
 	_send_to_llm(user_message)
 
 func _send_to_llm(message: String):
-	var url := "http://localhost:11434/api/generate"
+	var url := "http://localhost:8000/api/generate"
 	var body := {
 		"model": "god:latest",
 		"prompt": message,

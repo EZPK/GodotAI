@@ -82,12 +82,12 @@ OLLAMA_IMAGE_BASE_URL = f"http://{STABLEDIFFUSION_HOST}:{STABLEDIFFUSION_PORT}/a
 
 
 # Endpoint pour générer du texte via Ollama
-@app.get("/gen_text")
+@app.get("/txt")
 def gen_text_get():
     return {"text": "hello world"}
 
 
-@app.post("/gen_text")
+@app.post("/txt")
 def gen_text(req: ContextRequest):
     try:
         return ollama_generate_text(req.context)
@@ -96,7 +96,7 @@ def gen_text(req: ContextRequest):
 
 
 # Endpoint pour générer une image via Ollama
-@app.get("/gen_image")
+@app.get("/img")
 def gen_image_get():
     # Chemin unique, car utils est monté dans /app/utils dans le conteneur Docker
     image_path = "/app/utils/img/image.png"
@@ -110,7 +110,7 @@ def gen_image_get():
         )
 
 
-@app.post("/gen_image")
+@app.post("/img")
 def gen_image(req: ImageRequest):
     try:
         return ollama_generate_image(req.prompt)
@@ -121,7 +121,7 @@ def gen_image(req: ImageRequest):
 # --- Simple endpoints for direct model access --- #
 
 
-@app.post("/text")
+@app.post("/txt")
 def text_model(req: PromptRequest):
     """Generate text using the Ollama container."""
     try:
@@ -130,7 +130,7 @@ def text_model(req: PromptRequest):
         raise HTTPException(status_code=500, detail=str(e))
 
 
-@app.post("/image")
+@app.post("/img")
 def image_model(req: PromptRequest):
     """Generate an image using the Stable Diffusion container."""
     try:
