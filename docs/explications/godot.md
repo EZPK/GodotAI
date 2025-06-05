@@ -34,7 +34,7 @@ func _send_to_llm(message: String):
     var headers := ["Content-Type: application/json"]
     var err := http.request(url, headers, HTTPClient.METHOD_POST, JSON.stringify(body))
     if err != OK:
-        _append_message("Assistant", "[Erreur r\u00e9seau]")
+        _append_message("Assistant", "[Erreur réseau]")
 ```
 
 Pour lancer l'éditeur :

@@ -2,17 +2,17 @@
 
 Cette page recense les erreurs les plus courantes et comment les résoudre.
 
-## Les conteneurs ne d\u00e9marrent pas
+## Les conteneurs ne démarrent pas
 
-- Assurez-vous que Docker est en cours d'ex\u00e9cution.
-- Recr\u00e9ez les images :
+- Assurez-vous que Docker est en cours d'exécution.
+- Recréez les images :
   ```bash
   make rebuild
   ```
 
 ## L'API reste inaccessible
 
-- Utilisez le script de v\u00e9rification :
+- Utilisez le script de vérification :
   ```bash
   .venv/bin/python utils/test_services.py
   ```
@@ -21,25 +21,25 @@ Cette page recense les erreurs les plus courantes et comment les résoudre.
   docker compose logs -f
   ```
 
-## Erreurs de d\u00e9pendances Python
+## Erreurs de dépendances Python
 
-- (R\u00e9)installez les paquets :
+- (Ré)installez les paquets :
   ```bash
   make install
   ```
 
-## Probl\u00e8mes de documentation
+## Problèmes de documentation
 
-- Testez la g\u00e9n\u00e9ration :
+- Testez la génération :
   ```bash
   mkdocs build
   ```
-- V\u00e9rifiez le style :
+- Vérifiez le style :
   ```bash
   vale docs/
   ```
 
-## Mod\u00e8les manquants ou corrompus
+## Modèles manquants ou corrompus
 
 - Purgez les volumes et relancez :
   ```bash
@@ -47,9 +47,9 @@ Cette page recense les erreurs les plus courantes et comment les résoudre.
   make up
   ```
 
-## Tout v\u00e9rifier d'un coup
+## Tout vérifier d'un coup
 
-- Lancez toutes les v\u00e9rifications :
+- Lancez toutes les vérifications :
   ```bash
   make universe
   ```
