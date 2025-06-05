@@ -44,3 +44,8 @@ proviennent de ce fichier. Les valeurs peuvent être surchargées via un fichier
 En résumé, le backend combine FastAPI, SQLAlchemy et plusieurs services externes
 pour orchestrer la partie narrative du mini-jeu Godot. L'ensemble est démarré
 par Docker Compose et reste facilement extensible.
+
+## Voir aussi
+
+- [Référence de l'API](../reference/api-backend.md)
+- [Explications sur FastAPI](fastapi.md)

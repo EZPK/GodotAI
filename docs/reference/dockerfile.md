@@ -11,3 +11,7 @@ CMD ["uvicorn", "backend.app.backend_server:app", "--host", "0.0.0.0", "--port",
 Ce service est ensuite démarré par `docker-compose.yml` sous le nom **fastapi**.
 
 Rebâtissez cette image et relancez FastAPI avec `make rebuild`.
+
+## Voir aussi
+
+- [`docker-compose.yml`](docker-compose-yml.md)

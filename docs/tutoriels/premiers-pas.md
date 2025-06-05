@@ -29,6 +29,7 @@ Suivez les étapes ci-dessous dans l'ordre pour déployer la stack complète.
    .venv/bin/python utils/test_services.py
    ```
    Ce script s'assure que chaque service est joignable.
+   Pour plus de détails, consultez [test_services.py](../reference/test-services.md).
 5. (Optionnel) Lancez Godot :
    ```bash
    make run-godot
@@ -46,3 +47,4 @@ Suivez les étapes ci-dessous dans l'ordre pour déployer la stack complète.
 Tous les outils mentionnés disposent de liens vers leur site officiel et leur documentation sur les pages correspondantes.
 
 Une fois ces étapes terminées, vous pouvez explorer les guides pratiques pour personnaliser le projet.
+[Accéder aux guides](../guides/index.md)

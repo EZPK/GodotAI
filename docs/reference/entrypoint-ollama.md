@@ -11,3 +11,8 @@ Ce script s'exécute lorsque le conteneur Ollama démarre. Son rôle est de pré
 Grâce à cette séquence, on dispose d'un service prêt à répondre dès le premier `docker compose up`.
 
 Ce processus complet se déclenche automatiquement lors d'un `make up`.
+
+## Voir aussi
+
+- [Dockerfile.ollama](dockerfile-ollama.md)
+- [Modelfile](modelfile.md)

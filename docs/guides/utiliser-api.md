@@ -9,3 +9,8 @@ curl -X POST http://localhost:8000/gen_text \
      -d '{"context": "Bonjour"}'
 ```
 La réponse est un objet JSON contenant le texte généré.
+
+## Voir aussi
+
+- [Endpoints détaillés](../reference/api-backend.md)
+- [Explications sur FastAPI](../explications/fastapi.md)

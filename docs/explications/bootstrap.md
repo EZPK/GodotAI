@@ -40,3 +40,7 @@ avant de démarrer la WebUI.
 5. **Lancement de `fastapi`** : une fois les services précédents disponibles, Uvicorn
 exécute `backend.app.backend_server:app`.
 6. **Application prête** : Godot ou tout autre client peut désormais appeler l'API.
+
+## Voir aussi
+
+- [Tutoriel de démarrage](../tutoriels/premiers-pas.md)

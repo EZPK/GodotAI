@@ -28,6 +28,11 @@ def ping():
     return {"message": "pong"}
 ```
 
+## Voir aussi
+
+- [Référence de l'API](../reference/api-backend.md)
+- [Guide d'utilisation de l'API](../guides/utiliser-api.md)
+
 ## Ressources
 - [Site officiel](https://fastapi.tiangolo.com/)
 - [Documentation](https://fastapi.tiangolo.com/)

@@ -10,9 +10,13 @@ Principales variables d'environnement :
 
 Fichiers importants :
 
-- `docker-compose.yml` orchestre les services.
-- `Modelfile` décrit le modèle et le prompt système.
-- `Dockerfile.ollama` construit l'image Ollama personnalisée.
+- [`docker-compose.yml`](docker-compose-yml.md) orchestre les services.
+- [`Modelfile`](modelfile.md) décrit le modèle et le prompt système.
+- [`Dockerfile.ollama`](dockerfile-ollama.md) construit l'image Ollama personnalisée.
 
 
 Après toute modification, redémarrez la stack via `make down` puis `make up` pour appliquer les nouvelles valeurs.
+
+## Voir aussi
+
+- [Changer le modèle LLM](../guides/changer-modele.md)

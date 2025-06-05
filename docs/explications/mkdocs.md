@@ -16,6 +16,11 @@ make install
 make docs-serve
 ```
 
+## Voir aussi
+
+- [Fichier `mkdocs.yml`](../reference/mkdocs-yml.md)
+- [Contrôler la rédaction avec Vale](../guides/qualite-redaction-vale.md)
+
 ## Ressources
 - [Site officiel](https://www.mkdocs.org/)
 - [Documentation](https://www.mkdocs.org/user-guide/)

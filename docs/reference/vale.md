@@ -8,4 +8,8 @@ Contenu principal :
 - `BasedOnStyles = Vale` : conserve le jeu de règles standard.
 - `Packages = CoolStyle` : applique nos règles supplémentaires.
 
-Ainsi, `.vale.ini` permet de vérifier rapidement les textes tout en profitant de règles adaptées au projet.
+Ainsi, `.vale.ini` permet de vérifier rapidement les textes sans configuration complexe.
+
+## Voir aussi
+
+- [Guide d'utilisation de Vale](../guides/qualite-redaction-vale.md)

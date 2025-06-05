@@ -31,6 +31,10 @@ Lancez Vale sur le dossier `docs` pour vérifier tous les articles :
 vale docs/
 ```
 
+## Voir aussi
+
+- [Fichier `.vale.ini` détaillé](../reference/vale.md)
+
 ## Bonnes pratiques
 
 - Rédigez des phrases courtes et directes.

@@ -23,6 +23,11 @@ Pour lancer l'éditeur :
 make run-godot
 ```
 
+## Voir aussi
+
+- [Utiliser l'API REST](../guides/utiliser-api.md)
+- [Architecture globale](architecture.md)
+
 ## Ressources
 - [Site officiel](https://godotengine.org/)
 - [Documentation](https://docs.godotengine.org/en/stable/)

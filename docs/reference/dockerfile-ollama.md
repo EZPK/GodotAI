@@ -17,3 +17,8 @@ L’entrée `ENTRYPOINT` lance ce script pour s’assurer que les modèles préc
 Ce conteneur se combine ensuite avec le service FastAPI via `docker compose up`.
 
 Lancez la stack et la construction de l'image avec `make up`.
+
+## Voir aussi
+
+- [Script `entrypoint_ollama.sh`](entrypoint-ollama.md)
+- [Fichier `Modelfile`](modelfile.md)

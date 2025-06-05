@@ -12,3 +12,8 @@ Le `Makefile` centralise plusieurs commandes utiles :
 - `make universe` exécute tous les tests et génère `rapports/universe.log`.
 
 En résumé, il simplifie le quotidien en évitant de longues lignes de commande.
+
+## Voir aussi
+
+- [Fichier `docker-compose.yml`](docker-compose-yml.md)
+- [Tests unitaires](tests-unitaires.md)

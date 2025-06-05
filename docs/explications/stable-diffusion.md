@@ -24,6 +24,11 @@ curl -X POST http://localhost:8000/generate-image \
   -d '{"prompt": "un village médiéval"}' -o output.png
 ```
 
+## Voir aussi
+
+- [Configuration des services](../reference/docker-compose-yml.md)
+- [Guide d'utilisation de l'API](../guides/utiliser-api.md)
+
 ## Ressources
 - [Site officiel](https://stability.ai/)
 - [Documentation](https://github.com/Stability-AI/stablediffusion)

@@ -19,6 +19,11 @@ Le fichier `Modelfile` à la racine du dépôt indique quel modèle charger. Fas
 lui envoie les requêtes de l'utilisateur pour obtenir une réponse adaptée à la
 partie en cours.
 
+## Voir aussi
+
+- [Fichier `Modelfile`](../reference/modelfile.md)
+- [Changer de modèle](../guides/changer-modele.md)
+
 ```mermaid
 flowchart LR
     A(FastAPI) -- requête --> O(Ollama)
