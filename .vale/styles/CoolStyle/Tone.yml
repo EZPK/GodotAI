@@ -1,0 +1,9 @@
+extends: substitution
+message: "Préférez '%s' à '%s' pour un ton plus direct."
+level: suggestion
+ignorecase: true
+swap:
+  "il est recommandé de": "tu devrais"
+  "il est nécessaire de": "tu dois"
+  "nous allons": "on va"
+  "il convient de": "tu peux"
