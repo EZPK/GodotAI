@@ -12,3 +12,10 @@
 | GET | `/sessions/{id}` | Récupère une session |
 | POST | `/generate-text` | Génère une réponse dans la session |
 | POST | `/generate-image` | Génère une image et l'enregistre |
+
+
+Pour lancer l'API seule en local :
+
+```bash
+make run-api
+```
