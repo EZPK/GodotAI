@@ -78,7 +78,7 @@ L’agent doit appliquer rigoureusement les instructions suivantes. Ces directiv
 
     Décris la pile technique et explique le code en profondeur.
 
-    Chaque article doit inclure une section **FAQ** anticipant les questions pertinentes ou délicates que les utilisateurs pourraient se poser, avec des réponses claires et concises.
+    Ajoute une section **FAQ** uniquement lorsque c'est pertinent. Elle doit contenir des questions réellement intéressantes pour les lecteurs, sans texte de remplissage ni questions évidentes.
 
     Valide la génération du site documentaire avec :
 
