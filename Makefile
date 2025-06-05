@@ -1,6 +1,9 @@
 # Makefile 🧙‍♂️ pour gérer le projet RPG LLM Godot avec activation automatique du venv
 
-	.DEFAULT_GOAL := help
+.DEFAULT_GOAL := help
+
+# Avoid "Entering directory" messages during recursive make invocations
+MAKEFLAGS += --no-print-directory
 
 ifneq (,$(wildcard .env))
 include .env
