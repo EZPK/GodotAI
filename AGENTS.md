@@ -1,105 +1,108 @@
-AGENTS.md – Guidelines pour l’Agent
+# AGENTS.md – Directives pour l’Agent Codex
 
 Ce dépôt contient :
 
-    Un backend FastAPI géré par Docker,
+- Un backend FastAPI géré par Docker
+- Un client Godot
 
-    Un client Godot.
+L’agent Codex doit suivre rigoureusement les instructions ci-dessous, alignées sur les meilleures pratiques du secteur, pour assurer un workflow fiable, lisible et maintenable.
 
-L’agent doit appliquer rigoureusement les instructions suivantes. Ces directives sont alignées sur les meilleures pratiques du secteur et assurent un workflow fiable, lisible et maintenable.
-1. Principes Généraux
+## 1. Principes Généraux
 
-    Effectue des commits brefs, explicites et rédigés à l’impératif, en anglais.
+- Effectuer des commits brefs, explicites et rédigés à l’impératif, en anglais.
+- Créer une branche distincte pour chaque nouvelle fonctionnalité ou correction de bug.
+- Soumettre toutes les modifications via une pull request (PR) pour garantir une revue de code systématique.
+- Couvrir chaque nouvelle fonctionnalité avec des tests automatiques.
+- Documenter tout code et comportement non trivial.
+- Mettre en avant les informations importantes avec des warnings, tips, hints, etc.
+- Appliquer un formatage uniforme (utiliser black pour le Python).
+- Maintenir un environnement reproductible grâce à Docker.
+- Vérifier régulièrement la sécurité et mettre à jour les dépendances.
+- Automatiser les tâches répétitives (lint, tests) via l’intégration continue (CI).
 
-    Crée une branche distincte pour chaque nouvelle fonctionnalité ou correction de bug.
+## 2. Workflow Git Flow
 
-    Soumets toutes tes modifications via une pull request (PR) pour garantir une revue de code systématique.
+Le projet suit le modèle Git Flow, structuré comme suit :
 
-    Couvre chaque nouvelle fonctionnalité avec des tests automatiques.
+- main : branche de production contenant le code stable.
+- develop : branche d'intégration pour les fonctionnalités en cours de développement.
+- feature/* : branches pour le développement de nouvelles fonctionnalités, créées à partir de develop.
+- release/* : branches pour préparer les nouvelles versions, créées à partir de develop.
+- hotfix/* : branches pour corriger rapidement des bugs en production, créées à partir de main.
 
-    Documente tout code et tout comportement non trivial.
-    Met en avant les informations importantes avec des warnings, tips, hints, etc.
+L'agent Codex doit :
 
-    Applique un formatage uniforme (utilise black pour le Python).
+- Créer des branches feature/* pour chaque nouvelle fonctionnalité.
+- Créer des branches release/* pour préparer les versions stables.
+- Créer des branches hotfix/* pour les corrections urgentes en production.
+- Fusionner les branches feature/* dans develop via des PRs.
+- Fusionner les branches release/* dans main et develop via des PRs.
+- Fusionner les branches hotfix/* dans main et develop via des PRs.
 
-    Maintiens un environnement reproductible grâce à Docker.
+## 3. Tests & Qualité du Code
 
-    Vérifie régulièrement la sécurité et mets à jour les dépendances.
+- Tester systématiquement tout fichier Python modifié dans backend/app avec :
 
-    Automatise les tâches répétitives (lint, tests) via l’intégration continue (CI).
+  - pytest -q
 
-2. Tests & Qualité du Code
+- Ajouter des tests pour toute nouvelle fonctionnalité dans backend/tests.
 
-    Teste systématiquement tout fichier Python modifié dans backend/app avec :
+## 4. Style et Formatage
 
-    pytest -q
+- Formater tout code Python avec :
 
-    Ajoute des tests pour toute nouvelle fonctionnalité dans backend/tests.
+  - black backend/app
 
-3. Style et Formatage
+- Vérifier que le style reste cohérent sur tout le projet.
 
-    Formate tout code Python avec :
+## 5. Gestion des Commits & Branches
 
-    black backend/app
+- Rédiger des messages de commit concis, à l’impératif, en anglais (ex. : Add authentication middleware).
+- Utiliser une branche dédiée pour chaque évolution ou correctif.
+- Respecter la structure des branches selon Git Flow.
 
-    Vérifie que le style reste cohérent sur tout le projet.
+## 6. Pull Requests (PR)
 
-4. Gestion des Commits & Branches
+- Soumettre chaque modification via une PR pour validation.
+- Commencer le titre de la PR par l’emoji 🤖.
+- Assurer que la PR décrit clairement la modification proposée.
 
-    Rédige des messages de commit concis, à l’impératif, en anglais (ex. : Add authentication middleware).
+## 7. Documentation & Automatisation
 
-    Utilise une branche dédiée pour chaque évolution ou correctif.
+- Documenter tout changement ou nouvelle fonctionnalité.
+- Automatiser le linting, les tests et la CI.
+- Maintenir un environnement de développement reproductible avec Docker.
+- Surveiller les dépendances et les mettre à jour régulièrement.
+- Garantir un ton aimable et sympathique dans la rédaction de la documetation avec:
 
-5. Pull Requests (PR)
+    - vale docs/
 
-    Soumets chaque modification via une PR pour validation.
+## 8. Documentation Technique
 
-    Commence le titre de ta PR par l’emoji 🤖.
+- Vérifier que la documentation dans docs/ et la configuration mkdocs.yml sont à jour.
+- Ajouter tout nouvel article Markdown au sommaire de mkdocs.yml et lier la page depuis docs/index.md.
+- S'assurer que les fichiers renseignés dans des index.md sont toujours mis en forme sous forme de liens.
+- Décrire la pile technique et expliquer le code en profondeur.
+- Ajouter une section FAQ uniquement lorsque c'est pertinent. Elle doit contenir des questions réellement intéressantes pour les lecteurs, sans texte de remplissage ni questions évidentes.
+- Valider la génération du site documentaire avec :
 
-    Assure-toi que la PR décrit clairement la modification proposée.
+  - mkdocs build
 
-6. Documentation & Automatisation
+- Garantir la qualité ainsi qu'uun ton aimable et sympathique dans la rédaction de la documentation avec:
 
-    Documente tout changement ou nouvelle fonctionnalité.
+  - vale docs/
 
-    Automatise le linting, les tests et la CI.
+## 9. Méthode Diátaxis
 
-    Maintiens un environnement de développement reproductible avec Docker.
+Respecter la structure Diátaxis pour toute la documentation :
 
-    Surveille les dépendances et mets-les à jour régulièrement.
+- Tutoriels : guides pas à pas pour débutants.
+- Guides pratiques : réponses rapides à un besoin précis.
+- Référence : description factuelle et exhaustive de l’API ou des fichiers.
+- Explications : contexte et choix techniques détaillés.
 
-7. Documentation Technique
+Classer chaque nouvelle page dans la bonne catégorie et maintenir un sommaire clair.
 
-    Vérifie que la documentation dans docs/ et la configuration mkdocs.yml sont à jour.
-
-    Ajoute tout nouvel article Markdown au sommaire de mkdocs.yml et lie la page depuis docs/index.md.
-
-    Fais en sorte que les fichiers renseignés dans des index.md soient toujours mis en forme sous forme de liens.
-
-    Décris la pile technique et explique le code en profondeur.
-
-    Ajoute une section **FAQ** uniquement lorsque c'est pertinent. Elle doit contenir des questions réellement intéressantes pour les lecteurs, sans texte de remplissage ni questions évidentes.
-
-    Valide la génération du site documentaire avec :
-
-    mkdocs build
-
-    Vérifie la qualité rédactionnelle avec :
-
-    vale docs/
-
-8. Méthode Diátaxis
-
-Respecte la structure **Diátaxis** pour toute la documentation :
-
-    - **Tutoriels** : guides pas à pas pour débutants.
-    - **Guides pratiques** : réponses rapides à un besoin précis.
-    - **Référence** : description factuelle et exhaustive de l’API ou des fichiers.
-    - **Explications** : contexte et choix techniques détaillés.
-
-Classe chaque nouvelle page dans la bonne catégorie et maintiens un sommaire clair.
-
-9. Règle d’Or
+## 10. Règle d’Or
 
 Toutes ces consignes s’appliquent à l’ensemble du dépôt, sans exception.
-
