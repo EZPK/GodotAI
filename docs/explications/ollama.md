@@ -24,13 +24,7 @@ partie en cours.
 - [Fichier `Modelfile`](../reference/modelfile.md)
 - [Changer de modèle](../guides/changer-modele.md)
 
-```d2
-A: "FastAPI"
-O: "Ollama"
-
-A -> O: requête
-O -> A: réponse
-```
+![Dialogue avec Ollama](../assets/ollama.svg)
 
 Exemple d'exécution manuelle :
 ```bash

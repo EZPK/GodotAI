@@ -2,23 +2,9 @@
 
 Cette page présente brièvement l'architecture générale avant de détailler chaque composant.
 
-Le diagramme ci-dessous est généré avec **D2** :
+Le diagramme ci-dessous est généré en SVG avec **D2** :
 
-```d2
-direction: right
-U: "Utilisateur"
-G: "Godot 🎮"
-A: "FastAPI ⚡"
-O: "Ollama 🦙"
-SD: "Stable Diffusion 🎨"
-DB: "SQLite 📂"
-
-U -> G
-G -> A
-A -> O
-A -> SD
-A -> DB
-```
+![Architecture](../assets/architecture.svg)
 
 ## Rôle des composants
 - **Godot 🎮** : le dossier `godot/` renferme les scènes et scripts du mini-jeu. La scène `scenes/Main.tscn` communique avec l'API via des nœuds `HTTPRequest`.

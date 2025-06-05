@@ -4,7 +4,6 @@ theme:
   name: material
 plugins:
   - search
-  - d2
 markdown_extensions:
   - pymdownx.superfences
 extra_javascript: []

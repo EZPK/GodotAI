@@ -9,18 +9,7 @@ routes appelées par Godot, dialogue avec Ollama pour produire du texte et
 déclenche la génération d'images via Stable Diffusion. Il stocke aussi les
 informations de partie dans SQLite.
 
-```d2
-G: "Godot"
-F: "FastAPI"
-O: "Ollama"
-SD: "Stable Diffusion"
-DB: "SQLite"
-
-G -> F
-F -> O
-F -> SD
-F -> DB
-```
+![Flux FastAPI](../assets/fastapi.svg)
 
 ## Exemple minimal
 ```python

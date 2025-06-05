@@ -11,13 +11,7 @@ téléchargés avant que l'interface WebUI ne se lance.
 
 FastAPI lui transmet vos invites afin d'illustrer certaines scènes du jeu.
 
-```d2
-A: "FastAPI"
-SD: "Stable Diffusion"
-
-A -> SD: prompt
-SD -> A: image
-```
+![Interaction Stable Diffusion](../assets/stable-diffusion.svg)
 
 Vous pouvez générer une image directement via l'API :
 ```bash
