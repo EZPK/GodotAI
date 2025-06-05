@@ -2,16 +2,9 @@
 
 MkDocs transforme les fichiers Markdown du dossier `docs/` en un site statique prêt à être publié. Le thème Material apporte un rendu moderne et agréable.
 
-Le thème Material peut également afficher des diagrammes **D2** depuis des blocs de code `d2`.
+Les diagrammes **D2** sont convertis en SVG via une action GitHub, puis inclus directement dans la documentation.
 
-```d2
-M: "Markdown"
-MK: "MkDocs"
-HTML: "Site statique"
-
-M -> MK
-MK -> HTML
-```
+![MkDocs build](../assets/mkdocs.svg)
 
 Pour tester en local :
 ```bash
