@@ -84,6 +84,10 @@ L’agent doit appliquer rigoureusement les instructions suivantes. Ces directiv
 
     mkdocs build
 
+    Vérifie la qualité rédactionnelle avec :
+
+    vale docs/
+
 8. Méthode Diátaxis
 
 Respecte la structure **Diátaxis** pour toute la documentation :
