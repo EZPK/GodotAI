@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import requests
+import httpx
 
 from .config import settings
 
@@ -21,3 +22,21 @@ def generate_text(prompt: str, stream: bool = False) -> dict:
     )
     resp.raise_for_status()
     return resp.json()
+
+
+async def stream_text(prompt: str):
+    """Stream text tokens from the Ollama model."""
+    async with httpx.AsyncClient() as client:
+        async with client.stream(
+            "POST",
+            f"{TEXT_BASE_URL}/generate",
+            json={
+                "model": settings.ollama_text_model,
+                "prompt": prompt,
+                "stream": True,
+            },
+        ) as resp:
+            resp.raise_for_status()
+            async for line in resp.aiter_lines():
+                if line:
+                    yield line + "\n"

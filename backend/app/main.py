@@ -1,14 +1,17 @@
 """Main FastAPI application for the backend."""
 
-from fastapi import FastAPI, HTTPException, Depends
+from fastapi import FastAPI, HTTPException, Depends, WebSocket, WebSocketDisconnect
 from pydantic import BaseModel
 import requests
-from fastapi.responses import Response
+from fastapi.responses import Response, StreamingResponse
 from sqlalchemy.orm import Session
 from datetime import datetime
 
 from .embedding_context import EmbeddingContext
-from .ollama_client import generate_text as ollama_generate_text
+from .ollama_client import (
+    generate_text as ollama_generate_text,
+    stream_text as ollama_stream_text,
+)
 from .stablediffusion_client import generate_image as stablediffusion_generate_image
 from .mcp import router as mcp_router
 from .mongo_database import get_mongo_db
@@ -107,10 +110,14 @@ def gen_image_get():
 
 
 @app.post("/txt")
-def text_model(req: PromptRequest):
+async def text_model(req: PromptRequest):
     """Generate text using the Ollama container."""
     try:
-        return ollama_generate_text(req.prompt, req.stream)
+        if req.stream:
+            return StreamingResponse(
+                ollama_stream_text(req.prompt), media_type="text/plain"
+            )
+        return ollama_generate_text(req.prompt, False)
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
@@ -163,3 +170,20 @@ def get_session(session_id: int, db: Session = Depends(get_db)):
     if session is None:
         raise HTTPException(status_code=404, detail="Session not found")
     return {"id": session.id, "user_id": session.user_id, "scenario": session.scenario}
+
+
+@app.websocket("/ws")
+async def websocket_stream(websocket: WebSocket):
+    """WebSocket endpoint streaming tokens from Ollama."""
+    await websocket.accept()
+    try:
+        while True:
+            data = await websocket.receive_json()
+            prompt = data.get("prompt")
+            if not prompt:
+                continue
+            async for chunk in ollama_stream_text(prompt):
+                await websocket.send_text(chunk)
+            await websocket.send_text("[DONE]")
+    except WebSocketDisconnect:
+        pass
