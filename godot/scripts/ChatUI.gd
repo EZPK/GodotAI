@@ -45,10 +45,8 @@ func _on_send_pressed(_event: Variant = null):
 func _send_to_llm(message: String):
 	var url := "http://localhost:8000/txt"
 	var body := {
-		"model": "smollm:latest",
 		"prompt": message,
 		"stream": true,
-		"num_predict": 128
 	}
 	var headers := ["Content-Type: application/json"]
 	var err := http.request(url, headers, HTTPClient.METHOD_POST, JSON.stringify(body))
