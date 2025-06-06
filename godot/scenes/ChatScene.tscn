@@ -34,9 +34,11 @@ script = ExtResource("2_dgpnl")
 layout_mode = 0
 offset_right = 1.0
 offset_bottom = 23.0
+text = "1"
 
 [node name="TopRight" type="Panel" parent="GridContainer"]
-custom_minimum_size = Vector2(600, 400)
+clip_contents = true
+custom_minimum_size = Vector2(991, 400)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -44,9 +46,11 @@ script = ExtResource("2_dgpnl")
 
 [node name="TopRightLabel" type="Label" parent="GridContainer/TopRight"]
 layout_mode = 0
-offset_left = -702.0
+offset_left = -1.0
 offset_right = -701.0
-offset_bottom = 23.0
+offset_bottom = 223.0
+text = "2"
+horizontal_alignment = 2
 
 [node name="BottomLeft" type="Panel" parent="GridContainer"]
 custom_minimum_size = Vector2(600, 400)
@@ -102,3 +106,5 @@ script = ExtResource("2_dgpnl")
 layout_mode = 0
 offset_right = 1.0
 offset_bottom = 23.0
+text = "4"
+horizontal_alignment = 2
