@@ -13,12 +13,11 @@ IMAGE_BASE_URL = (
 )
 
 
-def generate_text(prompt: str) -> dict:
+def generate_text(prompt: str, stream: bool = False) -> dict:
     """Generate text with the configured Ollama model."""
-    print("Prompt from ollama client:", prompt)
     resp = requests.post(
         f"{TEXT_BASE_URL}/generate",
-        json={"model": settings.ollama_text_model, "prompt": prompt, "stream": True},
+        json={"model": settings.ollama_text_model, "prompt": prompt, "stream": stream},
     )
     resp.raise_for_status()
     return resp.json()
