@@ -37,9 +37,12 @@ def test_text_endpoint(monkeypatch):
         assert json["prompt"] == "hi"
         return mock_resp
 
-    monkeypatch.setattr("backend.app.main.requests.post", fake_post)
+    monkeypatch.setattr(
+        "backend.app.ollama_client.requests.post",
+        fake_post,
+    )
 
-    resp = client.post("/txt", json={"context": "hi"})
+    resp = client.post("/txt", json={"prompt": "hi"})
 
     assert resp.status_code == 200
     assert resp.json()["response"] == "ok"
