@@ -1,0 +1,9 @@
+extends: substitution
+message: "Remplace '%s' par '%s' pour une meilleure compréhension."
+level: suggestion
+ignorecase: true
+swap:
+  "implémentation": "mise en place"
+  "déploiement": "installation"
+  "initialisation": "démarrage"
+  "authentification": "connexion"

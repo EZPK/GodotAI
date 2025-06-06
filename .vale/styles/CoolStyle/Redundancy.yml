@@ -1,0 +1,9 @@
+extends: substitution
+message: "Simplifie '%s' en '%s'."
+level: suggestion
+ignorecase: true
+swap:
+  "au jour d'aujourd'hui": "aujourd'hui"
+  "prévoir à l'avance": "prévoir"
+  "collaborer ensemble": "collaborer"
+  "monter en haut": "monter"

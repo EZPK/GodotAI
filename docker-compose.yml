@@ -7,16 +7,81 @@ services:
     ports:
       - "11434:11434"
     volumes:
-      # Volume Docker pour persister les modèles téléchargés
       - ollama_models:/root/.ollama
+    env_file: .env
     environment:
       - OLLAMA_HOST=0.0.0.0
-      - OLLAMA_TEXT_MODEL=god:latest
       - NVIDIA_VISIBLE_DEVICES=all
       - OLLAMA_NUM_PARALLEL=1
       - OLLAMA_LLM_LIBRARY=cuda
     restart: unless-stopped
     gpus: all
-    
+
+  fastapi:
+    build:
+      context: .
+      dockerfile: Dockerfile.fastapi
+    container_name: fastapi
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app/backend
+      - ./utils:/app/utils
+      - ./data:/app/data
+    env_file: .env
+    # command: uvicorn backend.app.main:app --host 0.0.0.0 --port 8000
+    depends_on:
+      - ollama
+      - stablediffusion
+      - postgres
+      - mongo
+
+  stablediffusion:
+    build:
+      context: .
+      dockerfile: Dockerfile.stablediffusion
+    container_name: stablediffusion
+    ports:
+      - "8080:8080"
+    volumes:
+      - sd_models:/app/stable-diffusion-webui/models
+      - sd_outputs:/app/stable-diffusion-webui/outputs      # <--- volume Docker (tout le dossier)
+      - ./outputs:/app/stable-diffusion-webui/outputs/dev-mirror  # <--- dossier local dans un sous-dossier
+    env_file: .env
+    restart: unless-stopped
+    gpus: all
+
+  postgres:
+    build:
+      context: .
+      dockerfile: Dockerfile.postgres
+    # image: postgres:16
+    container_name: postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  mongo:
+    build:
+      context: .
+      dockerfile: Dockerfile.mongo
+    # image: mongo:6
+    container_name: mongo
+    restart: unless-stopped
+    volumes:
+      - mongo_data:/data/db
+    ports:
+      - "27017:27017"
+
 volumes:
   ollama_models:
+  sd_models:
+  sd_outputs:
+  postgres_data:
+  mongo_data:

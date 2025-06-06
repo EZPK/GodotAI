@@ -12,7 +12,7 @@ var line_index := 0
 var is_streaming := false
 
 func _ready():
-	print_tree_pretty()
+	# print_tree_pretty()
 	add_child(http)
 	add_child(stream_timer)
 	stream_timer.one_shot = false
@@ -43,9 +43,9 @@ func _on_send_pressed(_event: Variant = null):
 	_send_to_llm(user_message)
 
 func _send_to_llm(message: String):
-	var url := "http://localhost:11434/api/generate"
+	var url := "http://localhost:8000/txt"
 	var body := {
-		"model": "god:latest",
+		"model": "smollm:latest",
 		"prompt": message,
 		"stream": true,
 		"num_predict": 128
