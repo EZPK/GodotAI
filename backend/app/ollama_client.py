@@ -18,7 +18,8 @@ def generate_text(prompt: str) -> dict:
     """Generate text with the configured Ollama model."""
     resp = requests.post(
         f"{TEXT_BASE_URL}/generate",
-        json={"model": settings.ollama_text_model, "prompt": prompt},
+        json={"model": settings.ollama_text_model, "prompt": prompt, "stream": False},
     )
+    print(resp)
     resp.raise_for_status()
     return resp.json()

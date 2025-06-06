@@ -53,8 +53,8 @@ class GenerateImageRequest(BaseModel):
     session_id: int | None = None
 
 
-class ContextRequest(BaseModel):
-    context: str
+class PromptRequest(BaseModel):
+    prompt: str
 
 
 class CreateUserRequest(BaseModel):
@@ -88,10 +88,11 @@ def gen_text_get():
 
 
 @app.post("/txt")
-def gen_text(req: ContextRequest):
+def gen_text(req: PromptRequest):
     try:
-        return ollama_generate_text(req.context)
+        return ollama_generate_text(req.prompt)
     except Exception as e:
+        print(req)
         raise HTTPException(status_code=500, detail=str(e))
 
 
