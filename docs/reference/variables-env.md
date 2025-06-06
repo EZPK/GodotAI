@@ -16,6 +16,7 @@ Le fichier `.env` centralise la configuration de l'ensemble des services. Voici 
 | `POSTGRES_PASSWORD` | `postgres` | Mot de passe PostgreSQL. |
 | `POSTGRES_DB` | `godotai` | Nom de la base PostgreSQL. |
 | `MONGO_URL` | `mongodb://mongo:27017` | Adresse de la base MongoDB. |
+| `MONGO_DB` | `godotai` | Nom de la base MongoDB. |
 | `NVIDIA_VISIBLE_DEVICES` | _(vide)_ | Active l'accélération GPU dans les conteneurs. |
 
 Ces valeurs sont chargées automatiquement par Docker Compose et le `Makefile`.
