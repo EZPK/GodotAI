@@ -45,7 +45,10 @@ class ImageRequest(BaseModel):
 
 
 class PromptRequest(BaseModel):
+    model: str
     prompt: str
+    stream: bool = False
+
 
 
 class GenerateImageRequest(BaseModel):
@@ -107,6 +110,7 @@ def gen_image_get():
 
 @app.post("/txt")
 def text_model(req: PromptRequest):
+    print("Coucou je suis ta requete de fastapi: {req}")
     """Generate text using the Ollama container."""
     try:
         return ollama_generate_text(req.prompt)
@@ -162,66 +166,3 @@ def get_session(session_id: int, db: Session = Depends(get_db)):
     if session is None:
         raise HTTPException(status_code=404, detail="Session not found")
     return {"id": session.id, "user_id": session.user_id, "scenario": session.scenario}
-
-
-# --------- Nouveaux endpoints de jeu --------- #
-
-
-@app.post("/generate-text")
-def generate_text(req: GenerateTextRequest, db: Session = Depends(get_db)):
-    session = db.query(models.Session).get(req.session_id)
-    if session is None:
-        raise HTTPException(status_code=404, detail="Session not found")
-
-    # Save player's action
-    player_msg = models.Message(
-        session_id=req.session_id, sender="player", text=req.action
-    )
-    db.add(player_msg)
-    db.commit()
-    context_store.add_message(req.session_id, req.action)
-
-    context = context_store.get_recent_context(req.session_id)
-
-    try:
-        data = ollama_generate_text(context)
-        ai_text = data.get("response", "")
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
-
-    mongo_db = get_mongo_db()
-    mongo_db.llm_logs.insert_one(
-        {
-            "session_id": req.session_id,
-            "prompt": req.action,
-            "response": data,
-            "timestamp": datetime.utcnow(),
-        }
-    )
-
-    ai_msg = models.Message(session_id=req.session_id, sender="AI", text=ai_text)
-    db.add(ai_msg)
-    db.commit()
-    context_store.add_message(req.session_id, ai_text)
-
-    return {"text": ai_text}
-
-
-@app.post("/generate-image")
-def generate_image(req: GenerateImageRequest, db: Session = Depends(get_db)):
-    try:
-        data = stablediffusion_generate_image(req.description)
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
-
-    if req.session_id is not None:
-        img_message = models.Message(
-            session_id=req.session_id,
-            sender="image",
-            text=data.get("image", ""),
-        )
-        db.add(img_message)
-        db.commit()
-        context_store.add_message(req.session_id, data.get("image", ""))
-
-    return data
