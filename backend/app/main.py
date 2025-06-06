@@ -45,10 +45,8 @@ class ImageRequest(BaseModel):
 
 
 class PromptRequest(BaseModel):
-    model: str
     prompt: str
     stream: bool = False
-
 
 
 class GenerateImageRequest(BaseModel):
@@ -110,10 +108,9 @@ def gen_image_get():
 
 @app.post("/txt")
 def text_model(req: PromptRequest):
-    print("Coucou je suis ta requete de fastapi: {req}")
     """Generate text using the Ollama container."""
     try:
-        return ollama_generate_text(req.prompt)
+        return ollama_generate_text(req.prompt, req.stream)
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
