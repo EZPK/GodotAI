@@ -13,7 +13,6 @@ IMAGE_BASE_URL = (
 )
 
 
-
 def generate_text(prompt: str) -> dict:
     """Generate text with the configured Ollama model."""
     resp = requests.post(

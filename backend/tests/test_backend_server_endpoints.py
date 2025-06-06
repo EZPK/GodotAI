@@ -19,9 +19,12 @@ def test_gen_text(monkeypatch):
         resp.json.return_value = {"response": "text"}
         return resp
 
-    monkeypatch.setattr("backend.app.main.requests.post", fake_post)
+    monkeypatch.setattr(
+        "backend.app.ollama_client.requests.post",
+        fake_post,
+    )
 
-    resp = client.post("/txt", json={"context": "context"})
+    resp = client.post("/txt", json={"prompt": "context"})
     assert resp.status_code == 200
     assert resp.json() == {"response": "text"}
 

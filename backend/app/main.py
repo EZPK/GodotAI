@@ -81,24 +81,16 @@ OLLAMA_TEXT_BASE_URL = f"http://{OLLAMA_TEXT_HOST}:{OLLAMA_TEXT_PORT}/api"
 STABLEDIFFUSION_BASE_URL = f"http://{STABLEDIFFUSION_HOST}:{STABLEDIFFUSION_PORT}/api"
 
 
-# Endpoint pour générer du texte via Ollama
+# Example GET endpoints
 @app.get("/txt")
 def gen_text_get():
+    """Simple ping for the text route."""
     return {"text": "hello world"}
 
 
-@app.post("/txt")
-def gen_text(req: ContextRequest):
-    try:
-        return ollama_generate_text(req.context)
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
-
-
-# Endpoint pour générer une image via Stable Diffusion
 @app.get("/img")
 def gen_image_get():
-    # Chemin unique, car utils est monté dans /app/utils dans le conteneur Docker
+    """Return a sample image shipped with the container."""
     image_path = "/app/utils/img/image.png"
     try:
         with open(image_path, "rb") as img_file:
@@ -110,15 +102,7 @@ def gen_image_get():
         )
 
 
-@app.post("/img")
-def gen_image(req: ImageRequest):
-    try:
-        return stablediffusion_generate_image(req.prompt)
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
-
-
-# --- Simple endpoints for direct model access --- #
+# --- Endpoints calling the Docker services --- #
 
 
 @app.post("/txt")
