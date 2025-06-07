@@ -16,6 +16,15 @@ La directive `FROM` choisit la base du modèle. Les lignes `PARAMETER` ajustent 
 
 Ce fichier est copié dans l'image Ollama construite via `Dockerfile.ollama`. En le modifiant, on peut changer de modèle ou personnaliser l'expérience de jeu.
 
+Lors du premier démarrage du conteneur, la commande suivante génère le modèle local :
+
+```bash
+ollama serve &
+until curl -s http://127.0.0.1:11434/api/tags > /dev/null; do sleep 1; done
+ollama create god -f /Modelfile
+kill $!
+```
+
 ## Voir aussi
 
 - [Guide pour adapter le prompt](../guides/adapter-prompt.md)
