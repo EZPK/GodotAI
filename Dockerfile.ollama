@@ -7,7 +7,13 @@ RUN apt-get update && apt-get install -y curl pciutils && rm -rf /var/lib/apt/li
 
 # Copier le Modelfile et construire le modèle "god"
 COPY Modelfile /Modelfile
-RUN /bin/ollama create god -f /Modelfile
+
+RUN /bin/ollama serve & \
+    OLLAMA_PID=$! && \
+    until curl -s http://127.0.0.1:11434/api/tags > /dev/null; do sleep 1; done && \
+    /bin/ollama create god -f /Modelfile && \
+    kill $OLLAMA_PID
+
 
 # Définir la variable d'environnement (modifiable via compose)
 ENV OLLAMA_LLM_LIBRARY=cuda
