@@ -18,6 +18,15 @@ Le fichier `Modelfile` à la racine du dépôt indique quel modèle charger. Fas
 lui envoie les requêtes de l'utilisateur pour obtenir une réponse adaptée à la
 partie en cours.
 
+Lors de la construction de l'image, cette configuration est transformée en un modèle nommé `god`. On démarre donc temporairement le serveur Ollama :
+
+```bash
+ollama serve &
+until curl -s http://127.0.0.1:11434/api/tags > /dev/null; do sleep 1; done
+ollama create god -f /Modelfile
+kill $!
+```
+
 ## Voir aussi
 
 - [Fichier `Modelfile`](../reference/modelfile.md)
