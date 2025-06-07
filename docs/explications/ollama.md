@@ -18,6 +18,12 @@ Le fichier `Modelfile` à la racine du dépôt indique quel modèle charger. Fas
 lui envoie les requêtes de l'utilisateur pour obtenir une réponse adaptée à la
 partie en cours.
 
+Lors de la construction de l'image, cette configuration est transformée en un modèle nommé `god` via :
+
+```bash
+ollama create god -f /Modelfile
+```
+
 ## Voir aussi
 
 - [Fichier `Modelfile`](../reference/modelfile.md)
