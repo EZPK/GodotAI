@@ -2,6 +2,7 @@
 
 Basé sur l’image officielle `ollama/ollama`, ce Dockerfile ajoute quelques outils pratiques comme `curl` et `pciutils`. Il intègre également le `Modelfile` copié dans l'image et le script `entrypoint_ollama.sh` qui gère la création du modèle personnalisé `god` ainsi que le téléchargement automatique des autres modèles.
 
+
 ```
 FROM ollama/ollama:latest
 RUN apt-get update && apt-get install -y curl pciutils

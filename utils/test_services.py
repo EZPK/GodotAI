@@ -10,12 +10,12 @@ FASTAPI_URL = os.getenv("FASTAPI_URL", "http://localhost:8000")
 # Build Ollama base URL from individual variables if available
 ollama_host = os.getenv("OLLAMA_TEXT_HOST", "localhost")
 ollama_port = os.getenv("OLLAMA_TEXT_PORT", "11434")
-OLLAMA_URL = os.getenv("OLLAMA_URL", f"http://{ollama_host}:{ollama_port}")
+OLLAMA_URL = "http://localhost:11434/"
 
 # Same logic for Stable Diffusion
 sd_host = os.getenv("STABLEDIFFUSION_HOST", "localhost")
 sd_port = os.getenv("STABLEDIFFUSION_PORT", "7860")
-SD_URL = os.getenv("SD_URL", f"http://{sd_host}:{sd_port}")
+SD_URL = "http://localhost:8080/"
 
 
 def check_fastapi():
