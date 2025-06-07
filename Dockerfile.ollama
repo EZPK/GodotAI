@@ -5,6 +5,9 @@ FROM ollama/ollama:latest
 # Installer outils utiles
 RUN apt-get update && apt-get install -y curl pciutils && rm -rf /var/lib/apt/lists/*
 
+# Copier le Modelfile pour créer le modèle "god" au démarrage
+COPY Modelfile /Modelfile
+
 # Définir la variable d'environnement (modifiable via compose)
 ENV OLLAMA_LLM_LIBRARY=cuda
 
