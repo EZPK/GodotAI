@@ -16,6 +16,12 @@ La directive `FROM` choisit la base du modèle. Les lignes `PARAMETER` ajustent 
 
 Ce fichier est copié dans l'image Ollama construite via `Dockerfile.ollama`. En le modifiant, on peut changer de modèle ou personnaliser l'expérience de jeu.
 
+Lors de la construction de l'image, la commande suivante génère le modèle local :
+
+```bash
+ollama create god -f /Modelfile
+```
+
 ## Voir aussi
 
 - [Guide pour adapter le prompt](../guides/adapter-prompt.md)
