@@ -11,6 +11,19 @@ PORT=${OLLAMA_PORT:-11434}
 MODELS=""
 [ -n "$OLLAMA_TEXT_MODEL" ] && MODELS="$MODELS $OLLAMA_TEXT_MODEL"
 
+# Créer un modèle local à partir d'un Modelfile
+create_local_model() {
+  NAME="$1"
+  FILE="$2"
+  [ -z "$NAME" ] && return
+  if /bin/ollama list | grep -qw "$NAME"; then
+    echo "✔️ Modèle '$NAME' déjà présent."
+  else
+    echo "🔨 Construction du modèle local '$NAME'..."
+    /bin/ollama create "$NAME" -f "$FILE"
+  fi
+}
+
 # Fonction de téléchargement de modèle
 pull_model_container() {
   MODEL_NAME="$1"
@@ -51,6 +64,9 @@ echo "Waiting for Ollama daemon to be ready..."
 until curl -s "http://127.0.0.1:$PORT/api/tags" > /dev/null; do
   sleep 1
 done
+
+# Construire le modèle depuis le Modelfile s'il n'est pas présent
+create_local_model god /Modelfile
 
 for MODEL in $MODELS; do
   pull_model_container "$MODEL"

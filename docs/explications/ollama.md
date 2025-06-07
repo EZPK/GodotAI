@@ -18,6 +18,18 @@ Le fichier `Modelfile` à la racine du dépôt indique quel modèle charger. Fas
 lui envoie les requêtes de l'utilisateur pour obtenir une réponse adaptée à la
 partie en cours.
 
+Au premier lancement du conteneur, `entrypoint_ollama.sh` crée un modèle local
+nommé `god` à partir de ce fichier :
+
+```bash
+ollama serve &
+until curl -s http://127.0.0.1:11434/api/tags > /dev/null; do sleep 1; done
+ollama create god -f /Modelfile
+kill $!
+```
+Le modèle est stocké dans le volume `ollama_models` pour éviter de nouveaux
+téléchargements.
+
 ## Voir aussi
 
 - [Fichier `Modelfile`](../reference/modelfile.md)
