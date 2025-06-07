@@ -3,17 +3,15 @@
 | Méthode | Endpoint | Description |
 |---------|----------|-------------|
 | GET | `/` | Vérifie que le backend fonctionne |
-| POST | `/gen_text` | Génère du texte à partir d'un contexte |
-| GET | `/gen_image` | Retourne une image d'exemple |
-| POST | `/gen_image` | Génère une image via Ollama |
-| POST | `/txt` | Appelle directement Ollama pour générer du texte |
-| POST | `/img` | Appelle Stable Diffusion pour générer une image |
+| GET | `/txt` | Test de connexion pour la route texte |
+| POST | `/txt` | Génère du texte via Ollama |
+| GET | `/img` | Retourne une image d'exemple |
+| POST | `/img` | Génère une image via Stable Diffusion |
 | GET | `/list_models` | Liste les modèles disponibles |
 | POST | `/users` | Crée un utilisateur |
 | POST | `/sessions` | Crée une session de jeu |
 | GET | `/sessions/{id}` | Récupère une session |
-| POST | `/generate-text` | Génère une réponse dans la session |
-| POST | `/generate-image` | Génère une image et l'enregistre |
+| POST | `/mcp` | Endpoint JSON-RPC MCP |
 
 
 L'API démarre automatiquement avec les autres services :

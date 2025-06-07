@@ -2,7 +2,7 @@
 
 Godot est un moteur de jeu libre et léger. Dans ce projet, il fournit l'interface
 graphique du mini-jeu et communique avec l'API Python.
-Les scripts GDScript appellent l'endpoint `/generate-text` pour afficher les réponses du modèle.
+Les scripts GDScript appellent l'endpoint `/txt` pour afficher les réponses du modèle.
 Chaque zone de l'écran est un panneau pouvant être déplacé grâce au script `DraggablePanel.gd`.
 
 Quand le joueur effectue une action, ces scripts envoient la requête à FastAPI
@@ -14,11 +14,11 @@ Extrait de la fonction d'envoi d'un message au modèle :
 
 ```gdscript
 func _send_to_llm(message: String):
-    var url := "http://localhost:11434/api/generate"
+    var url := "http://localhost:8000/txt"
     var body := {
         "model": "god:latest",
         "prompt": message,
-        "stream": true
+        "stream": false
     }
     var headers := ["Content-Type: application/json"]
     var err := http.request(url, headers, HTTPClient.METHOD_POST, JSON.stringify(body))

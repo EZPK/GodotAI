@@ -49,7 +49,17 @@ Cette documentation suit le cadre [Diátaxis](https://diataxis.fr/) et se divise
 - 🛠️ [Makefile](reference/makefile.md)
 - 🐳 [docker-compose.yml](reference/docker-compose-yml.md)
 - 📄 [Dockerfile.fastapi](reference/dockerfile.md)
+- 🐋 [Dockerfile.ollama](reference/dockerfile-ollama.md)
+- 🔧 [entrypoint_ollama.sh](reference/entrypoint-ollama.md)
+- 🗒️ [Modelfile](reference/modelfile.md)
+- 📜 [mkdocs.yml](reference/mkdocs-yml.md)
+- 📑 [variables d'environnement](reference/variables-env.md)
+- 📝 [AGENTS.md](reference/agents-file.md)
+- 🙈 [.gitignore](reference/gitignore.md)
 - ✅ [Tests unitaires](reference/tests-unitaires.md)
+- 🚦 [Tests E2E](reference/tests-e2e.md)
+- 🛠️ [test_services.py](reference/test-services.md)
+- 🔍 [Vale](reference/vale.md)
 
 ### 🧩 Explications
 - 🏗️ [Architecture](explications/architecture.md)
