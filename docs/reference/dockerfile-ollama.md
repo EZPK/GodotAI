@@ -1,24 +1,17 @@
 # 🐋 Dockerfile.ollama
 
-Basé sur l’image officielle `ollama/ollama`, ce Dockerfile ajoute quelques outils pratiques comme `curl` et `pciutils`. Il intègre également le `Modelfile` pour construire le modèle personnalisé `god` et copie le script `entrypoint_ollama.sh` qui gère le téléchargement automatique des modèles.
+Basé sur l’image officielle `ollama/ollama`, ce Dockerfile ajoute quelques outils pratiques comme `curl` et `pciutils`. Il intègre également le `Modelfile` copié dans l'image et le script `entrypoint_ollama.sh` qui gère la création du modèle personnalisé `god` ainsi que le téléchargement automatique des autres modèles.
+
 
 ```
 FROM ollama/ollama:latest
 RUN apt-get update && apt-get install -y curl pciutils
 COPY Modelfile /Modelfile
-
-RUN /bin/ollama serve & \
-    OLLAMA_PID=$! && \
-    until curl -s http://127.0.0.1:11434/api/tags > /dev/null; do sleep 1; done && \
-    /bin/ollama create god -f /Modelfile && \
-    kill $OLLAMA_PID
-
 COPY entrypoint_ollama.sh /entrypoint_ollama.sh
 ENTRYPOINT ["/entrypoint_ollama.sh"]
 ```
 
-Le `Modelfile` est donc empaqueté puis transformé en modèle local. Le Dockerfile démarre brièvement `ollama serve` pour exécuter `ollama create god -f /Modelfile`. Ce modèle nommé `god` reste ensuite disponible pour l’interface Godot.
-=======
+Le `Modelfile` est embarqué dans l'image. Lors du premier démarrage, `entrypoint_ollama.sh` utilise ce fichier pour générer le modèle local `god` dans le volume `ollama_models`.
 
 L’entrée `ENTRYPOINT` lance ce script pour s’assurer que les modèles précisés sont bien présents avant d’exposer l’API Ollama.
 

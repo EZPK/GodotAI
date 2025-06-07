@@ -25,8 +25,10 @@ ollama serve &
 until curl -s http://127.0.0.1:11434/api/tags > /dev/null; do sleep 1; done
 ollama create god -f /Modelfile
 kill $!
-
 ```
+
+Le modèle est stocké dans le volume `ollama_models` pour éviter de nouveaux
+téléchargements.
 
 ## Voir aussi
 
