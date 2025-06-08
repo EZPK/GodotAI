@@ -1,0 +1,30 @@
+direction: right
+DEV: "Développeur"
+REPO: "GitHub"
+DEPS: "make install"
+DOCS: "mkdocs build"
+BUILD: "docker compose build"
+UP: "docker compose up"
+GODOT: "Godot 🎮"
+FASTAPI: "FastAPI ⚡"
+OLLAMA: "Ollama 🦙"
+SD: "Stable Diffusion 🎨"
+DB: "SQLite 📂"
+USER: "Utilisateur"
+MODEL: "Modèles"
+
+DEV -> REPO
+DEV -> DEPS
+DEV -> DOCS
+DEV -> BUILD
+BUILD -> UP
+UP -> FASTAPI
+UP -> OLLAMA
+UP -> SD
+OLLAMA -> MODEL
+SD -> MODEL
+USER -> GODOT
+GODOT -> FASTAPI
+FASTAPI -> OLLAMA
+FASTAPI -> SD
+FASTAPI -> DB
