@@ -1,11 +1,13 @@
 """Main FastAPI application for the backend."""
 
+import os
 from fastapi import FastAPI, HTTPException, Depends
 from pydantic import BaseModel
 import requests
 from fastapi.responses import Response
 from sqlalchemy.orm import Session
 from datetime import datetime
+from dotenv import load_dotenv
 
 from .embedding_context import EmbeddingContext
 from .ollama_client import generate_text as ollama_generate_text
@@ -16,6 +18,9 @@ from .mongo_database import get_mongo_db
 from . import models
 from .database import Base, engine, get_db
 
+# Charger les variables du .env au runtime
+load_dotenv()
+
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
@@ -24,70 +29,55 @@ app.include_router(mcp_router)
 # Global context manager for storing recent messages
 context_store = EmbeddingContext()
 
-
 @app.get("/")
 def read_root():
     return {"message": "Backend FastAPI fonctionne !"}
-
 
 # Modèles de requête
 class TextRequest(BaseModel):
     prompt: str
 
-
 class GenerateTextRequest(BaseModel):
     session_id: int
     action: str
 
-
 class ImageRequest(BaseModel):
     prompt: str
-
 
 class PromptRequest(BaseModel):
     prompt: str
     stream: bool = False
 
-
 class GenerateImageRequest(BaseModel):
     description: str
     session_id: int | None = None
 
-
 class ContextRequest(BaseModel):
     context: str
 
-
 class CreateUserRequest(BaseModel):
     username: str
-
 
 class CreateSessionRequest(BaseModel):
     user_id: int
     scenario: str | None = None
 
-
-# Utilitaire pour choisir le modèle Ollama
-from .config import settings
-
-OLLAMA_TEXT_MODEL = settings.ollama_text_model
-STABLEDIFFUSION_MODEL = settings.STABLEDIFFUSION_MODEL
-
-OLLAMA_TEXT_HOST = settings.ollama_text_host
-OLLAMA_TEXT_PORT = str(settings.ollama_text_port)
-STABLEDIFFUSION_HOST = settings.STABLEDIFFUSION_HOST
-STABLEDIFFUSION_PORT = str(settings.STABLEDIFFUSION_PORT)
+# Récupération des variables d'environnement directement
+OLLAMA_TEXT_MODEL = os.getenv("OLLAMA_TEXT_MODEL", "llama2")
+STABLEDIFFUSION_MODEL = os.getenv("STABLEDIFFUSION_MODEL", "llava:7b")
+OLLAMA_TEXT_HOST = os.getenv("OLLAMA_TEXT_HOST", "ollama")
+OLLAMA_TEXT_PORT = os.getenv("OLLAMA_TEXT_PORT", "11434")
+STABLEDIFFUSION_HOST = os.getenv("STABLEDIFFUSION_HOST", "stablediffusion")
+STABLEDIFFUSION_PORT = os.getenv("STABLEDIFFUSION_PORT", "7860")
 
 OLLAMA_TEXT_BASE_URL = f"http://{OLLAMA_TEXT_HOST}:{OLLAMA_TEXT_PORT}/api"
 STABLEDIFFUSION_BASE_URL = f"http://{STABLEDIFFUSION_HOST}:{STABLEDIFFUSION_PORT}/api"
-
 
 # Example GET endpoints
 @app.get("/txt")
 def gen_text_get():
     """Simple ping for the text route."""
     return {"text": "hello world"}
-
 
 @app.get("/img")
 def gen_image_get():
@@ -102,18 +92,16 @@ def gen_image_get():
             status_code=500, detail=f"Erreur lors de la lecture de l'image : {e}"
         )
 
-
 # --- Endpoints calling the Docker services --- #
-
 
 @app.post("/txt")
 def text_model(req: PromptRequest):
+    print(req)
     """Generate text using the Ollama container."""
     try:
         return ollama_generate_text(req.prompt, req.stream)
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
-
 
 @app.post("/img")
 def image_model(req: PromptRequest):
@@ -122,7 +110,6 @@ def image_model(req: PromptRequest):
         return stablediffusion_generate_image(req.prompt)
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
-
 
 @app.get("/list_models")
 def list_models():
@@ -135,7 +122,6 @@ def list_models():
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
-
 @app.post("/users")
 def create_user(req: CreateUserRequest, db: Session = Depends(get_db)):
     user = models.User(username=req.username)
@@ -143,7 +129,6 @@ def create_user(req: CreateUserRequest, db: Session = Depends(get_db)):
     db.commit()
     db.refresh(user)
     return {"user_id": user.id}
-
 
 @app.post("/sessions")
 def create_session(req: CreateSessionRequest, db: Session = Depends(get_db)):
@@ -155,7 +140,6 @@ def create_session(req: CreateSessionRequest, db: Session = Depends(get_db)):
     db.commit()
     db.refresh(session)
     return {"session_id": session.id}
-
 
 @app.get("/sessions/{session_id}")
 def get_session(session_id: int, db: Session = Depends(get_db)):
